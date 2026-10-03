@@ -1,0 +1,87 @@
+# Kinvia .gitignore
+#
+# Specific on purpose: every rule names a real artifact type. Data folders are
+# anchored with a leading slash so they match only at the repository root.
+# docs/privacy.md "Repository rules" is why the secret and learner-data
+# sections exist.
+
+# --- OS -------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# --- Environment and secrets ----------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+/secrets/
+/credentials/
+
+# --- Real learner data, recordings and transcripts  (docs/privacy.md) ------
+# Only synthetic samples belong in data/samples/. Anything real goes here.
+/private/
+/data/raw/
+/data/real/
+/recordings/
+/transcripts/
+*.wav
+*.mp3
+*.m4a
+*.ogg
+*.opus
+
+# --- Model weights --------------------------------------------------------
+*.gguf
+*.safetensors
+*.ggml
+*.pt
+*.pth
+*.onnx
+/weights/
+
+# --- Local database state -------------------------------------------------
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Node -----------------------------------------------------------------
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# --- Logs and test output -------------------------------------------------
+*.log
+/logs/
+coverage/
+htmlcov/
+.coverage
+test-results/
+playwright-report/
+
+# --- Editor and local agent harness config --------------------------------
+# AGENTS.md is shared. Tool-specific root instructions stay local.
+CLAUDE.md
+claude.md
+CODEX.md
+codex.md
+.vscode/
+.idea/
+.claude/

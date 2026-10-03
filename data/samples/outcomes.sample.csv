@@ -1,0 +1,9 @@
+trade,sector,nsqf_level,provider,district,state,cohort_year,placement_rate,earnings_p25_inr_month,earnings_p75_inr_month,sample_size,source,as_of
+Electrician,Power,4,Sample ITI A,Pune,Maharashtra,2025,0.66,13000,18500,120,SYNTHETIC - not real data,2026-10-01
+Electrician,Power,4,Sample Skill Centre B,Nashik,Maharashtra,2025,0.58,12000,16500,85,SYNTHETIC - not real data,2026-10-01
+Fitter,Capital Goods,4,Sample ITI A,Pune,Maharashtra,2025,0.61,12500,17000,95,SYNTHETIC - not real data,2026-10-01
+Solar PV Installer,Green Jobs,4,Sample Skill Centre C,Ahmednagar,Maharashtra,2025,0.54,11500,16000,60,SYNTHETIC - not real data,2026-10-01
+General Duty Assistant,Healthcare,4,Sample Skill Centre D,Pune,Maharashtra,2025,0.63,10500,14500,110,SYNTHETIC - not real data,2026-10-01
+Retail Sales Associate,Retail,4,Sample Skill Centre B,Nashik,Maharashtra,2025,0.49,9500,13000,140,SYNTHETIC - not real data,2026-10-01
+Automotive Service Technician,Automotive,4,Sample ITI E,Lucknow,Uttar Pradesh,2025,0.57,11000,15500,75,SYNTHETIC - not real data,2026-10-01
+Sewing Machine Operator,Apparel,4,Sample Skill Centre F,Lucknow,Uttar Pradesh,2025,0.52,8500,12000,130,SYNTHETIC - not real data,2026-10-01
