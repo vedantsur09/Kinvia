@@ -10,3 +10,10 @@ named Kinvia with the same contributors as the Refinix repository, foundation fi
 SIH26241, and research on extra features and innovations. Near-term goal: idea-submission
 PPT (reusing the Refinix deck skeleton) and a basic prototype website before
 5 October 2026.
+
+## UP-002 — 2026-10-03
+
+Shared the final Refinix idea PPT as the SIH template/skeleton. Requested deep research
+with authentic sources on each skeleton point for SIH26241 — realistic to the PS, with
+ambitious framing on some points — focusing on innovation and extra features, so the
+team can rebuild the PPT by replacing Refinix content.
