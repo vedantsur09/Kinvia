@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Family session · Kinvia</title>
+<meta name="theme-color" content="#7c5cff">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo-mark.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css?v=17">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Kinvia home"><img src="logo-mark.png" alt="" width="38" height="38"><span class="brand-name">Kinvia</span></a>
+    <span class="badge">Prototype</span>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="try.html" aria-current="page">Family session</a>
+      <a href="desk.html">Counsellor Desk</a>
+      <a href="insights.html">Scheme Insights</a>
+    </nav>
+  </div>
+</header>
+<p class="prototype-note" data-t="note">Prototype · runs in your browser · all outcome figures are synthetic demo data</p>
+
+<main class="wrap">
+  <div class="app-head">
+    <div>
+      <p class="label" data-t="eyebrow">Learner + parents, together</p>
+      <h1 data-t="title">Family session</h1>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="restart" type="button" data-t="restart">Start over</button>
+    </div>
+  </div>
+
+  <div class="session">
+    <!-- Chat -->
+    <section class="panel chat" aria-label="Conversation">
+      <div class="chat-top">
+        <div class="speakers" role="group" aria-label="Who is speaking">
+          <button class="chip" type="button" data-speaker="learner" aria-pressed="false" data-icon="person"><span data-t="learner">Learner</span></button>
+          <button class="chip" type="button" data-speaker="parent" aria-pressed="true" data-icon="family"><span data-t="parent">Parent</span></button>
+        </div>
+        <label class="tiny" style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="autoread"> <span data-t="autoread">Read replies aloud</span></label>
+      </div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <div class="composer">
+        <div class="quick" id="quick"></div>
+        <form class="input-row" id="form" autocomplete="off">
+          <button class="icon-btn" type="button" id="mic" aria-pressed="false" aria-label="Speak" data-icon="mic"></button>
+          <input id="msg" name="msg" type="text" placeholder="Type or speak a question…" aria-label="Your question">
+          <button class="btn btn-primary" type="submit" data-t="send">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Side -->
+    <aside class="side">
+      <section class="panel" aria-labelledby="ctx-h">
+        <h2 id="ctx-h" data-t="context">Family context</h2>
+        <div class="field"><label for="district" data-t="district">District</label><select id="district"></select></div>
+        <div class="field"><label for="schooling" data-t="schooling">Learner’s schooling</label><select id="schooling"></select></div>
+        <div class="field"><label data-t="trade">Trade being considered</label><div class="trade-grid" id="trades"></div></div>
+      </section>
+
+      <section class="panel" aria-labelledby="con-h">
+        <h2 id="con-h" data-t="concerns">Concerns raised</h2>
+        <div class="objlist" id="objlist"><p class="tiny" data-t="noconcerns">Concerns appear here as the family asks questions.</p></div>
+      </section>
+
+      <section class="panel" aria-labelledby="path-h">
+        <h2 id="path-h" data-t="pathway">Pathway</h2>
+        <div class="path" id="path"></div>
+        <h3 style="margin-top:8px" data-t="years">First five years</h3>
+        <div class="two-path" id="twopath"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="sch-h">
+        <h2 id="sch-h" data-t="schemes">Schemes you may be eligible for</h2>
+        <div class="objlist" id="schemes"></div>
+        <p class="tiny" style="margin-top:8px" data-t="checkelig">Check eligibility with a counsellor. Kinvia never promises a benefit.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="conf-h">
+        <h2 id="conf-h" data-t="confidence">How confident do you feel?</h2>
+        <p class="tiny" style="margin-bottom:10px" data-t="confhint">1 = very unsure · 5 = very confident</p>
+        <div id="conf" style="display:grid;gap:10px"></div>
+      </section>
+
+      <section class="panel" style="display:grid;gap:10px">
+        <button class="btn btn-ink" type="button" id="escalate" data-t="escalate">Talk to a counsellor</button>
+        <button class="btn btn-primary" type="button" id="trustbtn" data-t="trust">Create Family Trust Card</button>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<!-- Consent -->
+<div class="overlay" id="consent" role="dialog" aria-modal="true" aria-labelledby="consent-h">
+  <div class="dialog">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <p class="label" data-t="cEyebrow">Before we begin</span>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+      </div>
+    </div>
+    <h2 id="consent-h" data-t="cTitle">Your family’s consent</h2>
+    <ul id="consent-list"></ul>
+    <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="consent-ok" style="margin-top:6px"> <span data-t="cCheck">I am the parent or guardian, and I agree that this session can be saved.</span></label>
+    <div class="row">
+      <button class="btn btn-ghost btn-sm" type="button" id="consent-read" data-t="cRead">Read aloud</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="consent-guest" data-t="cGuest">Continue without saving</button>
+      <button class="btn btn-primary btn-sm" type="button" id="consent-go" disabled data-t="cGo">Agree and start</button>
+    </div>
+  </div>
+</div>
+
+<!-- Trust Card -->
+<div class="overlay" id="trustmodal" hidden role="dialog" aria-modal="true" aria-labelledby="trust-title">
+  <div class="dialog" style="max-width:640px">
+    <div id="trustcard"></div>
+    <div class="row no-print">
+      <a class="btn btn-ghost btn-sm" id="wa" target="_blank" rel="noopener" data-t="wa">Share on WhatsApp</a>
+      <button class="btn btn-ghost btn-sm" type="button" id="dl" data-t="dl">Save as image</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="print" data-t="print">Print</button>
+      <button class="btn btn-primary btn-sm" type="button" id="trustclose" data-t="close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js?v=10"></script>
+<script src="icons.js?v=10"></script>
+<script src="session.js?v=10"></script>
+</body>
+</html>

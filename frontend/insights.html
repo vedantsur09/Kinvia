@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scheme Insights · Kinvia</title>
+<meta name="theme-color" content="#7c5cff">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo-mark.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css?v=17">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Kinvia home"><img src="logo-mark.png" alt="" width="38" height="38"><span class="brand-name">Kinvia</span></a>
+    <span class="badge">Prototype</span>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="try.html">Family session</a>
+      <a href="desk.html">Counsellor Desk</a>
+      <a href="insights.html" aria-current="page">Scheme Insights</a>
+    </nav>
+  </div>
+</header>
+<p class="prototype-note">Prototype · synthetic aggregate data · sessions you complete in this browser are added live</p>
+
+<main class="wrap">
+  <div class="app-head">
+    <div><p class="label">For MSDE, DGT and State Skill Missions</span><h1>Scheme Insights</h1></div>
+    <div class="field" style="margin:0;min-width:220px">
+      <label for="state">State</label>
+      <select id="state"><option value="all">All states</option><option value="Maharashtra">Maharashtra</option><option value="Uttar Pradesh">Uttar Pradesh</option></select>
+    </div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="insights">
+    <section class="panel" aria-labelledby="heat-h">
+      <h2 id="heat-h">Where families resist, and why</h2>
+      <p class="tiny" style="margin-bottom:12px">Share of each district’s sessions raising each concern. Darker = more common.</p>
+      <div class="heat-scroll"><div class="heat" id="heat"></div></div>
+    </section>
+    <div style="display:grid;gap:20px">
+      <section class="panel" aria-labelledby="obj-h">
+        <h2 id="obj-h">Top concerns</h2>
+        <div class="hbars" id="bars"></div>
+      </section>
+      <section class="panel" aria-labelledby="shift-h">
+        <h2 id="shift-h">Confidence shift</h2>
+        <p class="tiny" style="margin-bottom:12px">Average family confidence before and after a session (1–5).</p>
+        <div class="shift" id="shift"></div>
+      </section>
+    </div>
+  </div>
+  <section class="panel" style="margin-bottom:56px" aria-labelledby="act-h">
+    <h2 id="act-h">Suggested outreach</h2>
+    <div class="objlist" id="actions"></div>
+    <p class="tiny" style="margin-top:12px">Aggregates only. Administrators never see individual families or transcripts.</p>
+  </section>
+</main>
+<script src="data.js?v=10"></script>
+<script src="icons.js?v=10"></script>
+<script src="insights.js?v=10"></script>
+</body>
+</html>

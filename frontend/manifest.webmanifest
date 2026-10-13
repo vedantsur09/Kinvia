@@ -1,0 +1,25 @@
+{
+  "name": "Kinvia — Family Career Counselling",
+  "short_name": "Kinvia",
+  "description": "AI-enabled career counselling and family decision support for vocational education.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf8ff",
+  "theme_color": "#7c5cff",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "logo-mark.png",
+      "sizes": "448x448",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
