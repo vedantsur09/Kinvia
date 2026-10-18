@@ -185,3 +185,16 @@ Factual record of repository changes made by agents. Append only.
   `all_except_custom_domains`) is still enabled on the project. It is not blocking
   either production URL, but it does gate preview deployments; clearing it was refused
   by the permission classifier and remains a user action.
+
+## AC-013 — 2026-10-19 — Vercel project renamed to `kinvia-in` (UP-012)
+
+- **Changed:** renamed the Vercel project `kinvia-frontend` → `kinvia-in`; its dashboard
+  path is now `vercel.com/vedantsur09s-projects/kinvia-in`. No repository file changed.
+- **Verified:** `kinvia-in.vercel.app` returns 200 and serves the landing page and
+  `try.html` after the rename.
+- **Unresolved:** `kinvia-frontend.vercel.app` is still attached as an explicit project
+  domain and still resolves. Renaming the project did not detach it, and this MCP
+  surface exposes only add/get/list/verify for project domains — no remove or patch —
+  so it cannot be deleted from here. The Vercel CLI is not installed and has no stored
+  credentials, so the documented CLI fallback is unavailable. Removing it is a user
+  action in Settings → Domains.
