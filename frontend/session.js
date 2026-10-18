@@ -26,20 +26,31 @@
                "A counsellor sees your session only if you ask for help. Officials see totals, never your conversation.",
                "You can ask for a person, stop, or delete your session at any time."],
       cCheck: "I am the parent or guardian, and I agree that this session can be saved.",
-      cRead: "Read aloud", cGuest: "Continue without saving", cGo: "Agree and start",
+      cRead: "Read aloud", cGuest: "Continue without saving", cGo: "Agree and start", cResume: "Resume last session",
+      transcript: "Save the conversation", resumed: "Welcome back — I’ve brought your earlier session with me.",
+      typing: "Kinvia is typing", listening: "Listening… speak now", micErr: "I didn’t catch that. Try again, or type it.",
+      ctxDistrict: "District", ctxTrade: "Trade", ctxPick: "Choose a trade",
+      pickTrade: "Which trade is your family considering? Tap one below, or just say its name.",
+      CMP: t => `Here is every district in the demo store with a verified ${t} record, best placement first. Nothing here is guessed — each row is one record.`,
+      CMPnone: t => `The demo store has only one verified record for ${t}, so there is nothing to compare it against yet.`,
+      cmpHead: ["District", "Monthly, year one", "Placed", "Record"],
+      sugMore: "What else can I ask?", sugHostel: "What about hostel and safety?", sugCost: "What will it cost?",
+      sugFurther: "Can she study further?", sugCompare: "Which district does better?", sugCounsellor: "Talk to a counsellor",
+      sugTrust: "Make the Trust Card", sugJobs: "What jobs come after?",
+      nudgeOpen: "A few concerns are still open. Would it help to speak to a counsellor? They will already have your summary.",
       wa: "Share on WhatsApp", dl: "Save as image", print: "Print", close: "Close",
       schoolOpts: ["Class 8 pass", "Class 10 pass", "Class 12 pass", "ITI / diploma started", "Other"],
       quick: [["INC", "Will he earn enough?"], ["STA", "Log kya kahenge?"], ["SAF", "Is it safe for my daughter?"],
               ["PRG", "Can I study further?"], ["CST", "What will it cost?"], ["JOB", "Is the job secure?"], ["DIS", "It is too far"], ["ESC", "Talk to a counsellor"]],
-      welcome: "Namaste! I’m Kinvia. Choose who is speaking, pick your district and a trade, then ask anything — for example, “Will he earn enough?”",
+      welcome: "Namaste! I’m Kinvia. I answer only from verified training records — if there is no record, I will say so rather than guess. Ask me anything, in Hindi or English.",
       guest: "You’re in guest mode: nothing from this session will be saved.",
-      needTrade: "Which trade are you considering? Pick one on the right, or say its name.",
+      
       noData: (t, d) => `We don’t have verified data for ${t} in ${d} yet, so I won’t guess a number. I can connect you to a counsellor, or show districts where verified records exist.`,
       INC: r => `Trainees who finished ${r.t} at ${r.provider} in ${r.d} earned ${KV.inr(r.p25)}–${KV.inr(r.p75)} a month in their first year, and ${r.placement}% were placed within six months.`,
       STA: r => `Skilled trades are respected work with steady demand. In ${r.d}, ${r.placement}% of ${r.t} trainees found jobs, and the path continues: an NSQF level-up or a diploma through lateral entry. A certificate is a qualification, not a fallback.`,
       SAFyes: r => `${r.provider} runs women-friendly batches in this record. Women trainees can also get boarding, lodging and transport support under Common Norms. For hostel details, a counsellor can confirm.`,
       SAFno: r => `This record does not show women-only batches for ${r.t} in ${r.d}. Women trainees can get boarding, lodging and transport support under Common Norms. I’ve marked this for a counsellor to confirm hostel and timing details.`,
-      PRG: r => `Yes. ${r.t} is NSQF Level ${r.nsqf}. After it you can work or apprentice, level up to NSQF Level 5, or join a diploma through lateral entry. See the pathway on the right.`,
+      PRG: r => `Yes. ${r.t} is NSQF Level ${r.nsqf}. After it you can work or apprentice, level up to NSQF Level 5, or join a diploma through lateral entry. The full pathway is in your session summary.`,
       CST: () => `PMKVY training is free at empanelled centres. During an apprenticeship, the government shares 25% of the stipend, up to ₹1,500 a month. The PM Internship Scheme pays ₹5,000 a month. Check eligibility with a counsellor.`,
       JOB: r => `${r.placement}% of ${r.t} trainees in ${r.d} were placed within six months. Typical roles: ${r.jobs}.`,
       DIS: (t, list) => list.length ? `Verified records for ${t} also exist in: ${list}. Women trainees can get transport support under Common Norms.` : `No other district in the demo store has a record for ${t}.`,
@@ -71,20 +82,31 @@
                "काउंसलर आपका सत्र तभी देखेंगे जब आप मदद माँगें। अधिकारी सिर्फ़ कुल आंकड़े देखते हैं, आपकी बातचीत नहीं।",
                "आप कभी भी किसी व्यक्ति से बात कर सकते हैं, रुक सकते हैं या अपना सत्र मिटा सकते हैं।"],
       cCheck: "मैं माता-पिता या अभिभावक हूँ, और मैं सहमत हूँ कि यह सत्र सहेजा जा सकता है।",
-      cRead: "पढ़कर सुनाएँ", cGuest: "बिना सहेजे जारी रखें", cGo: "सहमत हूँ, शुरू करें",
+      cRead: "पढ़कर सुनाएँ", cGuest: "बिना सहेजे जारी रखें", cGo: "सहमत हूँ, शुरू करें", cResume: "पिछला सत्र जारी रखें",
+      transcript: "बातचीत सहेजें", resumed: "फिर से स्वागत है — आपका पिछला सत्र यहीं मौजूद है।",
+      typing: "किनविया लिख रहा है", listening: "सुन रहा हूँ… अब बोलिए", micErr: "मैं समझ नहीं पाया। दोबारा बोलें या लिखें।",
+      ctxDistrict: "ज़िला", ctxTrade: "ट्रेड", ctxPick: "ट्रेड चुनें",
+      pickTrade: "आपका परिवार कौन-सा ट्रेड सोच रहा है? नीचे से चुनें, या बस उसका नाम बोलें।",
+      CMP: t => `डेमो डेटा में ${t} के सत्यापित रिकॉर्ड वाले सभी ज़िले — सबसे अच्छे प्लेसमेंट से शुरू। कुछ भी अंदाज़े से नहीं; हर पंक्ति एक रिकॉर्ड है।`,
+      CMPnone: t => `डेमो डेटा में ${t} का सिर्फ़ एक सत्यापित रिकॉर्ड है, इसलिए अभी तुलना नहीं हो सकती।`,
+      cmpHead: ["ज़िला", "मासिक, पहला साल", "नौकरी", "रिकॉर्ड"],
+      sugMore: "और क्या पूछ सकते हैं?", sugHostel: "हॉस्टल और सुरक्षा?", sugCost: "खर्च कितना होगा?",
+      sugFurther: "क्या आगे पढ़ाई हो सकती है?", sugCompare: "कौन-सा ज़िला बेहतर है?", sugCounsellor: "काउंसलर से बात करें",
+      sugTrust: "ट्रस्ट कार्ड बनाएँ", sugJobs: "आगे कौन-सा काम मिलेगा?",
+      nudgeOpen: "कुछ चिंताएँ अभी खुली हैं। क्या काउंसलर से बात करना ठीक रहेगा? उनके पास आपका सारांश पहले से होगा।",
       wa: "व्हाट्सऐप पर भेजें", dl: "इमेज सहेजें", print: "प्रिंट", close: "बंद करें",
       schoolOpts: ["8वीं पास", "10वीं पास", "12वीं पास", "ITI / डिप्लोमा शुरू", "अन्य"],
       quick: [["INC", "कमाई कितनी होगी?"], ["STA", "लोग क्या कहेंगे?"], ["SAF", "क्या बेटी के लिए सुरक्षित है?"],
               ["PRG", "क्या आगे पढ़ाई हो सकती है?"], ["CST", "खर्च कितना होगा?"], ["JOB", "क्या नौकरी पक्की है?"], ["DIS", "बहुत दूर है"], ["ESC", "काउंसलर से बात करें"]],
-      welcome: "नमस्ते! मैं किनविया हूँ। चुनिए कौन बोल रहा है, अपना ज़िला और ट्रेड चुनिए, फिर कुछ भी पूछिए — जैसे, “कमाई कितनी होगी?”",
+      welcome: "नमस्ते! मैं किनविया हूँ। मैं सिर्फ़ सत्यापित रिकॉर्ड से जवाब देता हूँ — रिकॉर्ड न हो तो अंदाज़ा लगाने के बजाय साफ़ कह दूँगा। हिंदी या अंग्रेज़ी में कुछ भी पूछिए।",
       guest: "आप गेस्ट मोड में हैं: इस सत्र से कुछ भी सहेजा नहीं जाएगा।",
-      needTrade: "आप कौन-सा ट्रेड सोच रहे हैं? दाईं ओर चुनें या उसका नाम बोलें।",
+      
       noData: (t, d) => `${d} में ${t} के लिए अभी सत्यापित डेटा नहीं है, इसलिए मैं अंदाज़े से कोई आंकड़ा नहीं बताऊँगा। मैं आपको काउंसलर से जोड़ सकता हूँ, या वे ज़िले दिखा सकता हूँ जहाँ सत्यापित रिकॉर्ड हैं।`,
       INC: r => `${r.d} में ${r.provider} से ${r.t} प्रशिक्षण पूरा करने वालों ने पहले साल में ${KV.inr(r.p25)}–${KV.inr(r.p75)} प्रति माह कमाए, और ${r.placement}% को छह महीने में नौकरी मिली।`,
       STA: r => `कुशल ट्रेड सम्मानजनक काम है और इसकी मांग लगातार है। ${r.d} में ${r.t} के ${r.placement}% प्रशिक्षुओं को नौकरी मिली, और आगे का रास्ता खुला है: NSQF लेवल-अप या लेटरल एंट्री से डिप्लोमा। प्रमाणपत्र एक योग्यता है, मजबूरी नहीं।`,
       SAFyes: r => `इस रिकॉर्ड के अनुसार ${r.provider} में महिलाओं के लिए बैच चलते हैं। महिला प्रशिक्षुओं को कॉमन नॉर्म्स के तहत रहने, खाने और यात्रा की सहायता भी मिल सकती है। हॉस्टल की जानकारी काउंसलर पक्की करेंगे।`,
       SAFno: r => `इस रिकॉर्ड में ${r.d} में ${r.t} के लिए केवल-महिला बैच नहीं दिखते। महिला प्रशिक्षुओं को कॉमन नॉर्म्स के तहत रहने, खाने और यात्रा की सहायता मिल सकती है। हॉस्टल और समय की पुष्टि के लिए मैंने इसे काउंसलर के लिए चिह्नित किया है।`,
-      PRG: r => `हाँ। ${r.t} NSQF लेवल ${r.nsqf} है। इसके बाद आप नौकरी या अप्रेंटिसशिप कर सकते हैं, NSQF लेवल 5 तक बढ़ सकते हैं, या लेटरल एंट्री से डिप्लोमा कर सकते हैं। दाईं ओर रास्ता देखें।`,
+      PRG: r => `हाँ। ${r.t} NSQF लेवल ${r.nsqf} है। इसके बाद आप नौकरी या अप्रेंटिसशिप कर सकते हैं, NSQF लेवल 5 तक बढ़ सकते हैं, या लेटरल एंट्री से डिप्लोमा कर सकते हैं। पूरा रास्ता आपके सत्र सारांश में है।`,
       CST: () => `चुने हुए केंद्रों पर PMKVY प्रशिक्षण मुफ्त है। अप्रेंटिसशिप के दौरान सरकार स्टाइपेंड का 25%, अधिकतम ₹1,500 प्रति माह देती है। पीएम इंटर्नशिप योजना में ₹5,000 प्रति माह मिलते हैं। पात्रता काउंसलर से जाँचें।`,
       JOB: r => `${r.d} में ${r.t} के ${r.placement}% प्रशिक्षुओं को छह महीने में नौकरी मिली। आम काम: ${r.jobs}।`,
       DIS: (t, list) => list.length ? `${t} के सत्यापित रिकॉर्ड इन ज़िलों में भी हैं: ${list}। महिला प्रशिक्षुओं को कॉमन नॉर्म्स के तहत यात्रा सहायता मिल सकती है।` : `डेमो डेटा में ${t} के लिए किसी और ज़िले का रिकॉर्ड नहीं है।`,
@@ -101,12 +123,15 @@
     },
   };
   const ESC_CUES = ["counsellor", "counselor", "person", "human", "talk to someone", "call me", "काउंसलर", "किसी से बात", "insaan", "baat karni"];
+  // "Compare districts" is an intent, not a family concern, so it stays out of the objection taxonomy.
+  const CMP_CUES = ["compare", "which district", "which city", "better place", "kaha behtar", "kahan behtar",
+                    "तुलना", "कौन सा ज़िला", "कौन-सा ज़िला", "कहाँ बेहतर", "कहां बेहतर"];
 
   // ---------- State ----------
   const fresh = () => ({
     lang: KV.get("kinvia.lang", "en"), saving: false, speaker: "parent",
     district: "pune", schooling: 1, trade: null,
-    objections: [], evidence: [], messages: [],
+    objections: [], evidence: [], messages: [], pending: null, nudged: false,
     conf: { learner: { before: 2, after: 2 }, parent: { before: 2, after: 2 } },
     ticket: null, id: "S-" + Date.now().toString(36).toUpperCase(),
   });
@@ -131,6 +156,10 @@
   function classify(text) {
     const s = text.toLowerCase();
     if (ESC_CUES.some(c => s.includes(c))) return ["ESC"];
+    if (CMP_CUES.some(c => s.includes(c))) {
+      D.TRADES.forEach(tr => { if (s.includes(tr.en.toLowerCase()) || s.includes(tr.hi)) setTrade(tr.id); });
+      return ["CMP"];
+    }
     const codes = Object.entries(D.OBJECTIONS).filter(([, o]) => o.cues.some(c => s.includes(c))).map(([k]) => k);
     D.TRADES.forEach(tr => { if (s.includes(tr.en.toLowerCase()) || s.includes(tr.hi)) setTrade(tr.id); });
     D.DISTRICTS.forEach(d => { if (s.includes(d.en.toLowerCase()) || s.includes(d.hi)) setDistrict(d.id); });
@@ -155,6 +184,22 @@
       <div class="ev-src"><span>${S.lang === "hi" ? "कोई रिकॉर्ड नहीं · अंदाज़ा नहीं लगाया गया" : "no record · no number guessed"}</span></div></div>`;
   }
 
+  // Every figure here is read straight off a record, so the card needs no separate grounding pass.
+  function compareCard(rows) {
+    const L = t(), best = rows[0];
+    return `<div class="cmp"><table><thead><tr>${L.cmpHead.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>
+      ${rows.map(r => `<tr${r.district === S.district ? ' class="is-you"' : ""}><td data-l="${L.cmpHead[0]}">${KV.esc(distName(r.district))}${r.district === S.district ? ` <span class="tag tag-leaf">${S.lang === "hi" ? "आपका" : "yours"}</span>` : ""}</td>
+      <td data-l="${L.cmpHead[1]}"><b>${KV.inr(r.p25)}–${KV.inr(r.p75)}</b></td><td data-l="${L.cmpHead[2]}">${r.placement}%</td><td class="mono" data-l="${L.cmpHead[3]}">${r.id} · n=${r.n}</td></tr>`).join("")}
+      </tbody></table><p class="tiny">${S.lang === "hi" ? "सबसे अच्छा रिकॉर्ड" : "Best record"}: ${KV.esc(distName(best.district))} · ${KV.esc(best.provider)} · ${S.lang === "hi" ? "सिंथेटिक डेमो डेटा" : "synthetic demo data"}</p></div>`;
+  }
+
+  // The trade picker lives in the sidebar, which stacks *below* the chat on a phone.
+  // Offering it inline keeps the conversation from dead-ending on a control nobody can see.
+  function inlineTrades() {
+    return `<div class="inline-trades">${D.TRADES.map(tr =>
+      `<button class="chip" type="button" data-pick="${tr.id}">${KV_ICON(tr.icon)}${KV.esc(tr[S.lang])}</button>`).join("")}</div>`;
+  }
+
   function addConcern(code, resolved, evidenceId) {
     S.objections.push({ code, speaker: S.speaker, resolved, evidence: evidenceId || null, at: Date.now() });
     renderConcerns();
@@ -164,10 +209,12 @@
     codes = [...codes];
     const L = t();
     if (codes[0] === "ESC") return escalate(rawText);
-    if (!codes.length) return kinviaSay(L.fallback, { quick: true });
+    if (codes[0] === "CMP") return compare();
+    if (!codes.length) return kinviaSay(L.fallback, { suggest: true });
     if (!S.trade && codes.some(c => c !== "CST")) {
       codes.forEach(c => addConcern(c, false));
-      return kinviaSay(L.needTrade, { quick: false });
+      S.pending = codes.filter(c => c !== "CST");
+      return kinviaSay(L.pickTrade, { html: inlineTrades() });
     }
     const rec = S.trade ? D.findOutcome(S.trade, S.district) : null;
     if (!rec) {
@@ -203,6 +250,41 @@
       const g = ground(text, rec);
       kinviaSay(text, { grounded: g, id: rec.id, html: ["INC", "JOB", "STA"].includes(code) ? evidenceCard(rec, code) : "" });
     });
+    suggestNext();
+    nudgeCounsellor();
+  }
+
+  function compare() {
+    const L = t();
+    if (!S.trade) return kinviaSay(L.pickTrade, { html: inlineTrades() });
+    const rows = D.OUTCOMES.filter(o => o.trade === S.trade).sort((a, b) => b.placement - a.placement);
+    if (rows.length < 2) return kinviaSay(L.CMPnone(tradeName(S.trade)), { suggest: true });
+    rows.forEach(r => { if (!S.evidence.includes(r.id)) S.evidence.push(r.id); });
+    kinviaSay(L.CMP(tradeName(S.trade)), { html: compareCard(rows), scheme: false, grounded: { ok: true }, id: rows.map(r => r.id).join(", ") });
+    suggestNext();
+  }
+
+  // Follow-ups the family is actually likely to want next, rather than a fixed chip row.
+  function suggestNext() {
+    const L = t(), asked = new Set(S.objections.map(o => o.code));
+    const pool = [];
+    if (S.trade && !asked.has("INC")) pool.push(["INC", t().quick[0][1]]);
+    if (S.trade && !asked.has("SAF")) pool.push(["SAF", L.sugHostel]);
+    if (!asked.has("PRG")) pool.push(["PRG", L.sugFurther]);
+    if (!asked.has("CST")) pool.push(["CST", L.sugCost]);
+    if (!asked.has("JOB")) pool.push(["JOB", L.sugJobs]);
+    if (S.trade && D.OUTCOMES.filter(o => o.trade === S.trade).length > 1) pool.push(["CMP", L.sugCompare]);
+    if (S.objections.length >= 2) pool.push(["TRUST", L.sugTrust]);
+    pool.push(["ESC", L.sugCounsellor]);
+    renderSuggest(pool.slice(0, 4));
+  }
+
+  // After a couple of unresolved concerns, offer a human rather than waiting to be asked.
+  function nudgeCounsellor() {
+    if (S.ticket || S.nudged) return;
+    if (S.objections.filter(o => !o.resolved).length < 2) return;
+    S.nudged = true;
+    kinviaSay(t().nudgeOpen);
   }
 
   // ---------- Rendering ----------
@@ -217,7 +299,30 @@
     log().scrollTop = log().scrollHeight;
     return b;
   }
+  // A brief "typing" beat before each reply: it paces multi-part answers so the family
+  // reads them in order instead of having three cards appear at once.
+  let typingEl = null, chain = Promise.resolve();
+  function showTyping() {
+    if (typingEl) return;
+    typingEl = document.createElement("div");
+    typingEl.className = "bubble kinvia typing";
+    typingEl.setAttribute("aria-label", t().typing);
+    typingEl.innerHTML = `<span class="who">Kinvia</span><span class="dots"><i></i><i></i><i></i></span>`;
+    log().appendChild(typingEl);
+    log().scrollTop = log().scrollHeight;
+  }
+  function hideTyping() { typingEl?.remove(); typingEl = null; }
+
   function kinviaSay(text, opts = {}) {
+    const delay = opts.instant ? 0 : Math.min(900, 280 + text.length * 2.2);
+    chain = chain.then(() => new Promise(resolve => {
+      showTyping();
+      setTimeout(() => { hideTyping(); renderReply(text, opts); resolve(); }, delay);
+    }));
+    return chain;
+  }
+
+  function renderReply(text, opts = {}) {
     let body = KV.esc(text);
     let meta = "";
     if (opts.grounded) {
@@ -227,23 +332,74 @@
     meta += `<button class="chip" type="button" data-say style="padding:3px 10px;font-size:11.5px">${KV_ICON("sound")} ${t().speak}</button>`;
     const b = push("kinvia", body + (opts.html || ""), { meta });
     b.querySelector("[data-say]").addEventListener("click", () => KV.speak(text, S.lang));
+    b.querySelectorAll("[data-pick]").forEach(btn => btn.addEventListener("click", () => {
+      const id = btn.dataset.pick, group = btn.closest(".inline-trades");
+      // Spent controls stay visible as history but stop being clickable.
+      group.classList.add("used");
+      group.querySelectorAll("[data-pick]").forEach(x => {
+        x.disabled = true;
+        x.setAttribute("aria-pressed", String(x.dataset.pick === id));
+      });
+      userSay(tradeName(id));
+      setTrade(id);
+      const pending = S.pending || [];
+      S.pending = null;
+      S.objections = S.objections.filter(o => !(pending.includes(o.code) && !o.resolved));
+      renderConcerns();
+      if (pending.length) respond(pending, "");
+      else { setTrade(id, true); suggestNext(); }
+    }));
     S.messages.push({ role: "kinvia", text });
     if ($("#autoread").checked) KV.speak(text, S.lang);
     if (opts.quick) renderQuick();
+    if (opts.suggest) suggestNext();
+    persist();
   }
   function userSay(text) {
     push(S.speaker, KV.esc(text));
     S.messages.push({ role: S.speaker, text });
+    persist();
+  }
+
+  function renderSuggest(pairs) {
+    const el = $("#quick");
+    el.innerHTML = `<span class="suggest-label">${KV.esc(t().sugMore)}</span>` +
+      pairs.map(([code, label]) => `<button class="chip" type="button" data-q="${code}">${KV.esc(label)}</button>`).join("");
+    wireQuick();
+  }
+  function wireQuick() {
+    $$("#quick [data-q]").forEach(btn => btn.addEventListener("click", () => {
+      const code = btn.dataset.q, label = btn.textContent;
+      if (code === "TRUST") return trustCard();
+      userSay(label);
+      if (code === "ESC") return escalate(label);
+      if (code === "CMP") return compare();
+      respond([code], label);
+    }));
+  }
+
+  function renderCtxBar() {
+    const L = t(), bar = $("#ctxbar");
+    if (!bar) return;
+    const rec = S.trade ? D.findOutcome(S.trade, S.district) : null;
+    bar.innerHTML = `
+      <button type="button" data-jump="district"><span>${L.ctxDistrict}</span>${KV.esc(distName(S.district))}</button>
+      <button type="button" data-jump="trades" class="${S.trade ? "" : "needs"}"><span>${L.ctxTrade}</span>${KV.esc(tradeName(S.trade) || L.ctxPick)}</button>
+      ${S.trade ? `<span class="ctx-flag ${rec ? "ok" : "no"}">${rec
+        ? (S.lang === "hi" ? "सत्यापित रिकॉर्ड है" : "verified record")
+        : (S.lang === "hi" ? "कोई रिकॉर्ड नहीं" : "no record")}</span>` : ""}`;
+    bar.querySelectorAll("[data-jump]").forEach(b => b.addEventListener("click", () => {
+      const el = $("#" + b.dataset.jump);
+      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (b.dataset.jump === "district") el?.focus();
+      el?.closest(".panel")?.classList.add("flash");
+      setTimeout(() => el?.closest(".panel")?.classList.remove("flash"), 1200);
+    }));
   }
 
   function renderQuick() {
     $("#quick").innerHTML = t().quick.map(([code, label]) => `<button class="chip" type="button" data-q="${code}">${KV.esc(label)}</button>`).join("");
-    $$("#quick [data-q]").forEach(btn => btn.addEventListener("click", () => {
-      const code = btn.dataset.q, label = btn.textContent;
-      userSay(label);
-      if (code === "ESC") return escalate(label);
-      respond([code], label);
-    }));
+    wireQuick();
   }
   function renderContext() {
     $("#district").innerHTML = D.DISTRICTS.map(d => `<option value="${d.id}" ${d.id === S.district ? "selected" : ""}>${d[S.lang]} · ${d.state}</option>`).join("");
@@ -291,14 +447,38 @@
     $("#msg").placeholder = L.placeholder;
     $("#consent-list").innerHTML = L.cItems.map(i => `<li>${KV.esc(i)}</li>`).join("");
     $$("[data-lang]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === S.lang)));
-    renderContext(); renderConcerns(); renderPath(); renderSchemes(); renderConf(); renderQuick();
+    renderContext(); renderConcerns(); renderPath(); renderSchemes(); renderConf(); renderQuick(); renderCtxBar();
+  }
+
+  // ---------- Resume ----------
+  // Only ever written once the family has consented to saving, so resuming never
+  // revives a guest session that was promised to leave no trace.
+  function persist() {
+    if (!S.saving) return;
+    KV.set("kinvia.active", { ...S, at: Date.now(), html: log().innerHTML });
+  }
+  function resumable() {
+    const a = KV.get("kinvia.active", null);
+    return a && a.messages?.length > 1 && Date.now() - (a.at || 0) < 7 * 864e5 ? a : null;
+  }
+  function resume() {
+    const a = resumable();
+    if (!a) return start(true);
+    const html = a.html; delete a.html; delete a.at;
+    S = { ...fresh(), ...a, saving: true };
+    $("#consent").hidden = true;
+    log().innerHTML = html || "";
+    log().querySelectorAll("[data-say],[data-pick]").forEach(b => b.remove());
+    applyText();
+    renderReply(t().resumed, { suggest: true });
+    log().scrollTop = log().scrollHeight;
   }
 
   // ---------- Actions ----------
   function setTrade(id, announce) {
     S.trade = id;
     $$("#trades [data-trade]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.trade === id)));
-    renderPath();
+    renderPath(); renderCtxBar();
     if (announce) {
       const rec = D.findOutcome(id, S.district);
       kinviaSay(S.lang === "hi"
@@ -306,7 +486,7 @@
         : `${tradeName(id)} selected. ${rec ? "A verified record exists for this district." : "There is no verified record for this district yet."} Ask anything.`);
     }
   }
-  function setDistrict(id) { S.district = id; $("#district").value = id; renderPath(); }
+  function setDistrict(id) { S.district = id; $("#district").value = id; renderPath(); renderCtxBar(); }
 
   function escalate(reason) {
     const id = "T-" + Math.random().toString(36).slice(2, 7).toUpperCase();
@@ -397,23 +577,56 @@
   // ---------- Voice input ----------
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   let rec = null;
+  function micState(msg) {
+    const el = $("#micstate");
+    el.textContent = msg || "";
+    el.hidden = !msg;
+  }
   function toggleMic() {
     const btn = $("#mic");
     if (!SR) return kinviaSay(t().micNo);
     if (rec) { rec.stop(); return; }
-    rec = new SR(); rec.lang = S.lang === "hi" ? "hi-IN" : "en-IN"; rec.interimResults = false;
-    rec.onresult = e => { $("#msg").value = e.results[0][0].transcript; $("#form").requestSubmit(); };
-    rec.onend = () => { rec = null; btn.setAttribute("aria-pressed", "false"); };
-    rec.onerror = () => { rec = null; btn.setAttribute("aria-pressed", "false"); };
-    btn.setAttribute("aria-pressed", "true"); rec.start();
+    rec = new SR(); rec.lang = S.lang === "hi" ? "hi-IN" : "en-IN"; rec.interimResults = true;
+    let got = false;
+    // Interim results are shown in the input so the family can see it is hearing them.
+    rec.onresult = e => {
+      const r = e.results[e.results.length - 1];
+      $("#msg").value = r[0].transcript;
+      if (r.isFinal) { got = true; $("#form").requestSubmit(); }
+    };
+    rec.onend = () => { rec = null; btn.setAttribute("aria-pressed", "false"); micState(got ? "" : t().micErr); if (!got) setTimeout(() => micState(""), 3000); };
+    rec.onerror = () => { rec = null; btn.setAttribute("aria-pressed", "false"); micState(t().micErr); setTimeout(() => micState(""), 3000); };
+    btn.setAttribute("aria-pressed", "true"); micState(t().listening); rec.start();
+  }
+
+  function downloadTranscript() {
+    const L = t(), rec = S.trade ? D.findOutcome(S.trade, S.district) : null;
+    const lines = [
+      `Kinvia — ${L.title}`, `${S.id} · ${new Date().toLocaleString("en-IN")}`,
+      `${L.district}: ${distName(S.district)}`, `${L.trade}: ${tradeName(S.trade) || "—"}`,
+      rec ? `${L.tcEvidence}: ${KV.inr(rec.p25)}–${KV.inr(rec.p75)} / month · ${rec.placement}% · n=${rec.n} (${rec.id})` : "",
+      "", "— ".repeat(24), "",
+      ...S.messages.map(m => `${m.role === "kinvia" ? "Kinvia" : (m.role === "learner" ? L.learner : L.parent)}: ${m.text}`),
+      "", "— ".repeat(24), "",
+      `${L.concerns}: ${S.objections.filter(o => D.OBJECTIONS[o.code]).map(o => `${D.OBJECTIONS[o.code][S.lang]} (${o.resolved ? L.resolved : L.unresolved})`).join(", ") || "—"}`,
+      S.ticket ? `Ticket: ${S.ticket}` : "",
+      "", L.tcFoot,
+    ].filter(l => l !== "");
+    const url = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.download = `kinvia-session-${S.id}.txt`; a.href = url; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   // ---------- Wiring ----------
   function start(saving) {
     S.saving = saving;
+    if (saving) KV.set("kinvia.active", null);
     $("#consent").hidden = true;
-    kinviaSay(t().welcome, { quick: true });
+    kinviaSay(t().welcome, { instant: true, quick: true });
     if (!saving) kinviaSay(t().guest);
+    if (!S.trade) kinviaSay(t().pickTrade, { html: inlineTrades() });
+    $("#msg").focus();
   }
   function setLang(l) { S.lang = l; KV.set("kinvia.lang", l); applyText(); }
 
@@ -435,7 +648,10 @@
     $("#msg").value = "";
     userSay(text);
     respond(classify(text), text);
+    $("#msg").focus();
   });
+  $("#transcript").addEventListener("click", downloadTranscript);
+  $("#consent-resume").addEventListener("click", resume);
   $("#mic").addEventListener("click", toggleMic);
   $("#escalate").addEventListener("click", () => { userSay(t().escalate); escalate(t().escalate); });
   $("#trustbtn").addEventListener("click", trustCard);
@@ -444,14 +660,18 @@
   $("#print").addEventListener("click", () => window.print());
   $("#restart").addEventListener("click", () => {
     saveSession();
+    KV.set("kinvia.active", null);
     const lang = S.lang; S = fresh(); S.lang = lang;
+    chain = Promise.resolve(); hideTyping();
     log().innerHTML = ""; $("#consent-ok").checked = false; $("#consent-go").disabled = true; $("#consent").hidden = false;
+    $("#consent-resume").hidden = true;
     applyText();
   });
-  window.addEventListener("pagehide", saveSession);
+  window.addEventListener("pagehide", () => { saveSession(); persist(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape") $("#trustmodal").hidden = true; });
 
   document.querySelectorAll("[data-icon]").forEach(el => el.insertAdjacentHTML("afterbegin", KV_ICON(el.dataset.icon)));
 
   applyText();
+  if (resumable()) $("#consent-resume").hidden = false;
 })();
