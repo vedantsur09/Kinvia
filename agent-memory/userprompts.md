@@ -74,3 +74,8 @@ deployment branch directly after the Vercel dashboard step proved unclear.
 
 Asked to merge `vedant` into `dev` and then `main`, and to change the deployment URL
 from `kinvia-frontend.vercel.app` to `kinvia.vercel.app`.
+
+## UP-013 — 2026-10-19
+
+Reported that the family-session chat did not work on the live site, and that the
+footer ("Built by" and the rest of the bottom of the page) looked poor.
