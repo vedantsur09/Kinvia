@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=18">
+<link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body>
 <header class="topbar">
@@ -53,8 +53,10 @@
         </div>
         <label class="tiny" style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="autoread"> <span data-t="autoread">Read replies aloud</span></label>
       </div>
+      <div class="ctx-bar" id="ctxbar"></div>
       <div class="log" id="log" aria-live="polite"></div>
       <div class="composer">
+        <p class="mic-state" id="micstate" hidden aria-live="polite"></p>
         <div class="quick" id="quick"></div>
         <form class="input-row" id="form" autocomplete="off">
           <button class="icon-btn" type="button" id="mic" aria-pressed="false" aria-label="Speak" data-icon="mic"></button>
@@ -100,6 +102,7 @@
       <section class="panel" style="display:grid;gap:10px">
         <button class="btn btn-ink" type="button" id="escalate" data-t="escalate">Talk to a counsellor</button>
         <button class="btn btn-primary" type="button" id="trustbtn" data-t="trust">Create Family Trust Card</button>
+        <button class="btn btn-ghost btn-sm" type="button" id="transcript" data-t="transcript">Save the conversation</button>
       </section>
     </aside>
   </div>
@@ -120,6 +123,7 @@
     <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="consent-ok" style="margin-top:6px"> <span data-t="cCheck">I am the parent or guardian, and I agree that this session can be saved.</span></label>
     <div class="row">
       <button class="btn btn-ghost btn-sm" type="button" id="consent-read" data-t="cRead">Read aloud</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="consent-resume" hidden data-t="cResume">Resume last session</button>
       <button class="btn btn-ghost btn-sm" type="button" id="consent-guest" data-t="cGuest">Continue without saving</button>
       <button class="btn btn-primary btn-sm" type="button" id="consent-go" disabled data-t="cGo">Agree and start</button>
     </div>
@@ -141,6 +145,6 @@
 
 <script src="data.js?v=10"></script>
 <script src="icons.js?v=10"></script>
-<script src="session.js?v=10"></script>
+<script src="session.js?v=11"></script>
 </body>
 </html>

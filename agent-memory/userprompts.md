@@ -79,3 +79,8 @@ from `kinvia-frontend.vercel.app` to `kinvia.vercel.app`.
 
 Reported that the family-session chat did not work on the live site, and that the
 footer ("Built by" and the rest of the bottom of the page) looked poor.
+
+## UP-014 — 2026-10-19
+
+Asked to optimise the website chatbot further, make it more user friendly, and add
+more features where possible.

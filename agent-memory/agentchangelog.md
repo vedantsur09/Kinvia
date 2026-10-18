@@ -222,3 +222,43 @@ Factual record of repository changes made by agents. Append only.
   5 actions) unchanged; no horizontal overflow on any page at either size.
 - **Unverified:** behaviour on a real handset's browser chrome; voice input and
   read-aloud on real devices.
+
+## AC-015 — 2026-10-19 — Family-session usability pass and new features (UP-014)
+
+- **Changed:** `frontend/session.js`, `frontend/try.html`, `frontend/styles.css`,
+  `frontend/README.md`.
+  - **Mobile dead-end fixed:** the reply when no trade was chosen read "Pick one on the
+    right", but the sidebar stacks *below* the chat on a phone. The chat now offers an
+    inline trade picker (`inlineTrades()`), and the picker disables itself once used.
+    The same directional wording was removed from the `PRG` reply in both languages.
+  - **Context strip** (`.ctx-bar`) in the chat header showing district, trade and whether
+    a verified record exists; each chip scrolls to and flashes the real control.
+  - **Typing indicator** with a short per-reply delay, so multi-part answers arrive in
+    reading order instead of all at once. Replies are serialised through a promise chain.
+  - **Context-aware follow-up suggestions** replace the fixed quick-chip row after each
+    answer, offering only concerns not yet raised plus Compare / Trust Card / counsellor.
+  - **District comparison** — a new `CMP` intent (kept out of the objection taxonomy,
+    since it is not a family concern) renders every verified record for the current trade
+    sorted by placement, with the family's own district marked. Restacks to blocks under
+    620 px rather than scrolling sideways inside a bubble.
+  - **Counsellor nudge** once two concerns are open and no ticket exists.
+  - **Session resume** — state persists to `kinvia.active` only when the family consented
+    to saving, so a guest session is never revived; a "Resume last session" button appears
+    in the consent dialog when a session under seven days old exists.
+  - **Transcript download** (.txt) with context, full conversation, concerns and ticket.
+  - **Voice feedback** — interim transcripts stream into the input, with a "Listening…"
+    line and a recoverable "I didn't catch that" state.
+  - Input refocuses after send; welcome copy rewritten to lead with the grounding promise.
+  - Bumped `styles.css?v=18` → `?v=19`, `session.js?v=10` → `?v=11`, `CACHE` → `kinvia-v21`.
+- **Verified (local, 390×760 and 1280×900, both languages):** `node --check` passes;
+  zero runtime errors across every flow exercised. Inline picker renders 6 trades and
+  disables after use; context strip flips Pune/verified → Ahmednagar/no-record correctly;
+  suggestions narrow as concerns are answered (INC/SAF/PRG/CST → PRG/CST/JOB/CMP);
+  comparison returns 3 sorted rows with the family's district marked and record ids
+  shown; nudge fires exactly once on two open concerns; honest no-data path intact and
+  the grounding guard blocked nothing it should not; transcript builds 24 lines with the
+  right content; resume restores 17 bubbles, concerns, district and trade after a reload
+  and the session continues normally; Hindi renders throughout. Desk (2 tickets),
+  Insights (4 KPIs) and the landing page unaffected; no horizontal overflow anywhere.
+- **Unverified:** voice input and read-aloud on real devices (browser speech APIs are
+  not exercised headlessly); behaviour on a real handset's browser chrome.
