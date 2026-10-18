@@ -84,3 +84,7 @@ footer ("Built by" and the rest of the bottom of the page) looked poor.
 
 Asked to optimise the website chatbot further, make it more user friendly, and add
 more features where possible.
+
+## UP-015 — 2026-10-19
+
+Asked to improve the Counsellor Desk and Scheme Insights pages as well.

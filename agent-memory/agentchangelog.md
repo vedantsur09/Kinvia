@@ -262,3 +262,43 @@ Factual record of repository changes made by agents. Append only.
   Insights (4 KPIs) and the landing page unaffected; no horizontal overflow anywhere.
 - **Unverified:** voice input and read-aloud on real devices (browser speech APIs are
   not exercised headlessly); behaviour on a real handset's browser chrome.
+
+## AC-016 — 2026-10-19 — Counsellor Desk and Scheme Insights upgraded (UP-015)
+
+- **Changed:** `frontend/desk.html`, `frontend/desk.js`, `frontend/insights.html`,
+  `frontend/insights.js`, `frontend/styles.css`, `frontend/README.md`.
+  - **Desk — triage:** each open ticket carries a "Call first / Call soon" band with the
+    reason stated in words (unanswered safety concern, or days waiting ≥ 3), so the
+    ranking can be argued with rather than trusted blindly. Queue sorts by urgency,
+    longest waiting or newest; search covers trade, district, ticket id, reason and
+    schooling; header shows open / in progress / resolved counts plus an urgent count.
+  - **Desk — working the ticket:** a third status ("in progress", via "Start calling")
+    sits between open and resolved; a "Before you call" brief lists what to have ready
+    per unanswered concern; counsellor notes persist to `kinvia.deskNotes` with a saved
+    timestamp (button plus blur); "Copy summary" puts a handover block on the clipboard
+    with a focus fallback when the clipboard API is unavailable. Selecting a ticket on a
+    narrow screen scrolls the detail panel into view.
+  - **Insights — priority districts:** new ranked panel scoring concern spread against
+    confidence lift, each row naming its most-raised concern and the measured lift.
+  - **Insights — heatmap:** added a shade-to-percentage legend, visually hidden per-cell
+    labels for screen readers (replacing title-only tooltips), and clickable column
+    headers that focus one concern — dimming the rest and refocusing the outreach list
+    on that concern across all districts.
+  - **Insights — scope and export:** the area selector now offers a single district as
+    well as a state; CSV export writes the districts, session counts, per-concern
+    percentages and confidence figures behind the current view; print button added.
+  - Fixed three malformed `<p class="label">…</span>` tags in `desk.html` and
+    `insights.html`.
+  - Bumped `styles.css?v=19` → `?v=20`, `desk.js`/`insights.js` `?v=10` → `?v=11`,
+    `CACHE` → `kinvia-v22`.
+- **Verified (local, 390×760 and 1280×900):** `node --check` passes on both scripts;
+  zero runtime errors. Desk — triage orders the safety ticket above the 14-day one with
+  correct reasons; search narrows to the Lucknow ticket; newest sort reverses; "Start
+  calling" moves the ticket to in progress and the counts follow; notes and statuses
+  survive a reload; brief renders one item per open concern. Insights — area selector
+  lists 8 scopes, single-district scope narrows to 1 row and 412 sessions, state scope to
+  2 districts; focusing Safety dims exactly 30 of 35 cells and refocuses outreach; clear
+  restores; legend shows 5 swatches and a 0–47% range; CSV exports a header plus 5 rows
+  with correct columns. No horizontal overflow on either page at either size.
+- **Unverified:** clipboard write on browsers that block it without a user gesture
+  (a focus fallback is in place but was not exercised); print output on a real printer.
