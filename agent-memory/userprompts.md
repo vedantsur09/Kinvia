@@ -63,3 +63,9 @@ Instructed never to mention the hackathon anywhere.
 Asked for a family graphic on the front page (a line drawing rather than a photo) and
 replacement hero copy; then objected that the site was structured as a competition pitch
 (problem, innovation, requirement coverage) instead of a product prototype site.
+
+## UP-011 — 2026-10-19
+
+Asked to deploy the prototype website on Vercel, explicitly to the Kinvia GitHub
+repository and not the Refinix one. Followed up by asking the agent to set the
+deployment branch directly after the Vercel dashboard step proved unclear.

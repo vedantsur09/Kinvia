@@ -147,3 +147,23 @@ Factual record of repository changes made by agents. Append only.
   text; hero illustration stays inside its column at every width tested.
 - **Note:** stock photography was investigated and discarded at the user's direction —
   the illustration is drawn in-house, so there is no third-party image licence to track.
+
+## AC-011 — 2026-10-19 — Website pushed and deployed (UP-011)
+
+- **Changed:** pushed the full `frontend/` prototype to `vedantsur09/Kinvia` branch
+  `vedant` (`e2ce08a` site, `3dd3279` logo downscale — `logo-mark.png` 247 KB → 93 KB,
+  `logo-lockup.png` 338 KB → 101 KB). No repository file changed in this entry beyond
+  those commits; the deployment itself is external state.
+- **Verified:** remote confirmed as Kinvia (not Refinix) before every write. Vercel
+  project `kinvia-frontend` (root directory `frontend`, framework none) deployed to
+  production from `vedant` at `3dd3279`; state READY. `kinvia-frontend.vercel.app`
+  returns 200 anonymously, and `index.html`, `try.html`, `desk.html`, `insights.html`,
+  `styles.css?v=17`, `logo-mark.png`, `icon.svg`, `manifest.webmanifest` and `sw.js`
+  all return 200. Landing page screenshotted live.
+- **Unverified / limitations:** `main` still contains only `frontend/README.md`, so the
+  project's configured production branch does not yet build the site — this deployment
+  was created directly against `vedant`. Pushes to `vedant` will not auto-deploy to
+  production until the production branch is changed or `vedant → dev → main` is merged.
+  The Vercel-Authentication toggle (`ssoProtection`, `all_except_custom_domains`) is
+  still enabled on the project; the API call to clear it was refused by the permission
+  classifier and remains a user action.
