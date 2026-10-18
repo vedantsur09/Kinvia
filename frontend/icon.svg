@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kinvia">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8f6dff"/><stop offset=".55" stop-color="#6d4aff"/><stop offset="1" stop-color="#4524b0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#b8841f"/><stop offset=".5" stop-color="#ecc978"/><stop offset="1" stop-color="#c89433"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- gear ring -->
+  <circle cx="32" cy="32" r="19" fill="none" stroke="#fff" stroke-width="2.4" opacity=".55"/>
+  <g fill="#fff" opacity=".55">
+    <rect x="30.4" y="9" width="3.2" height="5.5" rx="1.2"/><rect x="30.4" y="49.5" width="3.2" height="5.5" rx="1.2"/>
+    <rect x="9" y="30.4" width="5.5" height="3.2" rx="1.2"/><rect x="49.5" y="30.4" width="5.5" height="3.2" rx="1.2"/>
+    <rect x="14.4" y="15" width="3.2" height="5.5" rx="1.2" transform="rotate(-45 16 17.7)"/>
+    <rect x="46.4" y="43.5" width="3.2" height="5.5" rx="1.2" transform="rotate(-45 48 46.2)"/>
+    <rect x="14.4" y="43.5" width="3.2" height="5.5" rx="1.2" transform="rotate(45 16 46.2)"/>
+    <rect x="46.4" y="15" width="3.2" height="5.5" rx="1.2" transform="rotate(45 48 17.7)"/>
+  </g>
+  <circle cx="32" cy="32" r="14" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity=".9"/>
+  <!-- family -->
+  <g fill="url(#gold)">
+    <circle cx="26" cy="26.5" r="3.4"/><circle cx="37.5" cy="27.5" r="2.7"/>
+    <path d="M19.5 39.5a7 7 0 0 1 13.2 0z"/><path d="M33.5 39.5a5 5 0 0 1 9 0z"/>
+  </g>
+  <circle cx="31.5" cy="33" r="2.6" fill="#fff"/>
+  <!-- rising arrow -->
+  <path d="M19 45 44 20" stroke="url(#gold)" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+  <path d="M36 19h9v9" stroke="url(#gold)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

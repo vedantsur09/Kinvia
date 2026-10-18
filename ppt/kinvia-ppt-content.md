@@ -116,42 +116,76 @@ Centre laptop graphic → replace with a **phone** labelled "Innovation And Uniq
 
 ### SYSTEM ARCHITECTURE (7 stages, left → right, same boxes as Refinix)
 
-| # | Stage (Refinix equivalent) | Contents |
-|---|---|---|
-| 1 | **Family Interface** (User Interface) | Voice · Text · Shared phone · Kiosk → "Family speaks, Kinvia listens" |
-| 2 | **Session & Consent** (Coordinator) | Language pick · Who is speaking (learner/parent) · Parental consent (DPDP) · Family context (district, schooling, income bracket) |
-| 3 | **Understand** (Orchestration & Routing) | Speech-to-text (Bhashini) · Intent · **Objection tagging**: Income / Status / Safety / Distance / Cost |
-| 4 | **Counselling Orchestrator** (Execution) | LLM planner calls tools: *outcomes · pathways · schemes · escalate* |
-| 5 | **Verified Outcome Engine** (Secure Tools) | Trade × centre × district: earnings range, placement %, progression — **source · date · sample size** |
-| 6 | **Grounding Guard** (Validation) | Blocks unverified numbers · Safety & bias checks · Low confidence → escalate · ✅ Verified answer |
-| 7 | **Answer + Trust Card** (Approval & Proof) | Voice reply (TTS) · Evidence Card · **Family Trust Card** · Counsellor handoff |
+| # | Stage (Refinix equivalent) | Contents | Technology |
+|---|---|---|---|
+| 1 | **Family Interface** (User Interface) | Voice · Text · Shared phone · Kiosk · WhatsApp · Missed-call IVR | Next.js 16 PWA · LiveKit (WebRTC + SIP) · WhatsApp Cloud API |
+| 2 | **Session & Consent** (Coordinator) | Language pick · Who is speaking · **Verifiable parental consent** (DPDP Rule 10) · Family context | Keycloak · DigiLocker consent flow · hash-chained consent ledger |
+| 3 | **Understand** (Orchestration & Routing) | Live speech-to-text (22 languages, Hinglish) · Turn detection · **Objection tagging** by speaker | LiveKit Agents · Sarvam Saaras v3 / Bhashini ASR · small objection classifier |
+| 4 | **Counselling Orchestrator** (Execution) | Stateful counselling graph; calls tools: outcomes · pathways · schemes · escalate | LangGraph 1.0 · MCP tool servers · model router |
+| 5 | **Verified Outcome Engine** (Secure Tools) | Trade × centre × district: earnings range, placement %, progression — source · date · sample size | PostgreSQL 18 + pgvector + PostGIS · exposed as an MCP server |
+| 6 | **Grounding Guard** (Validation) | Blocks unverified numbers · Safety, bias and PII checks · Low confidence → escalate | Numeric grounding check · NeMo Guardrails · Llama Guard 4 · Presidio |
+| 7 | **Answer + Trust Card** (Approval & Proof) | Voice reply · Evidence Card · **Family Trust Card** · Counsellor handoff (human-in-the-loop) | Sarvam Bulbul v3 / Bhashini TTS · LangGraph `interrupt` · Trust Card renderer |
 
 ### Lower three boxes
 
 | Box | Contents |
 |---|---|
-| **Secure & Consented Communication** | Family device ↔ TLS + Auth ↔ Kinvia API · Role-based access (family / counsellor / admin) |
-| **Data & Knowledge Layer** | PostgreSQL (canonical) · Vector index (pgvector) · Verified outcomes + NSQF pathways (NQR) + scheme rules |
-| **Deployment & Infrastructure** | Docker containers · Government cloud / State Data Centre **[V]** · Bhashini language APIs |
+| **Secure & Consented Communication** | Family device ↔ TLS + OIDC (Keycloak) ↔ Kinvia API · Role-based access for family / counsellor / admin · PII redacted before logs (Presidio) |
+| **Data & Knowledge Layer** | **PostgreSQL 18** (canonical state) · **pgvector** (scheme & trade retrieval) · **PostGIS** (district maps) · **Redis 8** (live session state, Streams event bus, semantic cache) · **ClickHouse** (objection analytics at national scale) **[V]** |
+| **Deployment & Infrastructure** | **Docker** · **Kubernetes** (Helm, Argo CD GitOps, KEDA autoscaling) · **vLLM** model serving on GPU nodes · **Temporal** durable workflows · **K3s** edge node at training centres **[V]** · India-resident government cloud **[V]** |
 
 ### DEPLOYMENT MODEL (3 modes, arrows between — mirrors Single / Distributed / Enterprise)
 
 | Mode | Copy |
 |---|---|
-| **Family Phone** | Installable web app on the household phone — voice-first, low-data. **[D]** |
-| **Centre Kiosk + Counsellor Desk** *(highlight with medal like Refinix)* | ITI / PMKVY centre screen for walk-in families; counsellors take escalations; works on weak internet. **[D]** |
-| **District → State → National** | Scheme Insights for district skill committees, State Skill Missions and MSDE; designed to plug into Skill India Digital Hub. **[V]** |
+| **Family Phone** | Installable PWA + WhatsApp + missed-call IVR on the phone the family already has. **[D]** |
+| **Centre Edge Node** *(highlight with medal like Refinix)* | K3s box at an ITI / PMKVY centre runs kiosk + counsellor desk and keeps counselling alive on weak internet, with on-device Indic speech; syncs when online. **[D]+[V]** |
+| **State / National Cloud** | Kubernetes cluster on India-resident government cloud: vLLM serving, Scheme Insights for district committees, State Skill Missions and MSDE; designed to plug into SIDH/SIA through MCP. **[V]** |
 
-### TECH STACK ROW
+### TECH STACK ROW (logos, grouped like Refinix)
 
 | Group | Items |
 |---|---|
-| Frontend | React · PWA · Tailwind CSS |
-| Backend | Python · FastAPI |
-| Language AI | Bhashini (ASR/TTS/translation) · AI4Bharat IndicConformer / IndicTrans2 |
-| AI / Model layer | Open-weight LLM (Sarvam-M / Llama) · Tool calling · Grounding guard |
-| Data | PostgreSQL · pgvector |
+| Frontend & channels | Next.js 16 (PWA) · Tailwind CSS v4 · MapLibre GL · Apache ECharts · WhatsApp Cloud API |
+| Voice AI | LiveKit Agents · Sarvam Saaras v3 / Bulbul v3 · Bhashini · AI4Bharat IndicConformer (offline) |
+| Agent & AI | LangGraph 1.0 · Model Context Protocol · Sarvam-M (open-weight) on vLLM · NeMo Guardrails · Llama Guard 4 |
+| Backend & workflows | Python · FastAPI · Temporal |
+| Data | PostgreSQL 18 · pgvector · PostGIS · Redis 8 · ClickHouse |
+| Infra & ops | Docker · Kubernetes · K3s · Argo CD · KEDA · OpenTelemetry · Langfuse · Keycloak |
 | Links | **VIDEO** · **WEBSITE** (prototype site) |
+
+If the row is too crowded, keep these 12 logos: **Next.js · LiveKit · Sarvam · Bhashini ·
+LangGraph · MCP · vLLM · FastAPI · Temporal · PostgreSQL · Redis · Kubernetes**.
+
+### Why each technology is there (for Q&A — every logo has a job)
+
+| Technology | Its job in Kinvia | Why this one |
+|---|---|---|
+| **LiveKit Agents** | Live voice conversation: streaming, interruptions, turn detection; SIP for missed-call IVR | Most-used open-source voice-agent framework; transformer turn detection; native telephony (S31) |
+| **Sarvam Saaras v3 / Bulbul v3** | Speech-to-text for 22 Indian languages + English with code-mix; natural Indic voices | Indic-first; Saaras v3 covers 23 languages with codemix mode (S32) |
+| **Bhashini** | Government language stack: ASR, TTS, translation | National platform; 350+ models (S11); provider-swappable with Sarvam |
+| **AI4Bharat IndicConformer** | Offline speech on the centre edge node | MIT-licensed; works without internet |
+| **LangGraph 1.0** | Counselling as a stateful graph; checkpoint every step; `interrupt` pauses for a human counsellor and resumes hours later | Stable 1.0 with durable execution and human-in-the-loop (S33) |
+| **Model Context Protocol (MCP)** | Outcome Engine, NSQF pathways and scheme rules exposed as standard tools | Open standard under the Linux Foundation's Agentic AI Foundation; lets SIA or any agent reuse our verified data (S34) |
+| **Sarvam-M on vLLM** | Open-weight Indic LLM for reasoning and replies, served on our own GPUs | 24B open weights tuned for Indian languages (S15); vLLM is the standard high-throughput server, Kubernetes-native via KServe/llm-d (S35) |
+| **Model router** | Small model for objection tagging, large model for counselling replies | Reuses the Refinix capability router; cuts cost and latency |
+| **NeMo Guardrails + Llama Guard 4** | Dialog policy (never promise a job, escalate sensitive topics) + safety classification | Complementary open-source rails (S36) |
+| **Presidio** | Strips phone/Aadhaar/name from transcripts before logs and analytics | Supports DPDP data minimisation |
+| **Temporal** | Durable workflows: counsellor call-back deadlines, 3/6/12-month outcome follow-ups, consent-expiry deletion | MIT-licensed durable execution; workflows survive crashes and redeploys (S37) |
+| **PostgreSQL 18 + pgvector + PostGIS** | Canonical records, semantic retrieval of scheme/trade documents, district geometry for heatmaps | One database, three capabilities; pgvector 0.8 supports PG 18 (S38) |
+| **Redis 8** | Live session state, rate limiting, Streams event bus, semantic cache for repeated questions | Open source again (AGPLv3) with vector sets and native JSON (S39) |
+| **ClickHouse** | Objection analytics across districts and months | Column store for fast drill-down at national scale |
+| **Next.js 16 PWA** | Family, counsellor and admin apps; installable; offline cache | LTS release with stable Turbopack and React 19.2 (S40) |
+| **Keycloak + DigiLocker** | Counsellor/admin login; verifiable parental consent | DPDP Rule 10 names Digital Locker for parent verification (S12, S41) |
+| **Docker · Kubernetes · K3s** | Containers; cloud cluster; lightweight edge cluster at centres | Same proven pattern as Refinix |
+| **Argo CD · KEDA** | GitOps deploys; autoscale workers on queue depth | Admission season spikes need elastic scale |
+| **OpenTelemetry + Langfuse** | Trace every AI call, prompt version and grounding score | Open-source, self-hostable LLM observability on OTel (S42) |
+
+### Prototype vs production (say this honestly if asked)
+
+| Built for the prototype website | Shown as production architecture |
+|---|---|
+| Next.js PWA · FastAPI · LangGraph · PostgreSQL + pgvector · one speech provider · grounding check · Trust Card | LiveKit IVR · vLLM on Kubernetes · Temporal · ClickHouse · K3s edge · Keycloak/DigiLocker · full guardrail stack |
 
 ---
 
@@ -159,9 +193,9 @@ Centre laptop graphic → replace with a **phone** labelled "Innovation And Uniq
 
 ### FEASIBILITY (4 bullets)
 
-- **Technical:** Bhashini already serves **350+ language models** and **24M AI inferences
-  a day** (S11); open-weight Indic LLMs exist (S15); our team has built Refinix, a
-  local-LLM tool-calling workbench. **[F]**
+- **Technical:** Built on mature open-source stacks — LangGraph 1.0, LiveKit, vLLM,
+  Temporal, PostgreSQL 18; Bhashini already serves **350+ models** and **24M inferences a
+  day** (S11); our team already runs Docker/K3s/Redis and a model router in Refinix. **[F]**
 - **Economic:** Free public language APIs + open-weight models; runs on **existing
   family phones and ITI computers** — no new hardware. **[F]+[D]**
 - **Operational:** Fits existing counselling at ITIs, PMKVY centres and NCS Model Career
@@ -374,3 +408,15 @@ S13 (industry estimate), S27 (Lok Sabha reply PDF), S6 (NITI report PDF).
 | S28 | Same reply as S27 — AJNIFM 2025 PMKVY 4.0 evaluation | Dropout reasons: exams, seasonal work, early jobs, migration | Primary — confirm in PDF |
 | S29 | [Microsoft — Jugalbandi](https://news.microsoft.com/source/asia/features/with-help-from-next-generation-ai-indian-villagers-gain-easier-access-to-government-services/) | Precedent: WhatsApp + AI4Bharat speech + Bhashini for rural users | Primary (vendor) |
 | S30 | [Gram Vaani Mobile Vaani](https://mdif.org/news/a-mobile-radio-network-for-the-rural-poor) | Precedent: IVR voice platform for low-literacy users | Secondary |
+| S31 | [LiveKit — LiveKit vs Pipecat field guide](https://livekit.io/field-guides/guide/livekit-vs-pipecat) | Transformer turn detection, SIP telephony, Agents 1.5.x (May 2026) | Vendor |
+| S32 | [Sarvam API models docs](https://docs.sarvam.ai/api/getting-started/models) | Saaras v3 (23 languages, codemix), Bulbul v3 | Vendor docs |
+| S33 | [LangGraph 1.0 announcement (LangChain changelog)](https://changelog.langchain.com/announcements/interrupt-simplifying-human-in-the-loop-agents) | Durable execution, `interrupt` human-in-the-loop | Vendor |
+| S34 | [State of agentic AI standards 2026](https://datalakehousehub.com/blog/state-of-agentic-ai-standards-2026) | MCP under Linux Foundation's Agentic AI Foundation | Secondary |
+| S35 | [vLLM docs — KServe / llm-d](https://docs.vllm.ai/en/latest/deployment/integrations/llm-d/) | Kubernetes-native LLM serving | Project docs |
+| S36 | [LLM guardrails compared 2026](https://alatirok.com/llm-guardrails-compared-2026/) | NeMo Guardrails + Llama Guard 4 roles | Secondary |
+| S37 | [Temporal](https://temporal.io/) / [InfoQ on Temporal for agents](https://www.infoq.com/news/2025/09/temporal-aiagent) | MIT-licensed durable execution | Vendor + media |
+| S38 | [PostgreSQL news archive](https://www.postgresql.org/about/newsarchive/-/20260226/) / [pgvector for PG 18](https://packagehub.suse.com/packages/postgresql18-pgvector/) | PG 18.x; pgvector 0.8.x | Project |
+| S39 | [InfoQ — Redis 8 returns to AGPL](https://www.infoq.com/news/2025/05/redis-agpl-license) | Open-source licence, vector sets | Media |
+| S40 | [Next.js 16 release blog](https://nextjs.org/blog/next-16) | Turbopack stable, React 19.2 | Vendor |
+| S41 | [CUTS — parental consent verification under DPDP](https://cuts-ccier.org/?p=28892) | DigiLocker-based verification options | Policy research |
+| S42 | [Best open-source LLM observability 2026](https://futureagi.com/blog/best-open-source-llm-observability-2026) | Langfuse on OpenTelemetry | Secondary |

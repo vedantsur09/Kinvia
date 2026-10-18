@@ -1,0 +1,382 @@
+==============================================================
+TITLE BLOCK
+==============================================================
+[1] REFINIX (7): Refinix
+    KINVIA  (6): Kinvia
+
+[2] REFINIX (41): Sovereign On-Premise Agentic AI Workbench
+    KINVIA  (45): AI-Enabled Family Career Counselling Platform
+
+[3] REFINIX (55): Using Open-Weight Multimodal LLMs for Confidential Work
+    KINVIA  (52): For Vocational Education, in Every Family's Language
+
+[4] REFINIX (52): Smart India Hackathon 2026 — Problem Statement 26117
+    KINVIA  (52): Smart India Hackathon 2026 — Problem Statement 26241
+
+NOTE: Team Members list: KEEP as is.
+
+==============================================================
+1. INTRODUCTION — Purpose of the Document
+==============================================================
+[1] REFINIX (353): The purpose of this documentation is to provide a quick overview of the design, structure, technologies used, implementation and feasibility of our on-premise AI workbench, Refinix. This document is intended to guide the readers in understanding how our solution is unique compared to already existing systems and how it addresses real-world challenges.
+    KINVIA  (363): The purpose of this documentation is to provide a quick overview of the design, structure, technologies used, implementation and feasibility of our family career counselling platform, Kinvia. This document is intended to guide the readers in understanding how our solution is unique compared to already existing systems and how it addresses real-world challenges.
+
+NOTE: Only the phrase “on-premise AI workbench, Refinix” changes.
+
+==============================================================
+1. INTRODUCTION — Problem Statement
+==============================================================
+[1] REFINIX (145): To create an on-premise agentic AI workbench which uses local AI models for its execution for tasks involving sensitive information of companies.
+    KINVIA  (152): To build an AI counselling platform that engages learners and parents together, answering family concerns about vocational education with verified data.
+
+==============================================================
+1. INTRODUCTION — Project Overview
+==============================================================
+[1] REFINIX (190): Refinix is an agentic AI workbench which is designed to be completely offline, performing work while keeping sensitive information within the user's or organization's controlled environment.
+    KINVIA  (178): Kinvia is a voice-first, multilingual AI counsellor designed to help families decide on vocational training together, using verified local outcome data instead of generic advice.
+
+==============================================================
+1. INTRODUCTION — Target Audience (bullets)
+==============================================================
+[1] REFINIX (27): Manufacturing organizations
+    KINVIA  (37): Learners aged 14–25 and ITI aspirants
+
+[2] REFINIX (31): Refineries and energy companies
+    KINVIA  (36): Parents and guardians in rural India
+
+[3] REFINIX (25): Engineering organizations
+    KINVIA  (37): Counsellors at ITIs and PMKVY centres
+
+[4] REFINIX (21): Research institutions
+    KINVIA  (27): Training providers and NGOs
+
+[5] REFINIX (24): Government organizations
+    KINVIA  (34): MSDE, DGT and State Skill Missions
+
+[6] REFINIX (52): Enterprises with strict data-governance requirements
+    KINVIA  (51): District skill committees and scheme administrators
+
+[7] REFINIX (30): Developers and technical teams
+    KINVIA  (35): Schools and CSR skilling programmes
+
+[8] REFINIX (38): Individuals requiring private local AI
+    KINVIA  (49): Employers seeking apprentices and skilled workers
+
+NOTE: Keep the line “Our target audience includes:”.
+
+==============================================================
+2. PROPOSED SOLUTION AND KEY FEATURES (numbered 1–9)
+==============================================================
+[1] REFINIX (178): Refinix is an offline-first, on-premise AI workbench that enables AI-assisted work while keeping sensitive information within the user's or organization's controlled environment.
+    KINVIA  (170): Kinvia is a voice-first AI counselling platform that engages a learner and their parents in one session, in their regional language, on the phone the family already owns.
+
+[2] REFINIX (258): It acts as a local AI harness rather than being tied to a single model. It connects users with local open-weight models, organizational knowledge, approved tools, controlled execution environments, security and governance controls, and trusted local compute.
+    KINVIA  (242): It acts as a counselling layer rather than a generic chatbot. It connects families with verified outcome data, NSQF pathways, scheme rules, human counsellors, consent and privacy controls, and district-level insight for scheme administrators.
+
+[3] REFINIX (162): The system can select appropriate models as per the intent of the user and execute the task, returning it again to a local AI model which acts as an orchestrator.
+    KINVIA  (151): The system detects each family member's concerns, such as income, social status or safety, and answers each one with evidence from verified local data.
+
+[4] REFINIX (105): Refinix is designed to work with text, documents, scanned files, images, and all other supported formats.
+    KINVIA  (97): Kinvia is designed to work with voice, text, WhatsApp and kiosk input across 22 Indian languages.
+
+[5] REFINIX (98): Organizational documents can be indexed locally and retrieved to provide context for AI responses.
+    KINVIA  (93): Post-training earnings, placement rates and progression are shown with their source and date.
+
+[6] REFINIX (82): The AI can break a task into multiple steps and use approved tools to complete it.
+    KINVIA  (72): The AI builds a plain-language path from course to job to NSQF level-up.
+
+[7] REFINIX (90): Refinix can assist with code understanding, generation, modification, testing, and review.
+    KINVIA  (92): Kinvia can hand a family to a live counsellor with a summary, so no one repeats their story.
+
+[8] REFINIX (113): AI-generated code and sensitive operations can be executed inside controlled environments with restricted access.
+    KINVIA  (101): Every salary or placement figure comes from the verified outcome store; the AI never invents numbers.
+
+[9] REFINIX (61): Important actions can require user approval before execution.
+    KINVIA  (64): Each session ends with a Family Trust Card the family can share.
+
+NOTE: Optional 10th point: “A dashboard shows scheme administrators where and why families resist, and how sentiment shifts.”
+
+==============================================================
+2.1 SYSTEM ARCHITECTURE
+==============================================================
+[1] REFINIX (106): Refinix follows a modular architecture to separate AI models, knowledge, tools, execution, and governance.
+    KINVIA  (109): Kinvia follows a modular architecture to separate voice, counselling, verified data, escalation and insights.
+
+[2] REFINIX (103): User Interface — Provides Chat, Documents, Code, Jobs, Models, Devices, Settings, and related controls.
+    KINVIA  (104): Family Interface — Provides voice, chat, WhatsApp, kiosk, Trust Card and multi-speaker session controls.
+
+[3] REFINIX (105): Coordinator / Agent Harness — Manages task planning, routing, workflow state, permissions, and execution.
+    KINVIA  (106): Counselling Orchestrator — Manages the counselling graph, model routing, session state, consent and tools.
+
+[4] REFINIX (86): Model Runtime — Runs approved open-weight models locally or on trusted infrastructure.
+    KINVIA  (89): Voice & Model Runtime — Runs Indic speech and open-weight LLMs on India-resident servers.
+
+[5] REFINIX (65): Knowledge Layer — Stores and approves organisational information.
+    KINVIA  (67): Outcome Engine — Stores verified earnings, placement and NSQF data.
+
+[6] REFINIX (86): Tool Layer — Provides controlled document, file, code, and task-specific capabilities.
+    KINVIA  (88): Tool Layer — Provides outcome, pathway, scheme-eligibility and escalation tools via MCP.
+
+[7] REFINIX (67): Sandbox Layer — Isolates potentially risky code and tool execution.
+    KINVIA  (67): Grounding Guard — Blocks unverified numbers, unsafe advice and PII.
+
+[8] REFINIX (72): Trusted Workers — Provide additional approved local computing resources.
+    KINVIA  (78): Counsellor Desk — Lets human counsellors take escalated families with context.
+
+[9] REFINIX (71): Evidence Layer — Records relevant execution and validation information.
+    KINVIA  (75): Insights Layer — Maps objections and sentiment shifts by district for MSDE.
+
+NOTE: Keep the sub-heading “Main Components”.
+
+==============================================================
+2.2 ARCHITECTURE FLOW
+==============================================================
+[1] REFINIX (99): User → Refinix → Coordinator → Router → Local Model/Worker → Tools → Validation → Approval → Output
+    KINVIA  (109): Family → Kinvia → Consent → Speech → Orchestrator → Outcome Tools → Grounding Guard → Counsellor → Trust Card
+
+[2] REFINIX (136): This modular design allows Refinix to remain model-agnostic while maintaining control over knowledge, tools, execution, and permissions.
+    KINVIA  (141): This modular design allows Kinvia to stay model- and language-agnostic while keeping every figure verified and every family's data protected.
+
+==============================================================
+2.3 WORKFLOW
+==============================================================
+[1] REFINIX (63): Consider an engineer analysing confidential inspection reports:
+    KINVIA  (66): Consider a mother and her 17-year-old son exploring an ITI course:
+
+[2] REFINIX (40): The engineer uploads the report locally.
+    KINVIA  (40): The family opens Kinvia and picks Hindi.
+
+[3] REFINIX (41): Refinix identifies the task requirements.
+    KINVIA  (37): The parent gives consent, read aloud.
+
+[4] REFINIX (53): Relevant information is retrieved from the documents.
+    KINVIA  (52): Kinvia asks about district, schooling and interests.
+
+[5] REFINIX (35): A suitable local model is selected.
+    KINVIA  (37): The son chooses electrician training.
+
+[6] REFINIX (44): The agent analyses and compares the reports.
+    KINVIA  (39): The mother asks: “Will he earn enough?”
+
+[7] REFINIX (54): Required tools execute within controlled environments.
+    KINVIA  (47): Kinvia fetches verified district earnings data.
+
+[8] REFINIX (24): The result is validated.
+    KINVIA  (25): The figures are verified.
+
+[9] REFINIX (32): The engineer reviews the output.
+    KINVIA  (39): A counsellor joins for an open concern.
+
+[10] REFINIX (35): Refinix generates the final report.
+    KINVIA  (39): Kinvia generates the Family Trust Card.
+
+[11] REFINIX (64): Relevant execution information can be recorded for verification.
+    KINVIA  (59): The concern and confidence shift reach the admin dashboard.
+
+[12] REFINIX (92): The normal workflow does not require confidential reports to be sent to a public AI service.
+    KINVIA  (85): The family never has to rely on rumours or AI-invented numbers to make this decision.
+
+NOTE: Lines 2–11 are the numbered steps 1–10.
+
+==============================================================
+3. SECURITY AND PRIVACY
+==============================================================
+[1] REFINIX (35): Security is a core part of Refinix.
+    KINVIA  (43): Privacy and trust are core parts of Kinvia.
+
+[2] REFINIX (118): Data Sovereignty: Sensitive information is designed to remain within the local or organisation-controlled environment.
+    KINVIA  (104): Parental Consent: A parent gives verifiable consent before any minor's data is stored (DPDP Rules 2025).
+
+[3] REFINIX (83): Offline Operation: Normal AI workflows do not require public internet connectivity.
+    KINVIA  (77): Data Minimisation: Only district, schooling and income bracket are collected.
+
+[4] REFINIX (93): Least Privilege: Workers and tools receive only the access required for their assigned tasks.
+    KINVIA  (90): Role-Based Access: Counsellors see only escalated families; administrators see aggregates.
+
+[5] REFINIX (94): Sandboxing: Generated code and potentially risky operations are isolated from the main system.
+    KINVIA  (90): Grounded Answers: Figures come only from verified data, with source, date and sample size.
+
+[6] REFINIX (107): Model Provenance: Models can be tracked using source, version, licence, runtime, and file hash information.
+    KINVIA  (89): PII Redaction: Phone numbers, Aadhaar and names are removed before any logs or analytics.
+
+[7] REFINIX (87): Human Oversight: Sensitive or consequential actions can require explicit user approval.
+    KINVIA  (68): Human Escalation: A family can reach a live counsellor at any point.
+
+[8] REFINIX (162): Refinix does not claim absolute security. Instead, it provides technical controls intended to reduce unnecessary data exposure and improve organisational control.
+    KINVIA  (150): Kinvia does not guarantee jobs or earnings. Instead, it provides verified evidence and human support so that every family can make an informed choice.
+
+NOTE: Keep the bold “Label:” style at the start of each line.
+
+==============================================================
+4. BUSINESS MODEL
+==============================================================
+[1] REFINIX (34): Refinix follows a two-level model.
+    KINVIA  (33): Kinvia follows a two-level model.
+
+[2] REFINIX (24): Free / Community Version
+    KINVIA  (19): Free Family Version
+
+[3] REFINIX (91): Users can download and run the core application locally with compatible open-weight models.
+    KINVIA  (88): Families can talk to Kinvia, compare trades and share the Trust Card at no cost, always.
+
+[4] REFINIX (18): Enterprise Version
+    KINVIA  (32): Government & Institution Version
+
+[5] REFINIX (72): Organisations can receive customised deployments and services including:
+    KINVIA  (75): Skill missions, ITIs and training providers can receive services including:
+
+[6] REFINIX (30): Internal knowledge integration
+    KINVIA  (33): Verified outcome-data integration
+
+[7] REFINIX (16): Custom workflows
+    KINVIA  (23): Regional language packs
+
+[8] REFINIX (29): Approved model configurations
+    KINVIA  (29): District and state dashboards
+
+[9] REFINIX (33): Security and policy configuration
+    KINVIA  (33): Consent and privacy configuration
+
+[10] REFINIX (33): Private infrastructure deployment
+    KINVIA  (31): India-resident cloud deployment
+
+[11] REFINIX (28): Hardware/model qualification
+    KINVIA  (27): Centre kiosk and edge setup
+
+[12] REFINIX (17): Technical support
+    KINVIA  (31): Counsellor training and support
+
+[13] REFINIX (30): Organisation-specific features
+    KINVIA  (29): Scheme-specific customisation
+
+[14] REFINIX (134): The enterprise offering focuses on deployment, customisation, governance, and support, rather than simply charging for cloud AI usage.
+    KINVIA  (134): The institutional offering focuses on deployment, verified data, insights and support, and can be funded by government or CSR budgets.
+
+NOTE: Items 6–13 above are the numbered list 1–8.
+
+==============================================================
+5. EXPECTED IMPACT
+==============================================================
+[1] REFINIX (13): Organisations
+    KINVIA  (8): Families
+
+[2] REFINIX (37): Better control over confidential data
+    KINVIA  (24): Informed joint decisions
+
+[3] REFINIX (48): Reduced dependence on external AI infrastructure
+    KINVIA  (42): Credible local earnings and placement data
+
+[4] REFINIX (42): AI availability in restricted environments
+    KINVIA  (29): Answers in their own language
+
+[5] REFINIX (35): Integration with internal knowledge
+    KINVIA  (36): A Trust Card to share with relatives
+
+[6] REFINIX (9): Employees
+    KINVIA  (32): Counsellors and Training Centres
+
+[7] REFINIX (24): Faster document analysis
+    KINVIA  (24): Fewer repeated questions
+
+[8] REFINIX (23): Reduced repetitive work
+    KINVIA  (33): Escalations arrive pre-summarised
+
+[9] REFINIX (26): Easier knowledge retrieval
+    KINVIA  (30): Fuller batches, fewer dropouts
+
+[10] REFINIX (32): AI-assisted coding and reporting
+    KINVIA  (30): Better reach to rural families
+
+[11] REFINIX (21): IT and Security Teams
+    KINVIA  (30): MSDE and Scheme Administrators
+
+[12] REFINIX (27): Controlled model deployment
+    KINVIA  (27): District objection heatmaps
+
+[13] REFINIX (15): Local execution
+    KINVIA  (24): Sentiment-shift tracking
+
+[14] REFINIX (16): Model provenance
+    KINVIA  (26): Targeted outreach planning
+
+[15] REFINIX (19): Sandboxed workloads
+    KINVIA  (30): Fuller ITI seats (48.2% today)
+
+[16] REFINIX (37): Greater visibility into AI operations
+    KINVIA  (41): Evidence for PMKVY 5.0 outcome monitoring
+
+[17] REFINIX (15): Refinix Website
+    KINVIA  (14): Kinvia Website
+
+[18] REFINIX (40): Figure 1: Refinix website — landing page
+    KINVIA  (41): Figure 1: Kinvia prototype — landing page
+
+NOTE: Figure 1 image: replace with a screenshot of the Kinvia prototype site once it is live.
+
+==============================================================
+6. SIH PROBLEM STATEMENT ALIGNMENT
+==============================================================
+[1] REFINIX (77): Refinix addresses the major requirements of SIH 2026 Problem Statement 26117:
+    KINVIA  (76): Kinvia addresses the major requirements of SIH 2026 Problem Statement 26241:
+
+[2] REFINIX (23): Refinix (column header)
+    KINVIA  (22): Kinvia (column header)
+
+[3] REFINIX (45): 1 | Sovereign AI | Local/on-premise execution
+    KINVIA  (63): 1 | Joint family counselling | Learner + parents in one session
+
+[4] REFINIX (40): 2 | Confidential Work | Local processing
+    KINVIA  (59): 2 | Regional languages | Hindi + English, 22-language ready
+
+[5] REFINIX (50): 3 | Open-weight LLMs | Model-agnostic architecture
+    KINVIA  (56): 3 | Parental objections | Objection detection by speaker
+
+[6] REFINIX (47): 4 | Multimodal AI | Documents, images and scans
+    KINVIA  (60): 4 | Verified outcome data | Earnings, placement, progression
+
+[7] REFINIX (50): 5 | Agentic AI | Planning and multi-step execution
+    KINVIA  (54): 5 | Low-jargon explainer | Course → job → NSQF pathway
+
+[8] REFINIX (36): 6 | Industrial Knowledge | Local RAG
+    KINVIA  (53): 6 | Family context | Location and income-based advice
+
+[9] REFINIX (44): 7 | Offline operation | Offline-first design
+    KINVIA  (46): 7 | Human escalation | Live counsellor handoff
+
+[10] REFINIX (33): 8 | Secure execution | Sandboxing
+    KINVIA  (47): 8 | Sentiment tracking | Confidence shift score
+
+[11] REFINIX (38): 9 | Human Control | Approval Workflows
+    KINVIA  (48): 9 | Admin dashboard | District objection heatmap
+
+[12] REFINIX (49): 10 | Evidence | Sovereignty and execution records
+    KINVIA  (58): 10 | Low-literacy design | Voice, icons, shared-phone mode
+
+[13] REFINIX (36): Figure 2: Four surfaces, one harness
+    KINVIA  (40): Figure 2: Three surfaces, one counsellor
+
+[14] REFINIX (19): Refinix Application
+    KINVIA  (18): Kinvia Application
+
+[15] REFINIX (39): Figure 3: Refinix application interface
+    KINVIA  (41): Figure 3: Kinvia family session interface
+
+NOTE: Table rows: paste cell by cell (S.No. | Requirement | Kinvia). Figure 2 graphic: Family Session · Counsellor Desk · Scheme Insights. Figure 3: prototype screenshot.
+
+==============================================================
+9. CONCLUSION
+==============================================================
+[1] REFINIX (71): Refinix is designed to make agentic AI practical for confidential work.
+    KINVIA  (72): Kinvia is designed to make career counselling work for the whole family.
+
+[2] REFINIX (175): Instead of sending sensitive information to external AI infrastructure, Refinix brings models, knowledge, tools, execution, and governance into a controlled local environment.
+    KINVIA  (169): Instead of generic advice aimed only at students, Kinvia brings verified outcomes, regional-language voice, human counsellors and policy insight into one family session.
+
+[3] REFINIX (22): Its core principle is:
+    KINVIA  (22): Its core principle is:
+
+[4] REFINIX (75): "Powerful AI should be usable without giving up control of sensitive data."
+    KINVIA  (89): "Every family deserves verified evidence, in its own language, before choosing a future."
+
+[5] REFINIX (254): By combining open-weight multimodal models, local execution, agentic workflows, organizational knowledge, sandboxing, human approval, and sovereignty evidence, Refinix provides a foundation for secure and practical AI adoption in industrial environments.
+    KINVIA  (245): By combining Indic voice AI, verified outcome data, grounded answers, counsellor escalation, parental consent and district-level insight, Kinvia provides a foundation for making vocational education a confident first choice for India's families.
