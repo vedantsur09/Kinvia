@@ -167,3 +167,58 @@ Factual record of repository changes made by agents. Append only.
   The Vercel-Authentication toggle (`ssoProtection`, `all_except_custom_domains`) is
   still enabled on the project; the API call to clear it was refused by the permission
   classifier and remains a user action.
+
+## AC-012 — 2026-10-19 — Branches merged, production domain added (UP-012)
+
+- **Changed:** merged PR #3 (`vedant` → `dev`, `5b33cd3`) and PR #4 (`dev` → `main`,
+  `3e1c115`); `main` now carries all 16 `frontend/` files. Added
+  `kinvia-in.vercel.app` as a project domain on the Vercel project.
+- **Verified:** Vercel auto-deployed from `main` on the merge (`dpl_EceS…`, state READY,
+  target production). `kinvia-frontend.vercel.app` and `kinvia-in.vercel.app` both
+  return 200 anonymously and serve the Kinvia landing page; `try.html` returns 200 on
+  the new domain.
+- **Note:** `kinvia.vercel.app` could not be used — Vercel returned
+  `409 owned-on-other-team`; the name is registered to an unrelated account and
+  `.vercel.app` subdomains have no release or dispute process. `kinvia-app` is also
+  taken. `kinvia-in` was chosen by the user from the free alternatives.
+- **Unverified / limitations:** the Vercel-Authentication toggle (`ssoProtection`,
+  `all_except_custom_domains`) is still enabled on the project. It is not blocking
+  either production URL, but it does gate preview deployments; clearing it was refused
+  by the permission classifier and remains a user action.
+
+## AC-013 — 2026-10-19 — Vercel project renamed to `kinvia-in` (UP-012)
+
+- **Changed:** renamed the Vercel project `kinvia-frontend` → `kinvia-in`; its dashboard
+  path is now `vercel.com/vedantsur09s-projects/kinvia-in`. No repository file changed.
+- **Verified:** `kinvia-in.vercel.app` returns 200 and serves the landing page and
+  `try.html` after the rename.
+- **Unresolved:** `kinvia-frontend.vercel.app` is still attached as an explicit project
+  domain and still resolves. Renaming the project did not detach it, and this MCP
+  surface exposes only add/get/list/verify for project domains — no remove or patch —
+  so it cannot be deleted from here. The Vercel CLI is not installed and has no stored
+  credentials, so the documented CLI fallback is unavailable. Removing it is a user
+  action in Settings → Domains.
+
+## AC-014 — 2026-10-19 — Consent gate unblocked on phones; footer rebuilt (UP-013)
+
+- **Changed:** `frontend/styles.css` — the consent overlay now scrolls instead of the
+  dialog. `.overlay` gained `overflow-y: auto` + `overscroll-behavior: contain` and
+  `justify-items: center`; `.dialog` lost `max-height: calc(100vh - 36px)` /
+  `overflow-y: auto` and gained `margin: auto`. Rebuilt the footer as a single plum slab
+  (was two stacked gradient blocks): `.footer-top` 3-column brand/Product/How-it-runs,
+  a `.footer-team` credit band with gold monograms, and a `.footer-base` carrying the
+  synthetic-data notice. `frontend/index.html` — matching footer markup. Bumped
+  `styles.css?v=17` → `?v=18` across all four pages and `sw.js`; `CACHE` → `kinvia-v20`.
+- **Root cause:** the dialog was capped at `calc(100vh - 36px)`. On a phone `100vh` is
+  the large viewport and ignores the address bar, so the dialog rendered taller than the
+  visible area and "Agree and start" sat under the browser chrome with nothing
+  scrollable. Measured live at 375×812: button at y=777–813 against a 812 viewport,
+  `visible: false`. The chat engine itself was never broken.
+- **Verified (local, 375×600 and 1280×900):** overlay scrolls and the button becomes
+  fully reachable (`reachable: true` after scroll) where it was unreachable before; full
+  mobile session runs — consent dismissed, two questions answered, concerns tagged
+  Safety/open and Income/answered, grounded reply with record id, zero JS errors; footer
+  renders as one slab with a 3×2 credit grid; Desk (2 tickets) and Insights (4 KPIs,
+  5 actions) unchanged; no horizontal overflow on any page at either size.
+- **Unverified:** behaviour on a real handset's browser chrome; voice input and
+  read-aloud on real devices.

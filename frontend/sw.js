@@ -1,8 +1,8 @@
 /* Kinvia service worker: cache the app shell so the prototype opens on weak connections. */
-const CACHE = "kinvia-v19";
+const CACHE = "kinvia-v20";
 const SHELL = [
   "./", "index.html", "try.html", "desk.html", "insights.html",
-  "styles.css?v=17", "data.js?v=10", "icons.js?v=10", "session.js?v=10", "desk.js?v=10", "insights.js?v=10",
+  "styles.css?v=18", "data.js?v=10", "icons.js?v=10", "session.js?v=10", "desk.js?v=10", "insights.js?v=10",
   "logo-mark.png", "logo-lockup.png",
   "icon.svg", "manifest.webmanifest",
 ];
