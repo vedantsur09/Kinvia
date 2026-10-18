@@ -69,3 +69,8 @@ replacement hero copy; then objected that the site was structured as a competiti
 Asked to deploy the prototype website on Vercel, explicitly to the Kinvia GitHub
 repository and not the Refinix one. Followed up by asking the agent to set the
 deployment branch directly after the Vercel dashboard step proved unclear.
+
+## UP-012 — 2026-10-19
+
+Asked to merge `vedant` into `dev` and then `main`, and to change the deployment URL
+from `kinvia-frontend.vercel.app` to `kinvia.vercel.app`.

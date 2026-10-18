@@ -167,3 +167,21 @@ Factual record of repository changes made by agents. Append only.
   The Vercel-Authentication toggle (`ssoProtection`, `all_except_custom_domains`) is
   still enabled on the project; the API call to clear it was refused by the permission
   classifier and remains a user action.
+
+## AC-012 — 2026-10-19 — Branches merged, production domain added (UP-012)
+
+- **Changed:** merged PR #3 (`vedant` → `dev`, `5b33cd3`) and PR #4 (`dev` → `main`,
+  `3e1c115`); `main` now carries all 16 `frontend/` files. Added
+  `kinvia-in.vercel.app` as a project domain on the Vercel project.
+- **Verified:** Vercel auto-deployed from `main` on the merge (`dpl_EceS…`, state READY,
+  target production). `kinvia-frontend.vercel.app` and `kinvia-in.vercel.app` both
+  return 200 anonymously and serve the Kinvia landing page; `try.html` returns 200 on
+  the new domain.
+- **Note:** `kinvia.vercel.app` could not be used — Vercel returned
+  `409 owned-on-other-team`; the name is registered to an unrelated account and
+  `.vercel.app` subdomains have no release or dispute process. `kinvia-app` is also
+  taken. `kinvia-in` was chosen by the user from the free alternatives.
+- **Unverified / limitations:** the Vercel-Authentication toggle (`ssoProtection`,
+  `all_except_custom_domains`) is still enabled on the project. It is not blocking
+  either production URL, but it does gate preview deployments; clearing it was refused
+  by the permission classifier and remains a user action.
