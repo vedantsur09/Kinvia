@@ -88,3 +88,8 @@ more features where possible.
 ## UP-015 — 2026-10-19
 
 Asked to improve the Counsellor Desk and Scheme Insights pages as well.
+
+## UP-016 — 2026-10-19
+
+Asked for a demo video of the website using the open-source `brag` repo
+(github.com/latent-spaces/brag), with any manual steps reported back.

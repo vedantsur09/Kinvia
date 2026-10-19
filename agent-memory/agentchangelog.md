@@ -302,3 +302,36 @@ Factual record of repository changes made by agents. Append only.
   with correct columns. No horizontal overflow on either page at either size.
 - **Unverified:** clipboard write on browsers that block it without a user gesture
   (a focus fallback is in place but was not exercised); print output on a real printer.
+
+## AC-017 — 2026-10-19 — Launch video generated with /brag-slim (UP-016)
+
+- **Changed:** added `brag-output/` (git-ignored) containing `brag.mp4` (21 s,
+  1920×1080, 30 fps, H.264 + AAC, 4.3 MB), `brag.jpg` poster, `brag-plan.md` and
+  `share-copy.txt`; kept `work/video.html` and `work/score.wav` as the sources.
+  Added `brag-output/` to `.gitignore` — a generated binary, not repository content.
+- **Method:** followed `skills/brag-slim/SKILL.md` from latent-spaces/brag (MIT) read
+  directly from the repo rather than installing the plugin, since `/plugin marketplace
+  add` needs an interactive terminal this session does not have. Chose `/brag-slim`
+  over the full `/brag` because the latter renders through Hyperframes, which needs a
+  HeyGen account the user would have had to create.
+- **Tooling:** FFmpeg was absent. Rather than installing one system-wide, pulled
+  `ffmpeg-static` 5.2.0 and `puppeteer-core` 23.11.1 into the session scratchpad — no
+  host change, nothing left to uninstall. Frames rendered by headless Chrome (already
+  installed) against a deterministic `window.seek(t)` timeline; soundtrack synthesised
+  with numpy.
+- **Content:** six scenes — Hindi objection hook, identity reveal, a real grounded
+  answer with record `OUT-PUN-ELE-25`, the honest no-record refusal, the Desk and
+  Insights surfaces, outro with the live URL. The render loads the product's own
+  `styles.css` over localhost, so the UI shown is the shipped UI.
+- **Verified:** probe frames inspected from all six scenes and from a scene turn (the
+  turns dip through the background, no double exposure); soundtrack measured at peak
+  0.614, zero clipped samples, energy rising toward the outro. Frames re-extracted
+  *from the encoded mp4* at 0 / 2.0 / 5.6 / 9.6 / 13.6 / 17.2 / 20.4 s and inspected;
+  container reports 21.00 s, 1920×1080, 30 fps, stereo 48 kHz AAC; `volumedetect`
+  gives mean −17.1 dB, max −5.6 dB. Poster baked in as frame 0 by replacement, so
+  duration and audio sync are unchanged. 1.8 GB of intermediate frames deleted.
+- **Honesty:** every figure in the video is one the app actually returns and carries
+  its record id; the product's "synthetic demo data" label stays on screen wherever
+  figures appear. No invented users, outcomes or testimonials.
+- **Unverified:** playback on a real player with sound (checked frame-by-frame and by
+  measurement, not by watching); how the soundtrack reads on good speakers.
