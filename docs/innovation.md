@@ -2,16 +2,16 @@
 
 | Field | Value |
 |---|---|
-| Purpose | Candidate innovations beyond the SIH26241 baseline, with rationale and priority |
+| Purpose | Candidate product innovations, with rationale and priority |
 | Status | Research — all items **planned** |
 | Last researched | 2026-10-03 |
 
-The PS baseline (joint conversation, outcome data, explainer, escalation, dashboard) is
-what every team will build. These items are where Kinvia differentiates. Each one ties
+Joint conversation, outcome data, an explainer, escalation and a dashboard form the
+core product. These items are where Kinvia differentiates. Each one ties
 back to a specific failure of today's learner-only, generic tools.
 
-Priority key: **Must** = in the PPT and the first prototype; **Should** = prototype if
-time permits, always in the PPT; **Could** = finale roadmap.
+Priority key: **Must** = first prototype; **Should** = follows the core flow;
+**Could** = longer-term roadmap.
 
 ---
 
@@ -24,8 +24,8 @@ verbal reassurance evaporates by evening.
 trades discussed, sourced figures, the family's concerns and answers, eligible schemes
 (as *check eligibility*), and next steps. A QR code links to the live, updated card.
 
-**Why it is defensible:** it is a tangible artifact evaluators can inspect, it shows
-every figure's provenance, and it extends counselling beyond the session.
+**Why it is defensible:** it is a tangible artifact families and counsellors can inspect,
+it shows every figure's provenance, and it extends counselling beyond the session.
 
 ## 2. Grounded figures ("numbers never come from the model") — Must
 
@@ -44,7 +44,7 @@ tool-use/ReAct patterns (Yao et al., 2023).
 
 **Problem it fixes:** administrators see enrolment numbers, not reasons.
 
-**Idea:** a fixed taxonomy, extended from the PS's three examples:
+**Idea:** a structured taxonomy of family concerns:
 
 | Code | Objection |
 |---|---|
@@ -95,7 +95,7 @@ generic tools ignore.
 
 Two one-tap questions at start and end ("How confident are you about this path?" 1–5,
 for each family member). Aggregated, it tells administrators which evidence and which
-answers actually change minds — the PS's "sentiment shift" made measurable and honest.
+answers actually change minds — making sentiment shifts measurable and honest.
 
 ## 9. Counsellor copilot — Should
 
@@ -111,15 +111,15 @@ Peer proof answers STA better than statistics. Requires verification and consent
 ## 11. Low-bandwidth and feature-phone reach — Could
 
 - Installable PWA with cached content and compressed audio (prototype).
-- WhatsApp channel and IVR / missed-call callback for feature phones (finale roadmap).
+- WhatsApp channel and IVR / missed-call callback for feature phones (longer-term roadmap).
 - Self-hosted speech models as fallback where connectivity is poor — the team's Refinix
   work on offline local AI is directly reusable here.
 
 ## 12. Ideas parked (not in scope yet)
 
 - Dropout early-warning for enrolled learners (needs attendance data).
-- Aptitude/interest assessment games (risk of scope creep before the finale).
-- Employer-side job-demand feed (overlaps SIH26246).
+- Aptitude/interest assessment games.
+- Employer-side job-demand feed.
 
 ---
 

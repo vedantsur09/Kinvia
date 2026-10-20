@@ -39,4 +39,4 @@ financial situations. Privacy is a product feature, not a compliance afterthough
 ## 3. Repository rules
 
 Never commit: real learner or parent data, recordings, transcripts from real sessions,
-API keys or `.env` files. Use synthetic data or organiser-provided dummy datasets.
+API keys or `.env` files. Use synthetic data or licensed dummy datasets.
