@@ -29,7 +29,7 @@ completion**, where the family's confidence matters and is currently unmeasured.
 
 | Source | Use in Kinvia | Notes |
 |---|---|---|
-| Organiser dummy datasets (per SIH26241) | Primary demo data: placement rates, earnings | Provided for hackathon evaluation |
+| Dummy datasets | Primary demo data: placement rates, earnings | For prototype evaluation |
 | [NCVET National Qualifications Register](https://ncvet.gov.in/?p=2524) | NSQF job roles, levels, progression for the pathway explainer | Public; check terms of reuse |
 | Skill India Digital Hub (SIDH) | Course/centre discovery, future integration | No public API confirmed |
 | PLFS (MoSPI) | Realistic earnings ranges for synthetic data | Public microdata |
@@ -51,13 +51,14 @@ Verify licence and version on the model card before adopting any model.
 - Digital Personal Data Protection Act, 2023 — consent, purpose limitation and
   verifiable parental consent for children's data. See [privacy.md](privacy.md).
 
-## 5. References for slide 6 (candidate list)
+<a id="5-references-for-slide-6-candidate-list"></a>
 
-1. Smart India Hackathon 2026 — SIH26241 problem statement, MSDE.
-2. Lewis et al., *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*, NeurIPS 2020.
-3. Yao et al., *ReAct: Synergizing Reasoning and Acting in Language Models*, ICLR 2023.
-4. PLFS Annual Report (MoSPI), latest edition.
-5. IES paper on vocational training earnings premium using PLFS 2023-24.
-6. NCVET National Qualifications Register / NSQF.
-7. Bhashini — National Language Translation Mission, MeitY.
-8. Digital Personal Data Protection Act, 2023.
+## 5. References (candidate list)
+
+1. Lewis et al., *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*, NeurIPS 2020.
+2. Yao et al., *ReAct: Synergizing Reasoning and Acting in Language Models*, ICLR 2023.
+3. PLFS Annual Report (MoSPI), latest edition.
+4. IES paper on vocational training earnings premium using PLFS 2023-24.
+5. NCVET National Qualifications Register / NSQF.
+6. Bhashini — National Language Translation Mission, MeitY.
+7. Digital Personal Data Protection Act, 2023.

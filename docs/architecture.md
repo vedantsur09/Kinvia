@@ -77,4 +77,4 @@
 ## 6. Deployment (prototype)
 
 Single web app + API + relational DB; speech via provider adapter. Production
-considerations (state data centres, scaling, IVR/WhatsApp gateways) are finale roadmap.
+considerations (state data centres, scaling, IVR/WhatsApp gateways) are longer-term roadmap.

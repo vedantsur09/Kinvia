@@ -105,7 +105,7 @@ From [privacy.md](docs/privacy.md#3-repository-rules):
 - Model weights or generated binaries
 - Local databases
 
-Use synthetic data in `data/samples/` or organiser-provided dummy datasets.
+Use synthetic data in `data/samples/` or licensed dummy datasets.
 
 ## Adding or removing a team member
 
