@@ -9,7 +9,7 @@
 | Category / theme | Software / Smart Education |
 | Team | Rokunin Sync |
 | Stage | Product planning; prototype planned |
-| Last updated | 2026-10-20 |
+| Last updated | 2026-10-21 |
 
 This file is the current product, scope and requirement contract. When it conflicts
 with lower-authority documents (research notes, PPT brief, agent memory), this file
@@ -88,7 +88,7 @@ IDs are stable; reference them in PRs. All are **planned** unless labelled other
 | ID | Requirement | Product outcome |
 |---|---|---|
 | FR-01 | Joint learner + parent conversational session, voice and text | Conversational tool for learners and parents |
-| FR-02 | Multilingual counselling: initially Hindi + English; additional languages guided by family needs | Regional language |
+| FR-02 | At least one regional language plus English (initial target: Hindi + English; Marathi stretch) | Regional language |
 | FR-03 | Detect and answer common parental objections (income, job security, social perception) with local data | Objection handling |
 | FR-04 | Verified outcome-data backend: trade × provider × district earnings ranges, placement rates, progression | Verified outcome backend |
 | FR-05 | Plain-language explainer mapping qualifications → job roles → NSQF level-ups → further education, tailored to location, income bracket and academic background | Low-jargon explainer |
@@ -144,8 +144,8 @@ IDs are stable; reference them in PRs. All are **planned** unless labelled other
 
 # 6. Data
 
-- **Demo data:** synthetic placement/earnings samples in `data/samples/`; additional
-  dummy datasets must have a documented source and terms of use.
+- **Demo data:** dummy placement/earnings datasets plus our synthetic samples in
+  `data/samples/`.
 - **Reference sources (for realism and the deck):** NCVET National Qualifications
   Register (NSQF job roles and levels), PLFS, Skill India Digital Hub, apprenticeship
   scheme rules. See [research.md](research.md).
@@ -157,7 +157,7 @@ IDs are stable; reference them in PRs. All are **planned** unless labelled other
 |---|---|---|
 | OD-01 | Speech stack: Bhashini APIs vs self-hosted AI4Bharat models | Bhashini for demo; self-hosted as low-connectivity fallback |
 | OD-02 | LLM: hosted vs open-weight local | Open-weight model via a swappable provider interface |
-| OD-03 | Repository visibility | Separate user decision; not a prototype milestone |
+| OD-03 | Repository visibility (public now) | Public visibility recommended |
 | OD-04 | Second regional language | Marathi if time permits |
 
 # 8. Authority order

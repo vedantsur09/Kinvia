@@ -97,3 +97,10 @@ no redesign, Git writes, history rewrite, visibility change, publication or depl
 User authorised committing and pushing the cleanup as the user on `aditya`, merging
 `aditya` into `dev`, then opening a `dev` to `main` pull request without merging it.
 Request review from the repository owner; add no agent watermark or attribution.
+
+## UP-017 — 2026-10-21
+
+User requested understanding and execution of the needs-fix feedback on PR #10.
+Correct the language requirement, visibility recommendation, dataset wording and
+references heading within the approved documentation cleanup. Keep the main PR
+unmerged and retain the established member-branch-to-dev workflow.

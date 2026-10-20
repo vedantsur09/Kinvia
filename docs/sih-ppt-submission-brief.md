@@ -11,7 +11,7 @@
 | Purpose of Kinvia | Family-inclusive career counselling and decision support for vocational education |
 | Category / theme | Software / Smart Education |
 | Product name | Kinvia |
-| Last updated | 2026-10-20 |
+| Last updated | 2026-10-21 |
 
 > This brief is content, not a required template or slide limit. Adapt the layout
 > and length to the audience. Distinguish planned features from demonstrated ones.
@@ -83,8 +83,7 @@ source and date; (3) a human counsellor is always one tap away.
 
 **Takeaway title:** *Small enough to prove, built on public Indian stacks.*
 
-- Synthetic district data for the demo, with source and terms recorded for any
-  additional dummy datasets.
+- Dummy datasets + synthetic district data for the demo.
 - Bhashini gives 22-language speech without training our own models.
 - Team has shipped a local-LLM workbench (Refinix) — tool-calling and grounding reuse.
 - Prototype scope: one hero flow, Hindi + English, one dashboard.
@@ -120,7 +119,7 @@ Do not show invented savings, accuracy or adoption numbers.
 
 ### Slide 6 — Research and references
 
-Use 6–8 entries from [research.md §5](research.md#5-references-for-slide-6-candidate-list).
+Use 6–8 entries from [research.md §5](research.md#5-references-candidate-list).
 Lead with the PMKVY dropout/placement figures **only after** verifying them on the
 primary dashboard.
 

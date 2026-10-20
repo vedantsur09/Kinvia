@@ -29,7 +29,7 @@ completion**, where the family's confidence matters and is currently unmeasured.
 
 | Source | Use in Kinvia | Notes |
 |---|---|---|
-| Synthetic samples in `data/samples/` | Demo placement rates and earnings | Development data only; never present as real outcomes |
+| Dummy datasets | Primary demo data: placement rates, earnings | For prototype evaluation |
 | [NCVET National Qualifications Register](https://ncvet.gov.in/?p=2524) | NSQF job roles, levels, progression for the pathway explainer | Public; check terms of reuse |
 | Skill India Digital Hub (SIDH) | Course/centre discovery, future integration | No public API confirmed |
 | PLFS (MoSPI) | Realistic earnings ranges for synthetic data | Public microdata |
@@ -51,7 +51,9 @@ Verify licence and version on the model card before adopting any model.
 - Digital Personal Data Protection Act, 2023 — consent, purpose limitation and
   verifiable parental consent for children's data. See [privacy.md](privacy.md).
 
-## 5. References for slide 6 (candidate list)
+<a id="5-references-for-slide-6-candidate-list"></a>
+
+## 5. References (candidate list)
 
 1. Lewis et al., *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*, NeurIPS 2020.
 2. Yao et al., *ReAct: Synergizing Reasoning and Acting in Language Models*, ICLR 2023.
