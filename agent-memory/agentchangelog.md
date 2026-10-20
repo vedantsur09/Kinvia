@@ -325,3 +325,30 @@ Factual record of repository changes made by agents. Append only.
   historical material, repository About/topics and existing PPT linkage remain.
 - **Pending at this entry:** push via the member branch and PR into `dev`, update the
   existing main PR's review notes, and retain the main PR unmerged. No app tests run.
+
+## AC-020 — 2026-10-21 — Prototype privacy and quality fixes (UP-018)
+
+- **Changed:** removed durable conversation/resume and real-ticket storage from
+  `frontend/session.js` and `frontend/desk.js`; all pages remove legacy active,
+  Desk and Desk-note copies through `frontend/data.js`. The Desk is synthetic only.
+  Guest counselling, explicit exports and consented categorical Insights remain.
+- **Changed:** surfaced storage-write failures and validated stored summaries;
+  cancelled pending replies, speech recognition and retained drafts/cards on reset
+  or navigation; added native modal containment and explicit focus restoration;
+  restricted cache deletion/writes to this app and successful shell responses;
+  replaced the undefined bar colour token. Updated four page asset versions, public
+  demo claims and `frontend/README.md`; added two regression files in `frontend/tests/`.
+- **Verified:** all six frontend scripts parse, relative page links/assets resolve,
+  and `git diff --check` passes. Twelve checks passed in both installed Chromium
+  and WebKit using Playwright 1.62.1, including synthetic legacy cleanup, guest/
+  consented flows, exports, failure handling, restart, keyboard/mobile dialogs,
+  back/forward restoration and offline fallback. Independent read-only candidate
+  review found no remaining actionable issue after correcting landing-page claims.
+- **Limitations:** microphone cancellation uses a synthetic recogniser; no physical
+  device, real speech service, WhatsApp delivery, print output or live deployment
+  verified. WebKit offline-toggle emulation errored internally; fallback passed with
+  a real loopback connection failure. Legacy bytes cannot be removed if browser
+  storage denies access; the UI reports that condition and instructs site-data cleanup.
+- **Scope:** protected root/product documents and outcome figures remain unchanged.
+  No backend/authentication or production counsellor handoff added. GitHub integration
+  follows this entry; the requested main PR must remain unmerged.

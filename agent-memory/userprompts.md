@@ -104,3 +104,10 @@ User requested understanding and execution of the needs-fix feedback on PR #10.
 Correct the language requirement, visibility recommendation, dataset wording and
 references heading within the approved documentation cleanup. Keep the main PR
 unmerged and retain the established member-branch-to-dev workflow.
+
+## UP-018 — 2026-10-21
+
+User authorised fixing all findings from the independent code-quality/security
+review, running focused verification, and committing/pushing on the user branch.
+Merge the member PR into `dev`, then open a clearly described `dev` to `main` PR
+without merging it and request review from the repository owner. No agent watermark.

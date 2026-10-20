@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 <header class="topbar">
@@ -109,7 +109,7 @@
 </main>
 
 <!-- Consent -->
-<div class="overlay" id="consent" role="dialog" aria-modal="true" aria-labelledby="consent-h">
+<dialog class="overlay" id="consent" aria-labelledby="consent-h">
   <div class="dialog">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
       <p class="label" data-t="cEyebrow">Before we begin</span>
@@ -120,18 +120,17 @@
     </div>
     <h2 id="consent-h" data-t="cTitle">Your family’s consent</h2>
     <ul id="consent-list"></ul>
-    <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="consent-ok" style="margin-top:6px"> <span data-t="cCheck">I am the parent or guardian, and I agree that this session can be saved.</span></label>
+    <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="consent-ok" style="margin-top:6px"> <span data-t="cCheck">I am the parent or guardian, and I agree to save district, trade, concern codes and confidence scores for local summary statistics, without conversation text.</span></label>
     <div class="row">
       <button class="btn btn-ghost btn-sm" type="button" id="consent-read" data-t="cRead">Read aloud</button>
-      <button class="btn btn-ghost btn-sm" type="button" id="consent-resume" hidden data-t="cResume">Resume last session</button>
       <button class="btn btn-ghost btn-sm" type="button" id="consent-guest" data-t="cGuest">Continue without saving</button>
       <button class="btn btn-primary btn-sm" type="button" id="consent-go" disabled data-t="cGo">Agree and start</button>
     </div>
   </div>
-</div>
+</dialog>
 
 <!-- Trust Card -->
-<div class="overlay" id="trustmodal" hidden role="dialog" aria-modal="true" aria-labelledby="trust-title">
+<dialog class="overlay" id="trustmodal" aria-labelledby="trust-title">
   <div class="dialog" style="max-width:640px">
     <div id="trustcard"></div>
     <div class="row no-print">
@@ -141,10 +140,10 @@
       <button class="btn btn-primary btn-sm" type="button" id="trustclose" data-t="close">Close</button>
     </div>
   </div>
-</div>
+</dialog>
 
-<script src="data.js?v=10"></script>
+<script src="data.js?v=11"></script>
 <script src="icons.js?v=10"></script>
-<script src="session.js?v=11"></script>
+<script src="session.js?v=12"></script>
 </body>
 </html>

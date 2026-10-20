@@ -120,7 +120,24 @@ const KV_DATA = (() => {
 /* Shared helpers: storage that never throws, number formatting, speech. */
 const KV = {
   get(key, fallback) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } },
-  set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* storage unavailable */ } },
+  set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } },
+  remove(key) { try { localStorage.removeItem(key); return true; } catch { return false; } },
+  notice(text) {
+    let el = document.getElementById("storage-status");
+    if (!el) {
+      el = document.createElement("p"); el.id = "storage-status";
+      el.className = "prototype-note"; el.setAttribute("role", "status");
+    }
+    const dialog = document.querySelector("dialog[open] .dialog");
+    if (dialog) dialog.append(el); else document.querySelector(".prototype-note").after(el);
+    el.textContent = text;
+  },
+  sessions() {
+    const rows = KV.get("kinvia.sessions", []);
+    return Array.isArray(rows) ? rows.filter(s => s && typeof s.id === "string" &&
+      KV_DATA.district(s.district) && Array.isArray(s.codes) && s.codes.every(c => Object.hasOwn(KV_DATA.OBJECTIONS, c)) &&
+      [s.before, s.after].every(n => Number.isFinite(n) && n >= 1 && n <= 5)) : [];
+  },
   inr: n => "₹" + n.toLocaleString("en-IN"),
   esc: s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])),
   speak(text, lang) {
@@ -133,6 +150,12 @@ const KV = {
     return true;
   },
 };
+
+// No authenticated owner exists in this static demo; discard older conversation copies.
+if (!["kinvia.active", "kinvia.desk", "kinvia.deskNotes"].map(key => KV.remove(key)).every(Boolean)) {
+  KV.notice("Older saved conversations could not be cleared. Clear this site's browser data before sharing the device. New conversations are not saved.");
+  document.getElementById("storage-status").id = "legacy-storage-status";
+}
 
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
