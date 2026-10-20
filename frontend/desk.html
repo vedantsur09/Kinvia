@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Counsellor Desk · Kinvia</title>
+<meta name="theme-color" content="#7c5cff">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo-mark.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css?v=19">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Kinvia home"><img src="logo-mark.png" alt="" width="38" height="38"><span class="brand-name">Kinvia</span></a>
+    <span class="badge">Prototype</span>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="try.html">Family session</a>
+      <a href="desk.html" aria-current="page">Counsellor Desk</a>
+      <a href="insights.html">Scheme Insights</a>
+    </nav>
+  </div>
+</header>
+<p class="prototype-note">Prototype · example tickets are marked “demo” · escalations you create in a family session appear here</p>
+
+<main class="wrap">
+  <div class="app-head">
+    <div><p class="label">Human counsellor escalation</span><h1>Counsellor Desk</h1></div>
+    <p class="muted" style="max-width:52ch">Families arrive with a summary, speaker-tagged concerns and the evidence already shown, so nobody repeats their story.</p>
+  </div>
+  <div class="desk">
+    <section class="panel" aria-labelledby="q-h">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px">
+        <h2 id="q-h" style="margin:0">Queue</h2>
+        <div class="lang-switch" role="group" aria-label="Filter">
+          <button type="button" data-filter="open" aria-pressed="true">Open</button>
+          <button type="button" data-filter="all" aria-pressed="false">All</button>
+        </div>
+      </div>
+      <div class="tickets" id="tickets"></div>
+    </section>
+    <section class="panel" id="detail" aria-live="polite"></section>
+  </div>
+</main>
+<script src="data.js?v=10"></script>
+<script src="icons.js?v=10"></script>
+<script src="desk.js?v=10"></script>
+</body>
+</html>
