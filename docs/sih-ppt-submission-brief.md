@@ -1,46 +1,44 @@
-# SIH26241 PPT Submission Brief
+<a id="sih26241-ppt-submission-brief"></a>
+
+# Kinvia Presentation Brief
 
 ## Document role
 
 | Field | Value |
 |---|---|
-| Purpose | Content source for the six-slide SIH idea-submission PPT/PDF, reusing the Refinix deck skeleton |
+| Purpose | Content source for a Kinvia product presentation |
 | Audience | Rokunin Sync presentation, design and research owners |
-| Problem statement | SIH26241 — AI-Enabled Career Counselling and Family Decision-Support Platform for Vocational Education |
-| Problem owner | Ministry of Skill Development and Entrepreneurship (MSDE) |
+| Purpose of Kinvia | Family-inclusive career counselling and decision support for vocational education |
 | Category / theme | Software / Smart Education |
 | Product name | Kinvia |
-| Deadline | 5 October 2026 |
-| Last updated | 2026-10-03 |
+| Last updated | 2026-10-20 |
 
-> This brief is content, not a design. Keep the official SIH template and the Refinix
-> deck's layout; replace the content slide by slide. Recheck the portal (Team ID, team
-> name spelling, file-size and format rules) before uploading.
+> This brief is content, not a required template or slide limit. Adapt the layout
+> and length to the audience. Distinguish planned features from demonstrated ones.
 
 ## 1. Communication job
 
 > **Kinvia counsels the whole family, in their language, with verified local data —
 > and shows administrators exactly where and why families say no.**
 
-## 2. Recheck before submission
+<a id="2-recheck-before-submission"></a>
 
-- Team ID and exact registered team name
-- Official template version, slide limit, file type and size limit
-- Idea-count for SIH26241 still below cap
+## 2. Recheck before sharing
+
+- Product name and team attribution
+- Feature maturity labels match the available evidence
 - Every figure on slides traced to [research.md](research.md) primary sources
 
 ---
 
-## 3. Six slides
+<a id="3-six-slides"></a>
+
+## 3. Suggested presentation outline
 
 ### Slide 1 — Title page
 
-- Problem Statement ID: **SIH26241**
-- Problem Statement Title: **AI-Enabled Career Counselling and Family Decision-Support
-  Platform for Vocational Education**
-- Theme: **Smart Education** · PS Category: **Software**
-- Team ID: **`<VERIFY ON PORTAL>`** · Team Name: **Rokunin Sync**
-- Idea title: **Kinvia — Counselling the Family, Not Just the Learner**
+- Product title: **Kinvia — Counselling the Family, Not Just the Learner**
+- Team: **Rokunin Sync**
 
 **Visual:** a parent and teenager looking at one phone together; warm, real, Indian
 household or training-centre setting. Avoid robots and glowing brains.
@@ -85,7 +83,8 @@ source and date; (3) a human counsellor is always one tap away.
 
 **Takeaway title:** *Small enough to prove, built on public Indian stacks.*
 
-- Organiser-provided dummy datasets + synthetic district data for the demo.
+- Synthetic district data for the demo, with source and terms recorded for any
+  additional dummy datasets.
 - Bhashini gives 22-language speech without training our own models.
 - Team has shipped a local-LLM workbench (Refinix) — tool-calling and grounding reuse.
 - Prototype scope: one hero flow, Hindi + English, one dashboard.
@@ -140,7 +139,9 @@ Closing line:
 | Industrial users (refinery, PSU) | Families, counsellors, MSDE administrators |
 | Five feasibility gates | Hero flow, Hindi+English, dashboard, Trust Card, escalation |
 
-## 5. Judge Q&A starters
+<a id="5-judge-qa-starters"></a>
+
+## 5. Product Q&A starters
 
 - **Why not just a chatbot on top of course lists?** Because the decision-maker is the
   family and the blocker is trust; generic text does not move a sceptical parent.

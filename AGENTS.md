@@ -3,8 +3,7 @@
 Repository-wide rules for coding agents working on Kinvia.
 
 Kinvia is a family-inclusive, multilingual AI career-counselling platform for
-vocational education, built for Smart India Hackathon 2026 problem statement SIH26241
-(MSDE). Current product truth is in [`docs/PROJECT.md`](docs/PROJECT.md).
+vocational education. Current product truth is in [`docs/PROJECT.md`](docs/PROJECT.md).
 
 ## 1. Authority and conflict handling
 
