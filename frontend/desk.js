@@ -1,4 +1,4 @@
-/* Counsellor Desk: escalated sessions from the family-session demo plus marked example tickets. */
+/* Counsellor Desk: synthetic examples only; family conversations stay in memory. */
 (() => {
   const D = KV_DATA;
   const $ = s => document.querySelector(s);
@@ -17,9 +17,8 @@
 
   let filter = "open", selected = null;
   const load = () => {
-    const real = KV.get("kinvia.desk", []);
     const statuses = KV.get("kinvia.deskStatus", {});
-    return [...real, ...DEMO].map(t => ({ ...t, status: statuses[t.id] || t.status }));
+    return DEMO.map(t => ({ ...t, status: ["open", "resolved"].includes(statuses?.[t.id]) ? statuses[t.id] : t.status }));
   };
   const label = c => D.OBJECTIONS[c]?.en ?? "Counsellor request";
   const when = iso => new Date(iso).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
@@ -32,7 +31,7 @@
         <span class="t-top"><span>${KV.esc(D.trade(t.trade)?.en || "Trade not chosen")} · ${KV.esc(D.district(t.district)?.en || "")}</span><span class="tag ${t.status === "open" ? "tag-verm" : "tag-leaf"}">${t.status}</span></span>
         <span class="tiny">${t.id} · ${when(t.at)} ${t.demo ? "· demo" : ""}</span>
         <span style="display:flex;gap:6px;flex-wrap:wrap">${(t.open.length ? t.open : ["REQ"]).map(c => `<span class="tag tag-mari">${label(c)}</span>`).join("")}</span>
-      </button>`).join("") : `<p class="tiny">No open escalations. Start a <a href="try.html">family session</a> and choose “Talk to a counsellor”.</p>`;
+      </button>`).join("") : `<p class="tiny">No open demo tickets. Choose “All” to reopen an example.</p>`;
     document.querySelectorAll("#tickets [data-id]").forEach(b => b.addEventListener("click", () => { selected = b.dataset.id; renderList(); }));
     renderDetail(load().find(t => t.id === selected));
   }
@@ -58,11 +57,14 @@
         <div class="ev-src"><span>${r.id}</span><span>n = ${r.n}</span><span>as of ${r.asOf}</span><span>synthetic demo data</span></div></div>`).join("") : `<p class="tiny">No records shown yet.</p>`}</div>
       <h3 style="margin-top:18px">Last messages</h3>
       <div style="display:flex;flex-direction:column;gap:8px">${t.messages.length ? t.messages.map(m => `<div class="bubble ${m.role}" style="animation:none"><span class="who">${m.role}</span>${KV.esc(m.text)}</div>`).join("") : `<p class="tiny">No transcript kept for this ticket.</p>`}</div>
-      <p class="tiny" style="margin-top:16px">Counsellors see escalated sessions only. Administrators never see this view.</p>`;
+      <p class="tiny" style="margin-top:16px">Synthetic example only. Real family conversations are not available in this public demo.</p>`;
     $("#toggle").addEventListener("click", () => {
-      const st = KV.get("kinvia.deskStatus", {});
+      const st = Object.fromEntries(load().map(t => [t.id, t.status]));
       st[t.id] = t.status === "open" ? "resolved" : "open";
-      KV.set("kinvia.deskStatus", st);
+      if (!KV.set("kinvia.deskStatus", st)) {
+        KV.notice("Demo ticket status was not saved. Browser storage is unavailable or full.");
+        return;
+      }
       renderList();
     });
   }

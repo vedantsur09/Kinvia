@@ -21,13 +21,13 @@
       before: "Before", after: "Now", escalate: "Talk to a counsellor", trust: "Create Family Trust Card",
       cEyebrow: "Before we begin", cTitle: "Your family’s consent",
       cItems: ["Kinvia helps your family understand vocational training options together.",
-               "We keep only your district, schooling, interests and income bracket — never your address or exact income.",
+               "Your conversation stays in this tab and is cleared when you leave or start over. You can download your own copy.",
                "Voice is turned into text and the recording is not kept.",
-               "A counsellor sees your session only if you ask for help. Officials see totals, never your conversation.",
+               "This demo does not send your conversation to a counsellor. Ask a training centre for human help; the Desk shows synthetic examples only.",
                "You can ask for a person, stop, or delete your session at any time."],
-      cCheck: "I am the parent or guardian, and I agree that this session can be saved.",
-      cRead: "Read aloud", cGuest: "Continue without saving", cGo: "Agree and start", cResume: "Resume last session",
-      transcript: "Save the conversation", resumed: "Welcome back — I’ve brought your earlier session with me.",
+      cCheck: "I am the parent or guardian, and I agree to save district, trade, concern codes and confidence scores for local summary statistics, without conversation text.",
+      cRead: "Read aloud", cGuest: "Continue without saving", cGo: "Agree and start",
+      transcript: "Save the conversation", storageError: "Not saved: browser storage is unavailable or full. You can continue and download your own copy.",
       typing: "Kinvia is typing", listening: "Listening… speak now", micErr: "I didn’t catch that. Try again, or type it.",
       ctxDistrict: "District", ctxTrade: "Trade", ctxPick: "Choose a trade",
       pickTrade: "Which trade is your family considering? Tap one below, or just say its name.",
@@ -37,7 +37,7 @@
       sugMore: "What else can I ask?", sugHostel: "What about hostel and safety?", sugCost: "What will it cost?",
       sugFurther: "Can she study further?", sugCompare: "Which district does better?", sugCounsellor: "Talk to a counsellor",
       sugTrust: "Make the Trust Card", sugJobs: "What jobs come after?",
-      nudgeOpen: "A few concerns are still open. Would it help to speak to a counsellor? They will already have your summary.",
+      nudgeOpen: "A few concerns are still open. Ask a counsellor at your training centre for help. You can download a summary to take with you.",
       wa: "Share on WhatsApp", dl: "Save as image", print: "Print", close: "Close",
       schoolOpts: ["Class 8 pass", "Class 10 pass", "Class 12 pass", "ITI / diploma started", "Other"],
       quick: [["INC", "Will he earn enough?"], ["STA", "Log kya kahenge?"], ["SAF", "Is it safe for my daughter?"],
@@ -54,14 +54,14 @@
       CST: () => `PMKVY training is free at empanelled centres. During an apprenticeship, the government shares 25% of the stipend, up to ₹1,500 a month. The PM Internship Scheme pays ₹5,000 a month. Check eligibility with a counsellor.`,
       JOB: r => `${r.placement}% of ${r.t} trainees in ${r.d} were placed within six months. Typical roles: ${r.jobs}.`,
       DIS: (t, list) => list.length ? `Verified records for ${t} also exist in: ${list}. Women trainees can get transport support under Common Norms.` : `No other district in the demo store has a record for ${t}.`,
-      ESC: id => `I’ve sent your family’s summary to a counsellor, so you won’t need to repeat yourself. Ticket ${id}.`,
+      ESC: id => `Demo request ${id}: no message has been sent. For human help, speak to a counsellor at your training centre and take your Trust Card or downloaded conversation.`,
       fallback: "I can help with earnings, job security, social respect, safety, further study, cost or distance. You can also ask for a counsellor.",
       grounded: id => `Verified · figures from ${id}`, groundedScheme: "Verified · published scheme rules",
       blocked: "Grounding guard blocked an unverified figure", unresolved: "Open · counsellor", resolved: "Answered",
       speak: "Listen", trustTitle: "Family Trust Card", tcTrade: "Trade", tcEvidence: "Verified figures", tcConcerns: "Your concerns",
       tcNext: "Next steps", tcSchemes: "Schemes to check", tcNone: "No concerns recorded yet.",
-      tcNextOpen: "A counsellor will call you about open concerns.", tcNextVisit: p => `Visit ${p} and ask about apprenticeships.`,
-      tcFoot: "Figures from synthetic demo records · Kinvia prototype", saved: "Session saved for the Counsellor Desk and Scheme Insights.",
+      tcNextOpen: "Take this card to a training-centre counsellor.", tcNextVisit: p => `Visit ${p} and ask about apprenticeships.`,
+      tcFoot: "Figures from synthetic demo records · Kinvia prototype",
       degree: "Degree route", voc: "Vocational route", study: "studying", earn: "earning", vocBand: r => `${KV.inr(r.p25)}–${KV.inr(r.p75)} / month (record)`, degBand: "No verified local record in the demo store",
       micNo: "Voice input isn’t supported in this browser. Please type instead.",
     },
@@ -77,13 +77,13 @@
       before: "पहले", after: "अब", escalate: "काउंसलर से बात करें", trust: "फ़ैमिली ट्रस्ट कार्ड बनाएँ",
       cEyebrow: "शुरू करने से पहले", cTitle: "आपके परिवार की सहमति",
       cItems: ["किनविया आपके परिवार को मिलकर व्यावसायिक प्रशिक्षण के विकल्प समझने में मदद करता है।",
-               "हम केवल ज़िला, पढ़ाई, रुचि और आय-वर्ग रखते हैं — पता या सही आय कभी नहीं।",
+               "बातचीत इसी टैब में रहती है। पेज छोड़ने या फिर से शुरू करने पर मिट जाती है। अपनी कॉपी डाउनलोड कर सकते हैं।",
                "आवाज़ को टेक्स्ट में बदला जाता है और रिकॉर्डिंग नहीं रखी जाती।",
-               "काउंसलर आपका सत्र तभी देखेंगे जब आप मदद माँगें। अधिकारी सिर्फ़ कुल आंकड़े देखते हैं, आपकी बातचीत नहीं।",
+               "यह डेमो बातचीत काउंसलर को नहीं भेजता। मदद के लिए प्रशिक्षण केंद्र में पूछें; डेस्क पर केवल सिंथेटिक उदाहरण हैं।",
                "आप कभी भी किसी व्यक्ति से बात कर सकते हैं, रुक सकते हैं या अपना सत्र मिटा सकते हैं।"],
-      cCheck: "मैं माता-पिता या अभिभावक हूँ, और मैं सहमत हूँ कि यह सत्र सहेजा जा सकता है।",
-      cRead: "पढ़कर सुनाएँ", cGuest: "बिना सहेजे जारी रखें", cGo: "सहमत हूँ, शुरू करें", cResume: "पिछला सत्र जारी रखें",
-      transcript: "बातचीत सहेजें", resumed: "फिर से स्वागत है — आपका पिछला सत्र यहीं मौजूद है।",
+      cCheck: "मैं माता-पिता या अभिभावक हूँ और स्थानीय कुल आंकड़ों के लिए ज़िला, ट्रेड, चिंता के कोड और भरोसे के स्कोर सहेजने की सहमति देता हूँ, बातचीत नहीं।",
+      cRead: "पढ़कर सुनाएँ", cGuest: "बिना सहेजे जारी रखें", cGo: "सहमत हूँ, शुरू करें",
+      transcript: "बातचीत सहेजें", storageError: "सहेजा नहीं गया: ब्राउज़र स्टोरेज उपलब्ध नहीं है या भर गया है। जारी रखें और अपनी कॉपी डाउनलोड कर सकते हैं।",
       typing: "किनविया लिख रहा है", listening: "सुन रहा हूँ… अब बोलिए", micErr: "मैं समझ नहीं पाया। दोबारा बोलें या लिखें।",
       ctxDistrict: "ज़िला", ctxTrade: "ट्रेड", ctxPick: "ट्रेड चुनें",
       pickTrade: "आपका परिवार कौन-सा ट्रेड सोच रहा है? नीचे से चुनें, या बस उसका नाम बोलें।",
@@ -93,7 +93,7 @@
       sugMore: "और क्या पूछ सकते हैं?", sugHostel: "हॉस्टल और सुरक्षा?", sugCost: "खर्च कितना होगा?",
       sugFurther: "क्या आगे पढ़ाई हो सकती है?", sugCompare: "कौन-सा ज़िला बेहतर है?", sugCounsellor: "काउंसलर से बात करें",
       sugTrust: "ट्रस्ट कार्ड बनाएँ", sugJobs: "आगे कौन-सा काम मिलेगा?",
-      nudgeOpen: "कुछ चिंताएँ अभी खुली हैं। क्या काउंसलर से बात करना ठीक रहेगा? उनके पास आपका सारांश पहले से होगा।",
+      nudgeOpen: "कुछ चिंताएँ अभी खुली हैं। प्रशिक्षण केंद्र के काउंसलर से मदद माँगें। साथ ले जाने के लिए सारांश डाउनलोड कर सकते हैं।",
       wa: "व्हाट्सऐप पर भेजें", dl: "इमेज सहेजें", print: "प्रिंट", close: "बंद करें",
       schoolOpts: ["8वीं पास", "10वीं पास", "12वीं पास", "ITI / डिप्लोमा शुरू", "अन्य"],
       quick: [["INC", "कमाई कितनी होगी?"], ["STA", "लोग क्या कहेंगे?"], ["SAF", "क्या बेटी के लिए सुरक्षित है?"],
@@ -110,14 +110,14 @@
       CST: () => `चुने हुए केंद्रों पर PMKVY प्रशिक्षण मुफ्त है। अप्रेंटिसशिप के दौरान सरकार स्टाइपेंड का 25%, अधिकतम ₹1,500 प्रति माह देती है। पीएम इंटर्नशिप योजना में ₹5,000 प्रति माह मिलते हैं। पात्रता काउंसलर से जाँचें।`,
       JOB: r => `${r.d} में ${r.t} के ${r.placement}% प्रशिक्षुओं को छह महीने में नौकरी मिली। आम काम: ${r.jobs}।`,
       DIS: (t, list) => list.length ? `${t} के सत्यापित रिकॉर्ड इन ज़िलों में भी हैं: ${list}। महिला प्रशिक्षुओं को कॉमन नॉर्म्स के तहत यात्रा सहायता मिल सकती है।` : `डेमो डेटा में ${t} के लिए किसी और ज़िले का रिकॉर्ड नहीं है।`,
-      ESC: id => `मैंने आपके परिवार का सारांश काउंसलर को भेज दिया है, आपको अपनी बात दोहरानी नहीं पड़ेगी। टिकट ${id}।`,
+      ESC: id => `डेमो अनुरोध ${id}: कोई संदेश नहीं भेजा गया है। मदद के लिए प्रशिक्षण केंद्र के काउंसलर से बात करें और ट्रस्ट कार्ड या डाउनलोड की हुई बातचीत साथ ले जाएँ।`,
       fallback: "मैं कमाई, नौकरी की सुरक्षा, सामाजिक सम्मान, सुरक्षा, आगे की पढ़ाई, खर्च या दूरी के बारे में मदद कर सकता हूँ। आप काउंसलर से बात भी कर सकते हैं।",
       grounded: id => `सत्यापित · आंकड़े ${id} से`, groundedScheme: "सत्यापित · प्रकाशित योजना नियम",
       blocked: "ग्राउंडिंग गार्ड ने असत्यापित आंकड़ा रोका", unresolved: "खुला · काउंसलर", resolved: "जवाब दिया",
       speak: "सुनें", trustTitle: "फ़ैमिली ट्रस्ट कार्ड", tcTrade: "ट्रेड", tcEvidence: "सत्यापित आंकड़े", tcConcerns: "आपकी चिंताएँ",
       tcNext: "अगले कदम", tcSchemes: "जाँचने योग्य योजनाएँ", tcNone: "अभी कोई चिंता दर्ज नहीं।",
-      tcNextOpen: "खुली चिंताओं पर काउंसलर आपको कॉल करेंगे।", tcNextVisit: p => `${p} जाएँ और अप्रेंटिसशिप के बारे में पूछें।`,
-      tcFoot: "आंकड़े सिंथेटिक डेमो रिकॉर्ड से · किनविया प्रोटोटाइप", saved: "सत्र काउंसलर डेस्क और स्कीम इनसाइट्स के लिए सहेजा गया।",
+      tcNextOpen: "यह कार्ड प्रशिक्षण केंद्र के काउंसलर को दिखाएँ।", tcNextVisit: p => `${p} जाएँ और अप्रेंटिसशिप के बारे में पूछें।`,
+      tcFoot: "आंकड़े सिंथेटिक डेमो रिकॉर्ड से · किनविया प्रोटोटाइप",
       degree: "डिग्री रास्ता", voc: "व्यावसायिक रास्ता", study: "पढ़ाई", earn: "कमाई", vocBand: r => `${KV.inr(r.p25)}–${KV.inr(r.p75)} / माह (रिकॉर्ड)`, degBand: "डेमो डेटा में कोई सत्यापित स्थानीय रिकॉर्ड नहीं",
       micNo: "इस ब्राउज़र में आवाज़ से इनपुट उपलब्ध नहीं है। कृपया लिखें।",
     },
@@ -129,7 +129,7 @@
 
   // ---------- State ----------
   const fresh = () => ({
-    lang: KV.get("kinvia.lang", "en"), saving: false, speaker: "parent",
+    lang: KV.get("kinvia.lang", "en") === "hi" ? "hi" : "en", saving: false, speaker: "parent",
     district: "pune", schooling: 1, trade: null,
     objections: [], evidence: [], messages: [], pending: null, nudged: false,
     conf: { learner: { before: 2, after: 2 }, parent: { before: 2, after: 2 } },
@@ -208,7 +208,7 @@
   function respond(codes, rawText) {
     codes = [...codes];
     const L = t();
-    if (codes[0] === "ESC") return escalate(rawText);
+    if (codes[0] === "ESC") return escalate();
     if (codes[0] === "CMP") return compare();
     if (!codes.length) return kinviaSay(L.fallback, { suggest: true });
     if (!S.trade && codes.some(c => c !== "CST")) {
@@ -301,7 +301,7 @@
   }
   // A brief "typing" beat before each reply: it paces multi-part answers so the family
   // reads them in order instead of having three cards appear at once.
-  let typingEl = null, chain = Promise.resolve();
+  let typingEl = null, chain = Promise.resolve(), generation = 0, pendingReply = null;
   function showTyping() {
     if (typingEl) return;
     typingEl = document.createElement("div");
@@ -315,9 +315,15 @@
 
   function kinviaSay(text, opts = {}) {
     const delay = opts.instant ? 0 : Math.min(900, 280 + text.length * 2.2);
-    chain = chain.then(() => new Promise(resolve => {
+    const current = generation;
+    chain = chain.then(() => current !== generation ? undefined : new Promise(resolve => {
       showTyping();
-      setTimeout(() => { hideTyping(); renderReply(text, opts); resolve(); }, delay);
+      const timer = setTimeout(() => {
+        pendingReply = null;
+        if (current === generation) { hideTyping(); renderReply(text, opts); }
+        resolve();
+      }, delay);
+      pendingReply = { timer, resolve };
     }));
     return chain;
   }
@@ -353,12 +359,10 @@
     if ($("#autoread").checked) KV.speak(text, S.lang);
     if (opts.quick) renderQuick();
     if (opts.suggest) suggestNext();
-    persist();
   }
   function userSay(text) {
     push(S.speaker, KV.esc(text));
     S.messages.push({ role: S.speaker, text });
-    persist();
   }
 
   function renderSuggest(pairs) {
@@ -370,9 +374,9 @@
   function wireQuick() {
     $$("#quick [data-q]").forEach(btn => btn.addEventListener("click", () => {
       const code = btn.dataset.q, label = btn.textContent;
-      if (code === "TRUST") return trustCard();
+      if (code === "TRUST") return trustCard(btn);
       userSay(label);
-      if (code === "ESC") return escalate(label);
+      if (code === "ESC") return escalate();
       if (code === "CMP") return compare();
       respond([code], label);
     }));
@@ -421,9 +425,9 @@
     const months = tr ? tr.months : 24;
     const studyYears = Math.max(1, Math.round(months / 12));
     $("#twopath").innerHTML = `
-      <div class="bar-row"><span>${L.voc}</span><div class="bar"><i style="left:0;width:${studyYears * 20}%;background:var(--rose)"></i><i style="left:${studyYears * 20}%;width:${100 - studyYears * 20}%;background:var(--mint)"></i></div></div>
+      <div class="bar-row"><span>${L.voc}</span><div class="bar"><i style="left:0;width:${studyYears * 20}%;background:var(--rose)"></i><i style="left:${studyYears * 20}%;width:${100 - studyYears * 20}%;background:var(--violet)"></i></div></div>
       <p class="tiny">${studyYears} ${L.study} · ${5 - studyYears} ${L.earn} · ${rec ? L.vocBand(rec) : L.degBand}</p>
-      <div class="bar-row"><span>${L.degree}</span><div class="bar"><i style="left:0;width:60%;background:var(--rose)"></i><i style="left:60%;width:40%;background:var(--mint)"></i></div></div>
+      <div class="bar-row"><span>${L.degree}</span><div class="bar"><i style="left:0;width:60%;background:var(--rose)"></i><i style="left:60%;width:40%;background:var(--violet)"></i></div></div>
       <p class="tiny">3 ${L.study} · 2 ${L.earn} · ${L.degBand}</p>`;
   }
   function renderSchemes() {
@@ -450,30 +454,6 @@
     renderContext(); renderConcerns(); renderPath(); renderSchemes(); renderConf(); renderQuick(); renderCtxBar();
   }
 
-  // ---------- Resume ----------
-  // Only ever written once the family has consented to saving, so resuming never
-  // revives a guest session that was promised to leave no trace.
-  function persist() {
-    if (!S.saving) return;
-    KV.set("kinvia.active", { ...S, at: Date.now(), html: log().innerHTML });
-  }
-  function resumable() {
-    const a = KV.get("kinvia.active", null);
-    return a && a.messages?.length > 1 && Date.now() - (a.at || 0) < 7 * 864e5 ? a : null;
-  }
-  function resume() {
-    const a = resumable();
-    if (!a) return start(true);
-    const html = a.html; delete a.html; delete a.at;
-    S = { ...fresh(), ...a, saving: true };
-    $("#consent").hidden = true;
-    log().innerHTML = html || "";
-    log().querySelectorAll("[data-say],[data-pick]").forEach(b => b.remove());
-    applyText();
-    renderReply(t().resumed, { suggest: true });
-    log().scrollTop = log().scrollHeight;
-  }
-
   // ---------- Actions ----------
   function setTrade(id, announce) {
     S.trade = id;
@@ -488,31 +468,26 @@
   }
   function setDistrict(id) { S.district = id; $("#district").value = id; renderPath(); renderCtxBar(); }
 
-  function escalate(reason) {
+  function escalate() {
     const id = "T-" + Math.random().toString(36).slice(2, 7).toUpperCase();
     S.ticket = id;
     const open = S.objections.filter(o => !o.resolved).map(o => o.code);
-    const ticket = {
-      id, at: new Date().toISOString(), lang: S.lang, district: S.district, trade: S.trade, schooling: t().schoolOpts[S.schooling],
-      concerns: S.objections.map(o => ({ code: o.code, speaker: o.speaker, resolved: o.resolved })), open,
-      evidence: S.evidence, reason: reason || "", messages: S.messages.slice(-8), status: "open", demo: false,
-    };
-    if (S.saving) { const desk = KV.get("kinvia.desk", []); desk.unshift(ticket); KV.set("kinvia.desk", desk); }
     addConcern(open[0] || "ESC_REQ", false);
     kinviaSay(t().ESC(id) + (S.saving ? "" : " " + t().guest));
   }
 
   function saveSession() {
     if (!S.saving || !S.objections.length) return;
-    const all = KV.get("kinvia.sessions", []);
+    const all = KV.sessions();
     const rec = { id: S.id, district: S.district, trade: S.trade, codes: S.objections.map(o => o.code).filter(c => D.OBJECTIONS[c]),
                   before: (S.conf.learner.before + S.conf.parent.before) / 2, after: (S.conf.learner.after + S.conf.parent.after) / 2, at: Date.now() };
     const i = all.findIndex(x => x.id === S.id);
     if (i >= 0) all[i] = rec; else all.push(rec);
-    KV.set("kinvia.sessions", all);
+    if (!KV.set("kinvia.sessions", all)) KV.notice(t().storageError);
   }
 
-  function trustCard() {
+  let trustOpener = null;
+  function trustCard(opener = $("#trustbtn")) {
     const L = t();
     const rec = S.trade ? D.findOutcome(S.trade, S.district) : null;
     const latest = new Map();
@@ -534,7 +509,10 @@
       <div class="trust-foot"><span>${L.tcFoot}</span><span>${new Date().toLocaleDateString("en-IN")}</span></div></div>`;
     const waText = `${L.trustTitle} — ${tradeName(S.trade) || "-"}, ${distName(S.district)}\n${rec ? `${KV.inr(rec.p25)}–${KV.inr(rec.p75)} / month · ${rec.placement}% placed · n=${rec.n} (${rec.id}, demo data)` : ""}\n${conc}\n${next}`;
     $("#wa").href = "https://wa.me/?text=" + encodeURIComponent(waText);
-    $("#trustmodal").hidden = false;
+    if (!$("#trustmodal").open) {
+      trustOpener = opener;
+      $("#trustmodal").showModal();
+    }
     saveSession();
     $("#trustclose").focus();
     return { rec: shown[0] || rec, conc, next, schemes };
@@ -576,7 +554,7 @@
 
   // ---------- Voice input ----------
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  let rec = null;
+  let rec = null, micTimer = null;
   function micState(msg) {
     const el = $("#micstate");
     el.textContent = msg || "";
@@ -586,17 +564,27 @@
     const btn = $("#mic");
     if (!SR) return kinviaSay(t().micNo);
     if (rec) { rec.stop(); return; }
-    rec = new SR(); rec.lang = S.lang === "hi" ? "hi-IN" : "en-IN"; rec.interimResults = true;
+    clearTimeout(micTimer);
+    const current = rec = new SR(), version = generation;
+    current.lang = S.lang === "hi" ? "hi-IN" : "en-IN"; current.interimResults = true;
     let got = false;
     // Interim results are shown in the input so the family can see it is hearing them.
-    rec.onresult = e => {
+    current.onresult = e => {
+      if (version !== generation || rec !== current) return;
       const r = e.results[e.results.length - 1];
       $("#msg").value = r[0].transcript;
       if (r.isFinal) { got = true; $("#form").requestSubmit(); }
     };
-    rec.onend = () => { rec = null; btn.setAttribute("aria-pressed", "false"); micState(got ? "" : t().micErr); if (!got) setTimeout(() => micState(""), 3000); };
-    rec.onerror = () => { rec = null; btn.setAttribute("aria-pressed", "false"); micState(t().micErr); setTimeout(() => micState(""), 3000); };
-    btn.setAttribute("aria-pressed", "true"); micState(t().listening); rec.start();
+    const finish = failed => {
+      if (version !== generation || rec !== current) return;
+      rec = null; btn.setAttribute("aria-pressed", "false");
+      micState(failed || !got ? t().micErr : "");
+      if (failed || !got) micTimer = setTimeout(() => micState(""), 3000);
+    };
+    current.onend = () => finish(false);
+    current.onerror = () => finish(true);
+    btn.setAttribute("aria-pressed", "true"); micState(t().listening);
+    try { current.start(); } catch { finish(true); }
   }
 
   function downloadTranscript() {
@@ -621,14 +609,37 @@
   // ---------- Wiring ----------
   function start(saving) {
     S.saving = saving;
-    if (saving) KV.set("kinvia.active", null);
-    $("#consent").hidden = true;
+    $("#consent").close();
     kinviaSay(t().welcome, { instant: true, quick: true });
     if (!saving) kinviaSay(t().guest);
     if (!S.trade) kinviaSay(t().pickTrade, { html: inlineTrades() });
     $("#msg").focus();
   }
-  function setLang(l) { S.lang = l; KV.set("kinvia.lang", l); applyText(); }
+  function setLang(l) {
+    S.lang = l; applyText();
+    if (!KV.set("kinvia.lang", l)) KV.notice(t().storageError);
+  }
+
+  function resetSession(showConsent = true) {
+    generation++;
+    if (pendingReply) { clearTimeout(pendingReply.timer); pendingReply.resolve(); pendingReply = null; }
+    chain = Promise.resolve(); hideTyping();
+    if (rec) {
+      const current = rec; rec = null;
+      current.onresult = current.onend = current.onerror = null;
+      try { current.abort(); } catch { /* already stopped */ }
+    }
+    clearTimeout(micTimer); micState("");
+    $("#mic").setAttribute("aria-pressed", "false");
+    window.speechSynthesis?.cancel();
+    const lang = S.lang; S = fresh(); S.lang = lang;
+    log().innerHTML = ""; $("#msg").value = "";
+    $("#trustmodal").close(); $("#trustcard").replaceChildren(); $("#wa").removeAttribute("href");
+    $("#consent-ok").checked = false; $("#consent-go").disabled = true;
+    $$("[data-speaker]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.speaker === S.speaker)));
+    applyText();
+    if (showConsent && !$("#consent").open) $("#consent").showModal();
+  }
 
   $$("[data-lang]").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
   $$("[data-speaker]").forEach(b => b.addEventListener("click", () => {
@@ -651,27 +662,28 @@
     $("#msg").focus();
   });
   $("#transcript").addEventListener("click", downloadTranscript);
-  $("#consent-resume").addEventListener("click", resume);
   $("#mic").addEventListener("click", toggleMic);
-  $("#escalate").addEventListener("click", () => { userSay(t().escalate); escalate(t().escalate); });
-  $("#trustbtn").addEventListener("click", trustCard);
-  $("#trustclose").addEventListener("click", () => { $("#trustmodal").hidden = true; });
+  $("#escalate").addEventListener("click", () => { userSay(t().escalate); escalate(); });
+  $("#trustbtn").addEventListener("click", () => trustCard($("#trustbtn")));
+  $("#trustclose").addEventListener("click", () => $("#trustmodal").close());
+  $("#trustmodal").addEventListener("close", () => {
+    if (trustOpener?.isConnected && !$("#consent").open) trustOpener.focus();
+    trustOpener = null;
+  });
   $("#dl").addEventListener("click", downloadCard);
   $("#print").addEventListener("click", () => window.print());
   $("#restart").addEventListener("click", () => {
     saveSession();
-    KV.set("kinvia.active", null);
-    const lang = S.lang; S = fresh(); S.lang = lang;
-    chain = Promise.resolve(); hideTyping();
-    log().innerHTML = ""; $("#consent-ok").checked = false; $("#consent-go").disabled = true; $("#consent").hidden = false;
-    $("#consent-resume").hidden = true;
-    applyText();
+    resetSession();
   });
-  window.addEventListener("pagehide", () => { saveSession(); persist(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") $("#trustmodal").hidden = true; });
+  window.addEventListener("pagehide", () => { saveSession(); resetSession(false); });
+  window.addEventListener("pageshow", e => { if (e.persisted) resetSession(); });
+  $("#consent").addEventListener("cancel", e => e.preventDefault());
 
   document.querySelectorAll("[data-icon]").forEach(el => el.insertAdjacentHTML("afterbegin", KV_ICON(el.dataset.icon)));
 
   applyText();
-  if (resumable()) $("#consent-resume").hidden = false;
+  const legacyWarning = $("#legacy-storage-status");
+  if (legacyWarning) $("#consent .dialog").append(legacyWarning);
+  $("#consent").showModal();
 })();
