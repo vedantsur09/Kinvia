@@ -306,3 +306,22 @@ Factual record of repository changes made by agents. Append only.
   errors. Cleanup commit uses the configured user identity with no agent attribution.
 - **Limitations:** no application tests or deployments run; remote PR operations follow
   this merge commit and are not claimed complete in this entry.
+
+## AC-019 — 2026-10-21 — Product cleanup review corrections (UP-017)
+
+- **Changed:** restored FR-02 exactly to its original wording and retained OD-04;
+  preserved the public-visibility recommendation with the observed public status;
+  narrowed dummy-dataset wording in README, PROJECT, research and presentation brief;
+  made the references heading generic with the previous anchor retained and the
+  presentation link updated. Files: `README.md`, `docs/PROJECT.md`, `docs/research.md`,
+  `docs/sih-ppt-submission-brief.md`, plus append-only request/change ledgers.
+- **Verified:** 19 Markdown files and 57 relative links/fragments checked without newly
+  broken links or lost anchors; references numbered consecutively 1–7; original FR-02
+  and OD-04 match `main`; NFR rows, application files, privacy rules and tasks unchanged
+  by the correction; `git diff --check` passed. Read-only GitHub check reports the
+  repository public; no visibility or settings change was made.
+- **Scope:** competition-only portal, idea-count and mandatory presentation gates stay
+  removed under the user's independent-product request. Compatibility identifiers,
+  historical material, repository About/topics and existing PPT linkage remain.
+- **Pending at this entry:** push via the member branch and PR into `dev`, update the
+  existing main PR's review notes, and retain the main PR unmerged. No app tests run.

@@ -43,7 +43,7 @@ generic advice.*
 | **Product** | Kinvia — family-inclusive career counselling for vocational education |
 | **Category** | Software |
 | **Theme** | Smart Education |
-| **Dataset** | Synthetic placement/earnings data for development; verified outcome records required for real counselling |
+| **Dataset** | Dummy placement/earnings datasets for evaluation |
 | **Team Name** | Rokunin Sync |
 
 ### Challenge in brief
