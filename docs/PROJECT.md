@@ -8,7 +8,7 @@
 | Purpose | Family-inclusive career counselling and decision support for vocational education |
 | Category / theme | Software / Smart Education |
 | Team | Rokunin Sync |
-| Stage | Product planning; prototype planned |
+| Stage | Static browser prototype on synthetic data; production services planned |
 | Last updated | 2026-10-21 |
 
 This file is the current product, scope and requirement contract. When it conflicts

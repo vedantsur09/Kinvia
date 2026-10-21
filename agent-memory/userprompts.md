@@ -126,3 +126,8 @@ Asked for a demo video of the website using the open-source `brag` repo
 User asked for a review of the dev to main release PR, then authorised fixing the
 findings, merging the user branch through `dev`, and merging the release PR into
 `main` as the user. No agent watermark or attribution.
+
+## UP-022 — 2026-10-21
+
+User asked to update everything to match the new merge into `main`, landing it the
+same way as the user, with no agent watermark.

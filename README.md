@@ -10,7 +10,7 @@ generic advice.*
 
 ![Category](https://img.shields.io/badge/Category-Software-2E8B57?style=flat-square)
 ![Theme](https://img.shields.io/badge/Theme-Smart%20Education-7B2CBF?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Prototype%20planned-F59E0B?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Static%20prototype-F59E0B?style=flat-square)
 ![License](https://img.shields.io/badge/License-Apache--2.0-green?style=flat-square)
 
 </div>
@@ -91,9 +91,11 @@ Kinvia has three parts:
 | **Counsellor Desk** | Human counsellors | Receives escalated sessions with a summary, open concerns and the evidence already shown — no repeated questions |
 | **Scheme Insights** | MSDE / state skill mission administrators | Map and trends of where family resistance is concentrated, which objections dominate, and which answers change minds |
 
-> **Status:** planning stage. This repository holds the product
-> contract, research and plan. The prototype website is planned and **not yet built**.
-> Nothing below is a claim that a feature already works — see the
+> **Status:** static browser prototype on synthetic demo data (`frontend/`). It runs a
+> rule-based family session, a Counsellor Desk that receives consented summary-only
+> escalations from the same browser, and Scheme Insights. There is no backend, language
+> model, live counsellor handoff or real learner data yet. Unless a feature is
+> described as running in `frontend/`, treat it as planned — see the
 > [maturity labels](docs/PROJECT.md#maturity-labels).
 
 ---
@@ -218,7 +220,7 @@ These are design requirements, not aspirations:
 ```text
 kinvia/
 ├── backend/               # API, counselling orchestration, outcome store (planned)
-├── frontend/              # Prototype website: family session, counsellor desk, dashboard (planned)
+├── frontend/              # Static prototype: family session, counsellor desk, insights dashboard
 ├── data/
 │   └── samples/           # Synthetic sample data only — never real learner records
 ├── docs/
@@ -239,7 +241,9 @@ kinvia/
 
 ## Start Here
 
-There is no runnable prototype yet. To get oriented:
+The static prototype runs from `frontend/` with no build step; see
+[frontend/README.md](frontend/README.md) to serve it locally and run its checks. To get
+oriented:
 
 1. Read [docs/PROJECT.md](docs/PROJECT.md) for scope and requirements.
 2. Read [tasks.md](tasks.md) for the current phase and development milestones.
