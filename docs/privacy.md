@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Status | Design contract — planned |
-| Last updated | 2026-10-03 |
+| Last updated | 2026-10-21 |
 
 Kinvia handles conversations with families, often about minors, often in vulnerable
 financial situations. Privacy is a product feature, not a compliance afterthought.
@@ -36,7 +36,25 @@ financial situations. Privacy is a product feature, not a compliance afterthough
 | District, schooling, income bracket | Yes | Counsellor; aggregated for admins |
 | Phone number | Only on call-back request | Assigned counsellor |
 
-## 3. Repository rules
+## 3. Current prototype handling
+
+The static prototype in `frontend/` has no accounts or server, so anything it stores is
+readable by the next person using the same browser. It therefore keeps less than the
+design above:
+
+| Data | Prototype behaviour |
+|---|---|
+| Conversation text, drafts, voice results | Memory only; cleared on start-over, leaving the page or back/forward return. Families may download their own copy |
+| Guest mode | Nothing saved except the language setting |
+| With parental consent | District, trade, concern codes and confidence scores saved on the device for local Insights |
+| Counsellor request (consented only) | A Desk summary of district, trade, schooling band, speaker-tagged concern codes and record ids — no conversation text. Capped at 20, expires after seven days, removable from the Desk |
+| Desk notes | Demo tickets only |
+| Older saved conversations and Desk copies | Deleted on every page entry; a visible warning asks for site-data cleanup if deletion is blocked |
+
+There is no live counsellor handoff in the prototype: the family is directed to a
+training-centre counsellor (FR-06 remains planned).
+
+## 4. Repository rules
 
 Never commit: real learner or parent data, recordings, transcripts from real sessions,
 API keys or `.env` files. Use synthetic data or licensed dummy datasets.
