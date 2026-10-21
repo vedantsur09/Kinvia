@@ -451,3 +451,16 @@ Factual record of repository changes made by agents. Append only.
   load with no console errors.
 - **Unverified:** the Playwright browser suite was updated but not run (the Playwright
   package is not installed here); real devices, microphone and WhatsApp delivery.
+
+## AC-024 — 2026-10-21 — Status docs aligned with the merged prototype (UP-022)
+
+- **Changed:** `README.md` (status badge and note, repository layout, Start Here),
+  `docs/PROJECT.md` (stage), `docs/privacy.md` (new section 3 on current prototype
+  handling; later section renumbered), `CONTRIBUTING.md` (privacy anchor), `tasks.md`
+  (P1 static-prototype status table, all labelled prototyped). Local `main` and the user
+  branch fast-forwarded to the merged `main`.
+- **Scope:** status and data-handling facts only; requirements, figures and the target
+  architecture are unchanged.
+- **Observed:** Vercel reports the `main` merge commit deployed, but the production URL
+  still serves the earlier build (service-worker cache `kinvia-v21`). The Vercel
+  connection here lacks team access, so promotion was not checked or performed.

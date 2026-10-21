@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Current phase | **P0 — Product foundation** |
-| Last updated | 2026-10-20 |
+| Last updated | 2026-10-21 |
 
 Each work package lists its acceptance outcome. Use maturity labels from
 [docs/PROJECT.md](docs/PROJECT.md#maturity-labels).
@@ -34,6 +34,20 @@ Each work package lists its acceptance outcome. Use maturity labels from
 | P1-06 | Escalation + Counsellor Desk | Queue with session summary and open objections |
 | P1-07 | Scheme Insights dashboard | District objection heatmap and confidence shift |
 | P1-08 | Consent flow | Parent consent recorded before storing minor data |
+
+**Static prototype status (2026-10-21).** The browser prototype in `frontend/` covers
+these packages on synthetic data, without a backend or language model:
+
+| ID | Label | What exists |
+|---|---|---|
+| P1-01 | prototyped | Synthetic outcomes, trades, districts, pathways and schemes in `data.js` |
+| P1-02 | prototyped | Rule-based Hindi/English session answering concerns from records |
+| P1-03 | prototyped | In-browser guard blocking ₹/% figures not in a record or scheme rule |
+| P1-04 | prototyped | Browser speech recognition and read-aloud; no Hindi speech adapter |
+| P1-05 | prototyped | Trust Card as PNG download, print and WhatsApp text |
+| P1-06 | prototyped | Desk queue with triage, open concerns and evidence from consented summary-only escalations on the same browser; no live handoff |
+| P1-07 | prototyped | District × concern heatmap, confidence shift and priority districts |
+| P1-08 | prototyped | Consent gate before saving; categorical data only, conversation text never stored |
 
 <a id="p2--finale-hardening"></a>
 

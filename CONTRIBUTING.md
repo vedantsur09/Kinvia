@@ -98,7 +98,7 @@ When you review, check:
 
 ## Never commit
 
-From [privacy.md](docs/privacy.md#3-repository-rules):
+From [privacy.md](docs/privacy.md#4-repository-rules):
 
 - Real learner or parent data, recordings or transcripts
 - API keys, tokens or `.env` files
