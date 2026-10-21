@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
 <header class="topbar">
@@ -30,20 +30,31 @@
 
 <main class="wrap">
   <div class="app-head">
-    <div><p class="label">For MSDE, DGT and State Skill Missions</span><h1>Scheme Insights</h1></div>
-    <div class="field" style="margin:0;min-width:220px">
-      <label for="state">State</label>
-      <select id="state"><option value="all">All states</option><option value="Maharashtra">Maharashtra</option><option value="Uttar Pradesh">Uttar Pradesh</option></select>
+    <div><p class="label">For MSDE, DGT and State Skill Missions</p><h1>Scheme Insights</h1></div>
+    <div class="head-tools">
+      <div class="field" style="margin:0;min-width:200px">
+        <label for="state">Area</label>
+        <select id="state"></select>
+      </div>
+      <button class="btn btn-ghost btn-sm no-print" type="button" id="csv">Export CSV</button>
+      <button class="btn btn-ghost btn-sm no-print" type="button" id="printbtn">Print</button>
     </div>
   </div>
 
   <div class="kpis" id="kpis"></div>
 
+  <section class="panel" style="margin-bottom:20px" aria-labelledby="pri-h">
+    <h2 id="pri-h">Where to put outreach first</h2>
+    <p class="tiny" style="margin-bottom:14px">Ranked by how many families raise concerns and how little the session moves their confidence. The reason is shown so the ranking can be argued with.</p>
+    <div class="priority-list" id="priority"></div>
+  </section>
+
   <div class="insights">
     <section class="panel" aria-labelledby="heat-h">
       <h2 id="heat-h">Where families resist, and why</h2>
-      <p class="tiny" style="margin-bottom:12px">Share of each district’s sessions raising each concern. Darker = more common.</p>
+      <p class="tiny" style="margin-bottom:12px">Share of each district’s sessions raising each concern. Darker = more common. Select a concern to focus it.</p>
       <div class="heat-scroll"><div class="heat" id="heat"></div></div>
+      <div class="heat-legend" id="legend"></div>
     </section>
     <div style="display:grid;gap:20px">
       <section class="panel" aria-labelledby="obj-h">
@@ -58,13 +69,16 @@
     </div>
   </div>
   <section class="panel" style="margin-bottom:56px" aria-labelledby="act-h">
-    <h2 id="act-h">Suggested outreach</h2>
-    <div class="objlist" id="actions"></div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <h2 id="act-h" style="margin:0">Suggested outreach</h2>
+      <span class="tiny" id="actnote"></span>
+    </div>
+    <div class="objlist" id="actions" style="margin-top:14px"></div>
     <p class="tiny" style="margin-top:12px">Aggregates only. Administrators never see individual families or transcripts.</p>
   </section>
 </main>
-<script src="data.js?v=10"></script>
+<script src="data.js?v=12"></script>
 <script src="icons.js?v=10"></script>
-<script src="insights.js?v=10"></script>
+<script src="insights.js?v=12"></script>
 </body>
 </html>

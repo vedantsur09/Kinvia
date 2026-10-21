@@ -1,8 +1,8 @@
 /* Kinvia service worker: cache the app shell so the prototype opens on weak connections. */
-const CACHE = "kinvia-v21";
+const CACHE = "kinvia-v23";
 const SHELL = [
   "./", "index.html", "try.html", "desk.html", "insights.html",
-  "styles.css?v=19", "data.js?v=10", "icons.js?v=10", "session.js?v=11", "desk.js?v=10", "insights.js?v=10",
+  "styles.css?v=21", "data.js?v=12", "icons.js?v=10", "session.js?v=13", "desk.js?v=12", "insights.js?v=12",
   "logo-mark.png", "logo-lockup.png",
   "icon.svg", "manifest.webmanifest",
 ];
@@ -12,7 +12,7 @@ self.addEventListener("install", e => {
 });
 
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith("kinvia-") && k !== CACHE).map(k => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 
@@ -20,9 +20,15 @@ self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return; // fonts and other hosts go straight to the network
-  e.respondWith(
-    fetch(e.request)
-      .then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return res; })
-      .catch(() => caches.match(e.request).then(r => r || caches.match("index.html")))
-  );
+  const response = fetch(e.request);
+  e.waitUntil(response.then(async res => {
+    if (res.ok && SHELL.some(path => new URL(path, self.registration.scope).href === url.href)) {
+      const copy = res.clone(), cache = await caches.open(CACHE);
+      await cache.put(e.request, copy);
+    }
+  }).catch(() => {}));
+  e.respondWith(response.catch(async () => {
+    const cache = await caches.open(CACHE), cached = await cache.match(e.request);
+    return cached || (e.request.mode === "navigate" && await cache.match("index.html")) || Response.error();
+  }));
 });
