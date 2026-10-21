@@ -85,3 +85,6 @@ codex.md
 .vscode/
 .idea/
 .claude/
+
+# /brag deliverables: generated video + working frames
+brag-output/

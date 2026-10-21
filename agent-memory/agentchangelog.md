@@ -352,3 +352,102 @@ Factual record of repository changes made by agents. Append only.
 - **Scope:** protected root/product documents and outcome figures remain unchanged.
   No backend/authentication or production counsellor handoff added. GitHub integration
   follows this entry; the requested main PR must remain unmerged.
+
+## AC-021 — 2026-10-19 — Counsellor Desk and Scheme Insights upgraded (UP-019)
+
+- **Changed:** `frontend/desk.html`, `frontend/desk.js`, `frontend/insights.html`,
+  `frontend/insights.js`, `frontend/styles.css`, `frontend/README.md`.
+  - **Desk — triage:** each open ticket carries a "Call first / Call soon" band with the
+    reason stated in words (unanswered safety concern, or days waiting ≥ 3), so the
+    ranking can be argued with rather than trusted blindly. Queue sorts by urgency,
+    longest waiting or newest; search covers trade, district, ticket id, reason and
+    schooling; header shows open / in progress / resolved counts plus an urgent count.
+  - **Desk — working the ticket:** a third status ("in progress", via "Start calling")
+    sits between open and resolved; a "Before you call" brief lists what to have ready
+    per unanswered concern; counsellor notes persist to `kinvia.deskNotes` with a saved
+    timestamp (button plus blur); "Copy summary" puts a handover block on the clipboard
+    with a focus fallback when the clipboard API is unavailable. Selecting a ticket on a
+    narrow screen scrolls the detail panel into view.
+  - **Insights — priority districts:** new ranked panel scoring concern spread against
+    confidence lift, each row naming its most-raised concern and the measured lift.
+  - **Insights — heatmap:** added a shade-to-percentage legend, visually hidden per-cell
+    labels for screen readers (replacing title-only tooltips), and clickable column
+    headers that focus one concern — dimming the rest and refocusing the outreach list
+    on that concern across all districts.
+  - **Insights — scope and export:** the area selector now offers a single district as
+    well as a state; CSV export writes the districts, session counts, per-concern
+    percentages and confidence figures behind the current view; print button added.
+  - Fixed three malformed `<p class="label">…</span>` tags in `desk.html` and
+    `insights.html`.
+  - Bumped `styles.css?v=19` → `?v=20`, `desk.js`/`insights.js` `?v=10` → `?v=11`,
+    `CACHE` → `kinvia-v22`.
+- **Verified (local, 390×760 and 1280×900):** `node --check` passes on both scripts;
+  zero runtime errors. Desk — triage orders the safety ticket above the 14-day one with
+  correct reasons; search narrows to the Lucknow ticket; newest sort reverses; "Start
+  calling" moves the ticket to in progress and the counts follow; notes and statuses
+  survive a reload; brief renders one item per open concern. Insights — area selector
+  lists 8 scopes, single-district scope narrows to 1 row and 412 sessions, state scope to
+  2 districts; focusing Safety dims exactly 30 of 35 cells and refocuses outreach; clear
+  restores; legend shows 5 swatches and a 0–47% range; CSV exports a header plus 5 rows
+  with correct columns. No horizontal overflow on either page at either size.
+- **Unverified:** clipboard write on browsers that block it without a user gesture
+  (a focus fallback is in place but was not exercised); print output on a real printer.
+
+## AC-022 — 2026-10-19 — Launch video generated with /brag-slim (UP-020)
+
+- **Changed:** added `brag-output/` (git-ignored) containing `brag.mp4` (21 s,
+  1920×1080, 30 fps, H.264 + AAC, 4.3 MB), `brag.jpg` poster, `brag-plan.md` and
+  `share-copy.txt`; kept `work/video.html` and `work/score.wav` as the sources.
+  Added `brag-output/` to `.gitignore` — a generated binary, not repository content.
+- **Method:** followed `skills/brag-slim/SKILL.md` from latent-spaces/brag (MIT) read
+  directly from the repo rather than installing the plugin, since `/plugin marketplace
+  add` needs an interactive terminal this session does not have. Chose `/brag-slim`
+  over the full `/brag` because the latter renders through Hyperframes, which needs a
+  HeyGen account the user would have had to create.
+- **Tooling:** FFmpeg was absent. Rather than installing one system-wide, pulled
+  `ffmpeg-static` 5.2.0 and `puppeteer-core` 23.11.1 into the session scratchpad — no
+  host change, nothing left to uninstall. Frames rendered by headless Chrome (already
+  installed) against a deterministic `window.seek(t)` timeline; soundtrack synthesised
+  with numpy.
+- **Content:** six scenes — Hindi objection hook, identity reveal, a real grounded
+  answer with record `OUT-PUN-ELE-25`, the honest no-record refusal, the Desk and
+  Insights surfaces, outro with the live URL. The render loads the product's own
+  `styles.css` over localhost, so the UI shown is the shipped UI.
+- **Verified:** probe frames inspected from all six scenes and from a scene turn (the
+  turns dip through the background, no double exposure); soundtrack measured at peak
+  0.614, zero clipped samples, energy rising toward the outro. Frames re-extracted
+  *from the encoded mp4* at 0 / 2.0 / 5.6 / 9.6 / 13.6 / 17.2 / 20.4 s and inspected;
+  container reports 21.00 s, 1920×1080, 30 fps, stereo 48 kHz AAC; `volumedetect`
+  gives mean −17.1 dB, max −5.6 dB. Poster baked in as frame 0 by replacement, so
+  duration and audio sync are unchanged. 1.8 GB of intermediate frames deleted.
+- **Honesty:** every figure in the video is one the app actually returns and carries
+  its record id; the product's "synthetic demo data" label stays on screen wherever
+  figures appear. No invented users, outcomes or testimonials.
+- **Unverified:** playback on a real player with sound (checked frame-by-frame and by
+  measurement, not by watching); how the soundtrack reads on good speakers.
+
+## AC-023 — 2026-10-21 — Release PR fixes and branch reconciliation (UP-021)
+
+- **Changed:** `frontend/data.js`, `frontend/session.js`, `frontend/desk.js`,
+  `frontend/desk.html`, `frontend/index.html`, `frontend/insights.html`,
+  `frontend/try.html`, `frontend/sw.js`, `frontend/README.md`,
+  `frontend/tests/sw.test.cjs`, `frontend/tests/session.browser.test.cjs`; merged `dev`
+  into the user branch and renumbered that branch's ledger entries (UP-019/020,
+  AC-021/022) after the ones already on `dev`.
+- **Fixes:** storage notices no longer throw on the overview page, which has no
+  prototype note. With consent, asking for a counsellor puts a summary-only Desk ticket
+  in `kinvia.deskSummaries` (district, trade, schooling band, speaker-tagged concern
+  codes, record ids; no conversation text), validated on read, capped at 20, expiring
+  after seven days and removable from the Desk. Guest mode sends nothing and shows no
+  ticket id. Desk triage, in-progress status, search, brief and copy summary are kept;
+  notes move to `kinvia.demoNotes` and apply to demo tickets only. The legacy
+  `kinvia.desk`/`kinvia.deskNotes` cleanup stays. Asset versions and cache bumped;
+  service-worker tests read cache and asset names from `sw.js`.
+- **Verified:** `node --check` on all frontend JS and tests; `node --test
+  frontend/tests/sw.test.cjs` 4/4 pass. In the in-app browser: overview notice renders
+  in the page body; consented escalation stores only the categorical summary (marker
+  text absent); the Desk lists it, hides notes, starts calling, and removes it; demo
+  notes save; guest escalation (English and Hindi) stores nothing; Insights and Desk
+  load with no console errors.
+- **Unverified:** the Playwright browser suite was updated but not run (the Playwright
+  package is not installed here); real devices, microphone and WhatsApp delivery.

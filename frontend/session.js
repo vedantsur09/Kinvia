@@ -23,9 +23,9 @@
       cItems: ["Kinvia helps your family understand vocational training options together.",
                "Your conversation stays in this tab and is cleared when you leave or start over. You can download your own copy.",
                "Voice is turned into text and the recording is not kept.",
-               "This demo does not send your conversation to a counsellor. Ask a training centre for human help; the Desk shows synthetic examples only.",
+               "If you agree and ask for a counsellor, only a summary goes to the demo Counsellor Desk on this device: district, trade, concerns and records shown, never your words. For human help, also ask a training centre.",
                "You can ask for a person, stop, or delete your session at any time."],
-      cCheck: "I am the parent or guardian, and I agree to save district, trade, concern codes and confidence scores for local summary statistics, without conversation text.",
+      cCheck: "I am the parent or guardian. I agree to save district, trade, concern codes and confidence scores on this device for summary statistics and, if we ask for a counsellor, a Desk summary. Our conversation text is never saved.",
       cRead: "Read aloud", cGuest: "Continue without saving", cGo: "Agree and start",
       transcript: "Save the conversation", storageError: "Not saved: browser storage is unavailable or full. You can continue and download your own copy.",
       typing: "Kinvia is typing", listening: "Listening… speak now", micErr: "I didn’t catch that. Try again, or type it.",
@@ -54,7 +54,8 @@
       CST: () => `PMKVY training is free at empanelled centres. During an apprenticeship, the government shares 25% of the stipend, up to ₹1,500 a month. The PM Internship Scheme pays ₹5,000 a month. Check eligibility with a counsellor.`,
       JOB: r => `${r.placement}% of ${r.t} trainees in ${r.d} were placed within six months. Typical roles: ${r.jobs}.`,
       DIS: (t, list) => list.length ? `Verified records for ${t} also exist in: ${list}. Women trainees can get transport support under Common Norms.` : `No other district in the demo store has a record for ${t}.`,
-      ESC: id => `Demo request ${id}: no message has been sent. For human help, speak to a counsellor at your training centre and take your Trust Card or downloaded conversation.`,
+      ESC: id => `Your summary is on the demo Counsellor Desk as ticket ${id}: district, trade, concerns and the records shown, never your words. This prototype has no live counsellor, so also speak to one at your training centre and take your Trust Card.`,
+      ESCguest: "Guest mode sends nothing to the Counsellor Desk. For human help, speak to a counsellor at your training centre and take your Trust Card or downloaded conversation.",
       fallback: "I can help with earnings, job security, social respect, safety, further study, cost or distance. You can also ask for a counsellor.",
       grounded: id => `Verified · figures from ${id}`, groundedScheme: "Verified · published scheme rules",
       blocked: "Grounding guard blocked an unverified figure", unresolved: "Open · counsellor", resolved: "Answered",
@@ -79,9 +80,9 @@
       cItems: ["किनविया आपके परिवार को मिलकर व्यावसायिक प्रशिक्षण के विकल्प समझने में मदद करता है।",
                "बातचीत इसी टैब में रहती है। पेज छोड़ने या फिर से शुरू करने पर मिट जाती है। अपनी कॉपी डाउनलोड कर सकते हैं।",
                "आवाज़ को टेक्स्ट में बदला जाता है और रिकॉर्डिंग नहीं रखी जाती।",
-               "यह डेमो बातचीत काउंसलर को नहीं भेजता। मदद के लिए प्रशिक्षण केंद्र में पूछें; डेस्क पर केवल सिंथेटिक उदाहरण हैं।",
+               "अगर आप सहमति देकर काउंसलर माँगते हैं, तो इसी डिवाइस पर डेमो काउंसलर डेस्क को केवल सारांश जाता है: ज़िला, ट्रेड, चिंताएँ और दिखाए गए रिकॉर्ड, आपकी बातें कभी नहीं। मदद के लिए प्रशिक्षण केंद्र में भी पूछें।",
                "आप कभी भी किसी व्यक्ति से बात कर सकते हैं, रुक सकते हैं या अपना सत्र मिटा सकते हैं।"],
-      cCheck: "मैं माता-पिता या अभिभावक हूँ और स्थानीय कुल आंकड़ों के लिए ज़िला, ट्रेड, चिंता के कोड और भरोसे के स्कोर सहेजने की सहमति देता हूँ, बातचीत नहीं।",
+      cCheck: "मैं माता-पिता या अभिभावक हूँ। मैं कुल आंकड़ों के लिए इसी डिवाइस पर ज़िला, ट्रेड, चिंता के कोड और भरोसे के स्कोर, और काउंसलर माँगने पर डेस्क सारांश सहेजने की सहमति देता हूँ। हमारी बातचीत कभी नहीं सहेजी जाती।",
       cRead: "पढ़कर सुनाएँ", cGuest: "बिना सहेजे जारी रखें", cGo: "सहमत हूँ, शुरू करें",
       transcript: "बातचीत सहेजें", storageError: "सहेजा नहीं गया: ब्राउज़र स्टोरेज उपलब्ध नहीं है या भर गया है। जारी रखें और अपनी कॉपी डाउनलोड कर सकते हैं।",
       typing: "किनविया लिख रहा है", listening: "सुन रहा हूँ… अब बोलिए", micErr: "मैं समझ नहीं पाया। दोबारा बोलें या लिखें।",
@@ -110,7 +111,8 @@
       CST: () => `चुने हुए केंद्रों पर PMKVY प्रशिक्षण मुफ्त है। अप्रेंटिसशिप के दौरान सरकार स्टाइपेंड का 25%, अधिकतम ₹1,500 प्रति माह देती है। पीएम इंटर्नशिप योजना में ₹5,000 प्रति माह मिलते हैं। पात्रता काउंसलर से जाँचें।`,
       JOB: r => `${r.d} में ${r.t} के ${r.placement}% प्रशिक्षुओं को छह महीने में नौकरी मिली। आम काम: ${r.jobs}।`,
       DIS: (t, list) => list.length ? `${t} के सत्यापित रिकॉर्ड इन ज़िलों में भी हैं: ${list}। महिला प्रशिक्षुओं को कॉमन नॉर्म्स के तहत यात्रा सहायता मिल सकती है।` : `डेमो डेटा में ${t} के लिए किसी और ज़िले का रिकॉर्ड नहीं है।`,
-      ESC: id => `डेमो अनुरोध ${id}: कोई संदेश नहीं भेजा गया है। मदद के लिए प्रशिक्षण केंद्र के काउंसलर से बात करें और ट्रस्ट कार्ड या डाउनलोड की हुई बातचीत साथ ले जाएँ।`,
+      ESC: id => `आपका सारांश डेमो काउंसलर डेस्क पर टिकट ${id} के रूप में है: ज़िला, ट्रेड, चिंताएँ और दिखाए गए रिकॉर्ड, आपकी बातें कभी नहीं। इस प्रोटोटाइप में कोई लाइव काउंसलर नहीं है, इसलिए प्रशिक्षण केंद्र के काउंसलर से भी बात करें और ट्रस्ट कार्ड साथ ले जाएँ।`,
+      ESCguest: "गेस्ट मोड में काउंसलर डेस्क को कुछ नहीं भेजा जाता। मदद के लिए प्रशिक्षण केंद्र के काउंसलर से बात करें और ट्रस्ट कार्ड या डाउनलोड की हुई बातचीत साथ ले जाएँ।",
       fallback: "मैं कमाई, नौकरी की सुरक्षा, सामाजिक सम्मान, सुरक्षा, आगे की पढ़ाई, खर्च या दूरी के बारे में मदद कर सकता हूँ। आप काउंसलर से बात भी कर सकते हैं।",
       grounded: id => `सत्यापित · आंकड़े ${id} से`, groundedScheme: "सत्यापित · प्रकाशित योजना नियम",
       blocked: "ग्राउंडिंग गार्ड ने असत्यापित आंकड़ा रोका", unresolved: "खुला · काउंसलर", resolved: "जवाब दिया",
@@ -468,12 +470,27 @@
   }
   function setDistrict(id) { S.district = id; $("#district").value = id; renderPath(); renderCtxBar(); }
 
+  // Only a consented session reaches the Desk, and only as categorical fields and record ids:
+  // the Desk is readable by anyone using this browser, so conversation text never goes there.
   function escalate() {
-    const id = "T-" + Math.random().toString(36).slice(2, 7).toUpperCase();
-    S.ticket = id;
     const open = S.objections.filter(o => !o.resolved).map(o => o.code);
     addConcern(open[0] || "ESC_REQ", false);
-    kinviaSay(t().ESC(id) + (S.saving ? "" : " " + t().guest));
+    S.nudged = true;
+    if (!S.saving) return kinviaSay(t().ESCguest);
+    const id = S.ticket || "T-" + Math.random().toString(36).slice(2, 7).toUpperCase().padEnd(5, "0");
+    const known = c => D.OBJECTIONS[c];
+    const ticket = {
+      id, at: new Date().toISOString(), lang: S.lang, district: S.district, trade: S.trade, schooling: T.en.schoolOpts[S.schooling],
+      concerns: S.objections.filter(o => known(o.code)).map(o => ({ code: o.code, speaker: o.speaker, resolved: o.resolved })),
+      open: open.filter(known), evidence: [...S.evidence], status: "open",
+    };
+    const desk = KV.deskSummaries().filter(x => x.id !== id);
+    if (!KV.set("kinvia.deskSummaries", [ticket, ...desk].slice(0, 20))) {
+      KV.notice(t().storageError);
+      return kinviaSay(t().ESCguest);
+    }
+    S.ticket = id;
+    kinviaSay(t().ESC(id));
   }
 
   function saveSession() {

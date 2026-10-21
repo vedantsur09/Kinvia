@@ -128,8 +128,9 @@ const KV = {
       el = document.createElement("p"); el.id = "storage-status";
       el.className = "prototype-note"; el.setAttribute("role", "status");
     }
-    const dialog = document.querySelector("dialog[open] .dialog");
-    if (dialog) dialog.append(el); else document.querySelector(".prototype-note").after(el);
+    // Not every page has a prototype note (the overview does not), so fall back to the top of the page.
+    const dialog = document.querySelector("dialog[open] .dialog"), anchor = document.querySelector(".prototype-note");
+    if (dialog) dialog.append(el); else if (anchor) anchor.after(el); else document.body.prepend(el);
     el.textContent = text;
   },
   sessions() {
@@ -137,6 +138,17 @@ const KV = {
     return Array.isArray(rows) ? rows.filter(s => s && typeof s.id === "string" &&
       KV_DATA.district(s.district) && Array.isArray(s.codes) && s.codes.every(c => Object.hasOwn(KV_DATA.OBJECTIONS, c)) &&
       [s.before, s.after].every(n => Number.isFinite(n) && n >= 1 && n <= 5)) : [];
+  },
+  // Consented Desk summaries: categorical fields and record ids only, never conversation text.
+  // They expire after a week so a shared device does not keep them indefinitely.
+  deskSummaries() {
+    const rows = KV.get("kinvia.deskSummaries", []), code = c => Object.hasOwn(KV_DATA.OBJECTIONS, c);
+    return Array.isArray(rows) ? rows.filter(s => s && /^T-[A-Z0-9]{5}$/.test(s.id) && Date.now() - Date.parse(s.at) < 7 * 864e5 &&
+      KV_DATA.district(s.district) && (s.trade === null || KV_DATA.trade(s.trade)) && ["en", "hi"].includes(s.lang) &&
+      typeof s.schooling === "string" && s.schooling.length <= 40 &&
+      Array.isArray(s.concerns) && s.concerns.every(c => c && code(c.code) && ["learner", "parent"].includes(c.speaker) && typeof c.resolved === "boolean") &&
+      Array.isArray(s.open) && s.open.every(code) &&
+      Array.isArray(s.evidence) && s.evidence.every(id => KV_DATA.OUTCOMES.some(o => o.id === id))) : [];
   },
   inr: n => "₹" + n.toLocaleString("en-IN"),
   esc: s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])),

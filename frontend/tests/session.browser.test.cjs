@@ -65,7 +65,7 @@ test("guest and consented chat retain exports and evidence without durable conve
     let text = ""; for await (const chunk of transcript) text += chunk;
     assert.match(text, /SYNTHETIC-FAMILY-MARKER/);
     await page.locator("#escalate").click();
-    await page.waitForFunction(() => document.querySelector("#log").textContent.includes("no message has been sent"));
+    await page.waitForFunction(saving => document.querySelector("#log").textContent.includes(saving ? "never your words" : "sends nothing"), saving);
     await page.locator("#trustbtn").click();
     assert.equal(await page.locator("#trustmodal").evaluate(el => el.open), true);
     assert.match(await page.locator("#wa").getAttribute("href"), /^https:\/\/wa.me\//);
@@ -79,8 +79,11 @@ test("guest and consented chat retain exports and evidence without durable conve
     assert.equal(await page.locator("#log").innerText(), "");
     assert.equal(await page.locator("#consent-resume").count(), 0);
     await page.goto(`${origin}/desk.html`);
-    assert.equal(await page.locator(".ticket").count(), 2);
+    assert.equal(await page.locator(".ticket").count(), saving ? 3 : 2);
+    assert.equal(await page.locator(".ticket", { hasText: "Electrician" }).count(), saving ? 1 : 0);
     assert.doesNotMatch(await page.locator("body").innerText(), /SYNTHETIC-FAMILY-MARKER/);
+    // "All" keeps a resolved ticket selected; the Open view moves on to the next ticket.
+    await page.locator('[data-filter="all"]').click();
     await page.locator("#toggle").click();
     assert.equal(await page.locator("#toggle").innerText(), "Reopen");
     await page.locator("#toggle").click();
@@ -180,7 +183,41 @@ test("malformed stored settings and summaries do not break the pages", async () 
     localStorage.setItem("kinvia.lang", '"unknown"');
     localStorage.setItem("kinvia.sessions", JSON.stringify([null, { id: "bad", district: "pune", codes: null }]));
     localStorage.setItem("kinvia.deskStatus", "null");
+    localStorage.setItem("kinvia.demoNotes", "null");
+    localStorage.setItem("kinvia.deskSummaries", JSON.stringify([null, { id: "T-BAD00", at: new Date().toISOString(), district: "pune", messages: ["x"] }]));
   } });
+});
+
+test("the overview page reports failed cleanup instead of throwing", async () => {
+  await visit(async page => {
+    assert.match(await page.locator("#legacy-storage-status").innerText(), /could not be cleared/);
+    assert.equal(await page.locator("h1").count(), 1);
+  }, { pageName: "index", init: () => {
+    for (const name of ["getItem", "setItem", "removeItem"]) Storage.prototype[name] = () => { throw new DOMException("denied", "SecurityError"); };
+  } });
+});
+
+test("Desk summaries carry no text, keep notes off family tickets and can be removed", async () => {
+  await visit(async page => {
+    await start(page, true); await settled(page);
+    await page.locator('[data-pick="electrician"]').click();
+    await submit(page, "Is it safe for my daughter? SYNTHETIC-DESK-MARKER");
+    await page.waitForFunction(() => document.querySelector("#log .evidence"));
+    await page.locator("#escalate").click();
+    await page.waitForFunction(() => document.querySelector("#log").textContent.includes("never your words"));
+    const [summary] = await page.evaluate(() => JSON.parse(localStorage.getItem("kinvia.deskSummaries")));
+    assert.deepEqual(Object.keys(summary).sort(), ["at", "concerns", "district", "evidence", "id", "lang", "open", "schooling", "status", "trade"]);
+    assert.doesNotMatch(JSON.stringify(summary), /SYNTHETIC-DESK-MARKER/);
+    await page.goto(`${origin}/desk.html`);
+    await page.locator(".ticket", { hasText: summary.id }).click();
+    assert.equal(await page.locator("#notes").count(), 0);
+    await page.locator("#remove").click();
+    assert.equal(await page.locator(".ticket", { hasText: summary.id }).count(), 0);
+    assert.equal(await page.evaluate(() => localStorage.getItem("kinvia.deskSummaries")), "[]");
+    await page.locator(".ticket", { hasText: "T-DEMO1" }).click();
+    await page.locator("#notes").fill("Synthetic demo note"); await page.locator("#savenote").click();
+    assert.match(await page.evaluate(() => localStorage.getItem("kinvia.demoNotes")), /Synthetic demo note/);
+  });
 });
 
 test("registered service worker retains the working shell offline", async () => {

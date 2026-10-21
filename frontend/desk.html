@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600;700;800&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=20">
+<link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
 <header class="topbar">
@@ -26,29 +26,39 @@
     </nav>
   </div>
 </header>
-<p class="prototype-note">Prototype · synthetic example tickets only · real family conversations are never shown here</p>
+<p class="prototype-note">Prototype · example tickets are marked “demo” · consented family summaries from this device appear here, never conversation text</p>
 
 <main class="wrap">
   <div class="app-head">
-    <div><p class="label">Human counsellor escalation</span><h1>Counsellor Desk</h1></div>
-    <p class="muted" style="max-width:52ch">Explore how a counsellor could review a summary, speaker-tagged concerns and the evidence already shown. Live handoff requires a protected service.</p>
+    <div><p class="label">Human counsellor escalation</p><h1>Counsellor Desk</h1></div>
+    <p class="muted" style="max-width:52ch">Families who agree arrive with a summary, speaker-tagged concerns and the evidence already shown, never their words. A live handoff needs a protected service.</p>
   </div>
   <div class="desk">
     <section class="panel" aria-labelledby="q-h">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px">
         <h2 id="q-h" style="margin:0">Queue</h2>
         <div class="lang-switch" role="group" aria-label="Filter">
           <button type="button" data-filter="open" aria-pressed="true">Open</button>
+          <button type="button" data-filter="active" aria-pressed="false">In progress</button>
           <button type="button" data-filter="all" aria-pressed="false">All</button>
         </div>
       </div>
+      <div class="q-tools">
+        <input type="search" id="q" placeholder="Search trade, district or ticket…" aria-label="Search the queue">
+        <select id="sort" aria-label="Sort the queue">
+          <option value="priority">Most urgent first</option>
+          <option value="wait">Longest waiting</option>
+          <option value="new">Newest first</option>
+        </select>
+      </div>
+      <p class="q-counts" id="qcounts"></p>
       <div class="tickets" id="tickets"></div>
     </section>
     <section class="panel" id="detail" aria-live="polite"></section>
   </div>
 </main>
-<script src="data.js?v=11"></script>
+<script src="data.js?v=12"></script>
 <script src="icons.js?v=10"></script>
-<script src="desk.js?v=11"></script>
+<script src="desk.js?v=12"></script>
 </body>
 </html>

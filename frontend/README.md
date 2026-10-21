@@ -9,9 +9,9 @@ browser. No build step, no backend, no external API calls. All outcome figures a
 | Page | File | What works |
 |---|---|---|
 | Overview | `index.html` | Product site: hero with the family illustration, how it works, features, who it's for, privacy, call to action |
-| Family session | `try.html` + `session.js` | Read-aloud consent (or guest mode) · **in-chat trade picker** · **context strip** (district · trade · record status, taps through to the control) · **typing indicator** pacing multi-part replies · **context-aware follow-up suggestions** · **district comparison** card · **counsellor nudge** after two open concerns · **transcript download** · Hindi/English · learner/parent speaker roles · voice input (browser speech recognition) and read-aloud replies · bilingual concern tagging (income, status, safety, further study, cost, job security, distance) · Evidence Cards from records · **grounding guard** that blocks any ₹/% figure not in a record or scheme rule · honest "no verified data" path · pathway and five-year view · scheme hints · before/after confidence · clearly labelled demo help request · Family Trust Card (WhatsApp share, image download, print) |
-| Counsellor Desk | `desk.html` + `desk.js` | Synthetic example tickets only · speaker-tagged concerns · evidence already shown · resolve/reopen |
-| Scheme Insights | `insights.html` + `insights.js` | District × concern heatmap · top concerns · confidence shift · suggested outreach · state filter · live sessions from this browser added to the aggregates |
+| Family session | `try.html` + `session.js` | Read-aloud consent (or guest mode) · **in-chat trade picker** · **context strip** (district · trade · record status, taps through to the control) · **typing indicator** pacing multi-part replies · **context-aware follow-up suggestions** · **district comparison** card · **counsellor nudge** after two open concerns · **transcript download** · Hindi/English · learner/parent speaker roles · voice input (browser speech recognition) and read-aloud replies · bilingual concern tagging (income, status, safety, further study, cost, job security, distance) · Evidence Cards from records · **grounding guard** that blocks any ₹/% figure not in a record or scheme rule · honest "no verified data" path · pathway and five-year view · scheme hints · before/after confidence · consented **summary-only counsellor escalation** · Family Trust Card (WhatsApp share, image download, print) |
+| Counsellor Desk | `desk.html` + `desk.js` | Consented family summaries (district, trade, speaker-tagged concerns and record ids, never conversation text; removable, expire after seven days) plus marked demo tickets · **triage** ("Call first" with a named reason: unanswered safety concern, or days waiting) · **search and sort** · open / in progress / resolved · **“Before you call” brief** per unanswered concern · evidence already shown · **counsellor notes** (demo tickets only) · **copy summary** for handover |
+| Scheme Insights | `insights.html` + `insights.js` | **Priority districts** ranked by concern spread against confidence lift, with the reason shown · District × concern heatmap with a **scale legend** and **click-to-focus** a concern · top concerns · confidence shift · outreach that refocuses with the selected concern · **state or single-district scope** · **CSV export** and print · live sessions from this browser added to the aggregates |
 
 Shared: `data.js` (synthetic outcomes, trades, districts, schemes, objection taxonomy,
 helpers), `styles.css` (design system, light and dark), `manifest.webmanifest`, `sw.js`
@@ -105,10 +105,11 @@ relative, so it works under `https://<user>.github.io/<repo>/`.
   `docs/architecture.md` and the PPT pack).
 - Voice input depends on the browser's speech recognition (Chrome/Edge support it).
 - Conversation text stays in memory and is cleared on navigation or restart. There is
-  no saved-session resume or live counsellor handoff. The Desk contains synthetic
-  examples only; use a training centre for human help. Explicit downloads and shares
-  are controlled by the visitor.
+  no saved-session resume or live counsellor handoff; use a training centre for human
+  help. Explicit downloads and shares are controlled by the visitor.
 - With parental consent, categorical concern codes and confidence/context summaries
-  contribute to local Insights. Language and synthetic Desk status also use
-  `localStorage`; failed writes are reported. Older conversation, Desk and Desk-note
-  storage is removed on page entry. Clear site data if that cleanup reports failure.
+  contribute to local Insights, and asking for a counsellor puts a summary (no
+  conversation text) on this browser's Desk. Desk notes are kept for demo tickets only.
+  Language and Desk status also use `localStorage`; failed writes are reported. Older
+  conversation, Desk and Desk-note storage is removed on page entry. Clear site data if
+  that cleanup reports failure.

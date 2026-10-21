@@ -111,3 +111,18 @@ User authorised fixing all findings from the independent code-quality/security
 review, running focused verification, and committing/pushing on the user branch.
 Merge the member PR into `dev`, then open a clearly described `dev` to `main` PR
 without merging it and request review from the repository owner. No agent watermark.
+
+## UP-019 — 2026-10-19
+
+Asked to improve the Counsellor Desk and Scheme Insights pages as well.
+
+## UP-020 — 2026-10-19
+
+Asked for a demo video of the website using the open-source `brag` repo
+(github.com/latent-spaces/brag), with any manual steps reported back.
+
+## UP-021 — 2026-10-21
+
+User asked for a review of the dev to main release PR, then authorised fixing the
+findings, merging the user branch through `dev`, and merging the release PR into
+`main` as the user. No agent watermark or attribution.
