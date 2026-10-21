@@ -1,4 +1,4 @@
-/* Counsellor Desk: escalated sessions from the family-session demo plus marked example tickets. */
+/* Counsellor Desk: consented family summaries (no conversation text) plus marked example tickets. */
 (() => {
   const D = KV_DATA;
   const $ = s => document.querySelector(s);
@@ -28,11 +28,16 @@
   };
 
   let filter = "open", selected = null, query = "", sort = "priority";
+  const STATUSES = ["open", "active", "resolved"];
+  const REASON = "Asked for a counsellor in a consented family session.";
+  // Consented family summaries carry no conversation text; demo tickets are synthetic.
   const load = () => {
-    const real = KV.get("kinvia.desk", []);
     const statuses = KV.get("kinvia.deskStatus", {});
-    return [...real, ...DEMO].map(t => ({ ...t, status: statuses[t.id] || t.status }));
+    const summaries = KV.deskSummaries().map(s => ({ ...s, reason: REASON, messages: [], demo: false }));
+    return [...summaries, ...DEMO].map(t => ({ ...t, status: STATUSES.includes(statuses?.[t.id]) ? statuses[t.id] : t.status }));
   };
+  // Notes are free text, so in this public prototype they are kept for synthetic demo tickets only.
+  const demoNotes = () => { const n = KV.get("kinvia.demoNotes", {}); return n && typeof n === "object" ? n : {}; };
   const label = c => D.OBJECTIONS[c]?.en ?? "Counsellor request";
   const when = iso => new Date(iso).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
   const days = iso => (Date.now() - new Date(iso).getTime()) / 864e5;
@@ -85,7 +90,7 @@
         <span class="tiny">${t.id} · ${waited(t.at)}${t.demo ? " · demo" : ""}</span>
         <span style="display:flex;gap:6px;flex-wrap:wrap">${(t.open.length ? t.open : ["REQ"]).map(c => `<span class="tag tag-mari">${label(c)}</span>`).join("")}</span>
       </button>`;
-    }).join("") : `<p class="tiny">${query ? "Nothing matches that search." : "No escalations here. Start a <a href=\"try.html\">family session</a> and choose “Talk to a counsellor”."}</p>`;
+    }).join("") : `<p class="tiny">${query ? "Nothing matches that search." : "No tickets here. Choose “All” to see resolved examples, or start a <a href=\"try.html\">family session</a>, agree to save, and choose “Talk to a counsellor”."}</p>`;
     document.querySelectorAll("#tickets [data-id]").forEach(b => b.addEventListener("click", () => {
       selected = b.dataset.id;
       renderList();
@@ -101,7 +106,7 @@
     const evidence = t.evidence.map(id => D.OUTCOMES.find(o => o.id === id)).filter(Boolean);
     const p = priority(t);
     const openCodes = t.open.length ? t.open : ["REQ"];
-    const notes = KV.get("kinvia.deskNotes", {})[t.id];
+    const notes = t.demo ? demoNotes()[t.id] : null;
     el.innerHTML = `
       <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:start">
         <div><span class="eyebrow">${t.id}${t.demo ? " · demo ticket" : ""}</span><h2 style="margin-top:4px">${KV.esc(D.trade(t.trade)?.en || "Trade not chosen")} · ${KV.esc(D.district(t.district)?.en || "")}</h2>
@@ -127,27 +132,35 @@
       <h3 style="margin-top:18px">Last messages</h3>
       <div style="display:flex;flex-direction:column;gap:8px">${t.messages.length ? t.messages.map(m => `<div class="bubble ${m.role}" style="animation:none"><span class="who">${m.role}</span>${KV.esc(m.text)}</div>`).join("") : `<p class="tiny">No transcript kept for this ticket.</p>`}</div>
       <h3 style="margin-top:18px">Your notes</h3>
-      <textarea id="notes" class="notes" rows="3" placeholder="What you agreed, what you promised to send, when you will call back…">${KV.esc(notes?.text || "")}</textarea>
+      ${t.demo ? `<textarea id="notes" class="notes" rows="3" placeholder="What you agreed, what you promised to send, when you will call back…">${KV.esc(notes?.text || "")}</textarea>
       <div class="notes-row"><button class="btn btn-ghost btn-sm" type="button" id="savenote">Save note</button>
-        <span class="tiny" id="noteat">${notes?.at ? "Saved " + when(notes.at) : "Not saved yet"}</span></div>
-      <p class="tiny" style="margin-top:16px">Counsellors see escalated sessions only. Administrators never see this view.</p>`;
+        <span class="tiny" id="noteat">${notes?.at ? "Saved " + when(notes.at) : "Not saved yet"}</span></div>`
+        : `<p class="tiny">Notes on family summaries need a protected service, so this public prototype keeps notes on demo tickets only.</p>
+      <button class="btn btn-ghost btn-sm" type="button" id="remove">Remove this summary</button>`}
+      <p class="tiny" style="margin-top:16px">${t.demo ? "Synthetic example ticket." : "Shared with parental consent from a family session on this device. No conversation text is kept; summaries expire after seven days."} Administrators never see this view.</p>`;
 
     const setStatus = s => {
-      const st = KV.get("kinvia.deskStatus", {});
-      st[t.id] = s; KV.set("kinvia.deskStatus", st); renderList();
+      const st = Object.fromEntries(load().map(x => [x.id, x.status]));
+      st[t.id] = s;
+      if (!KV.set("kinvia.deskStatus", st)) return KV.notice("Ticket status was not saved. Browser storage is unavailable or full.");
+      renderList();
     };
     $("#toggle").addEventListener("click", () => setStatus(t.status === "resolved" ? "open" : "resolved"));
     $("#claim")?.addEventListener("click", () => setStatus("active"));
+    $("#remove")?.addEventListener("click", () => {
+      if (!KV.set("kinvia.deskSummaries", KV.deskSummaries().filter(x => x.id !== t.id))) return KV.notice("The summary was not removed. Browser storage is unavailable or full.");
+      selected = null; renderList();
+    });
 
     const saveNote = () => {
-      const all = KV.get("kinvia.deskNotes", {});
+      const all = demoNotes();
       const text = $("#notes").value.trim();
       if (text) all[t.id] = { text, at: new Date().toISOString() }; else delete all[t.id];
-      KV.set("kinvia.deskNotes", all);
+      if (!KV.set("kinvia.demoNotes", all)) return KV.notice("The note was not saved. Browser storage is unavailable or full.");
       $("#noteat").textContent = text ? "Saved " + when(all[t.id].at) : "Not saved yet";
     };
-    $("#savenote").addEventListener("click", saveNote);
-    $("#notes").addEventListener("blur", saveNote);
+    $("#savenote")?.addEventListener("click", saveNote);
+    $("#notes")?.addEventListener("blur", saveNote);
 
     $("#copy").addEventListener("click", async () => {
       const lines = [
@@ -162,7 +175,7 @@
       ].filter(Boolean).join("\n");
       const btn = $("#copy");
       try { await navigator.clipboard.writeText(lines); btn.textContent = "Copied"; }
-      catch { btn.textContent = "Press Ctrl+C"; const ta = $("#notes"); ta.focus(); }
+      catch { btn.textContent = "Copy failed"; }
       setTimeout(() => { btn.textContent = "Copy summary"; }, 1800);
     });
   }

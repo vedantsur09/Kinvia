@@ -263,7 +263,97 @@ Factual record of repository changes made by agents. Append only.
 - **Unverified:** voice input and read-aloud on real devices (browser speech APIs are
   not exercised headlessly); behaviour on a real handset's browser chrome.
 
-## AC-016 — 2026-10-19 — Counsellor Desk and Scheme Insights upgraded (UP-015)
+## AC-016 — 2026-10-20 — Independent product documentation (UP-015)
+
+- **Changed:** targeted README copy, agent introduction, product requirements and
+  milestones, presentation brief, innovation/research notes and dummy-data wording
+  across contributor, privacy, data, frontend and PR-template docs. Removed competition
+  branding, deadlines, portal requirements and organiser-data dependency; presentation
+  work is optional. Kept useful requirements, safeguards, existing file paths and old
+  section anchors; preserved prior ledger entries.
+- **Verified:** `git diff --check`; static inspection of 18 Markdown files and 55
+  relative links/fragments with no broken links. All previous section anchors, FR/NFR
+  IDs, NFR rows, agent safeguards and privacy principles retained. No competition
+  wording found in inspected visible copy after excluding compatibility identifiers
+  and historical ledgers. Read-only remote source scan at
+  `14f5a8d8b1b633ba00b3d40962cbaca66455fb21` found no competition references in 14
+  frontend text files, including HTML titles/metadata, the manifest and SVG icon.
+- **Remaining / unverified:** work is local on `aditya`, whose checkout has no app
+  source. Live GitHub description and two competition topics still contain linkage;
+  remote `main` also retains the original docs and references in
+  `ppt/kinvia-docs-swap.txt` and `ppt/kinvia-ppt-content.md`. Legacy document URLs,
+  compatibility anchors and historical logs retain identifiers. Live site fetch
+  failed; binary image/PDF contents and third-party caches/posts were not inspected.
+  No test suites, Git writes, settings changes, publication or deployment performed.
+
+## AC-017 — 2026-10-20 — Git integration preparation (UP-016)
+
+- **Verified:** fetched current remote refs; active CLI and connector identity match
+  the user account; commit identity is configured for the user. No open pull requests
+  were returned. `aditya` starts at the foundation commit, behind the existing website
+  work on `dev`; integration must retain that work and both append-only ledgers.
+- **Pending at this entry:** commit/push, merge to `dev`, and the unmerged `main` PR
+  with the repository owner requested as reviewer. No agent attribution will be added.
+
+## AC-018 — 2026-10-20 — Current development work retained (UP-016)
+
+- **Changed:** merged the fetched `dev` tree into the user branch; resolved the two
+  ledger conflicts by keeping incoming history followed by the new entries, and kept
+  the current frontend README rather than the old placeholder.
+- **Verified:** frontend matches `origin/dev` byte-for-byte; 19 Markdown files and 57
+  relative links checked without newly broken links or lost anchors; requirement IDs,
+  NFR rows and existing ledger prefixes retained; no unresolved conflicts or whitespace
+  errors. Cleanup commit uses the configured user identity with no agent attribution.
+- **Limitations:** no application tests or deployments run; remote PR operations follow
+  this merge commit and are not claimed complete in this entry.
+
+## AC-019 — 2026-10-21 — Product cleanup review corrections (UP-017)
+
+- **Changed:** restored FR-02 exactly to its original wording and retained OD-04;
+  preserved the public-visibility recommendation with the observed public status;
+  narrowed dummy-dataset wording in README, PROJECT, research and presentation brief;
+  made the references heading generic with the previous anchor retained and the
+  presentation link updated. Files: `README.md`, `docs/PROJECT.md`, `docs/research.md`,
+  `docs/sih-ppt-submission-brief.md`, plus append-only request/change ledgers.
+- **Verified:** 19 Markdown files and 57 relative links/fragments checked without newly
+  broken links or lost anchors; references numbered consecutively 1–7; original FR-02
+  and OD-04 match `main`; NFR rows, application files, privacy rules and tasks unchanged
+  by the correction; `git diff --check` passed. Read-only GitHub check reports the
+  repository public; no visibility or settings change was made.
+- **Scope:** competition-only portal, idea-count and mandatory presentation gates stay
+  removed under the user's independent-product request. Compatibility identifiers,
+  historical material, repository About/topics and existing PPT linkage remain.
+- **Pending at this entry:** push via the member branch and PR into `dev`, update the
+  existing main PR's review notes, and retain the main PR unmerged. No app tests run.
+
+## AC-020 — 2026-10-21 — Prototype privacy and quality fixes (UP-018)
+
+- **Changed:** removed durable conversation/resume and real-ticket storage from
+  `frontend/session.js` and `frontend/desk.js`; all pages remove legacy active,
+  Desk and Desk-note copies through `frontend/data.js`. The Desk is synthetic only.
+  Guest counselling, explicit exports and consented categorical Insights remain.
+- **Changed:** surfaced storage-write failures and validated stored summaries;
+  cancelled pending replies, speech recognition and retained drafts/cards on reset
+  or navigation; added native modal containment and explicit focus restoration;
+  restricted cache deletion/writes to this app and successful shell responses;
+  replaced the undefined bar colour token. Updated four page asset versions, public
+  demo claims and `frontend/README.md`; added two regression files in `frontend/tests/`.
+- **Verified:** all six frontend scripts parse, relative page links/assets resolve,
+  and `git diff --check` passes. Twelve checks passed in both installed Chromium
+  and WebKit using Playwright 1.62.1, including synthetic legacy cleanup, guest/
+  consented flows, exports, failure handling, restart, keyboard/mobile dialogs,
+  back/forward restoration and offline fallback. Independent read-only candidate
+  review found no remaining actionable issue after correcting landing-page claims.
+- **Limitations:** microphone cancellation uses a synthetic recogniser; no physical
+  device, real speech service, WhatsApp delivery, print output or live deployment
+  verified. WebKit offline-toggle emulation errored internally; fallback passed with
+  a real loopback connection failure. Legacy bytes cannot be removed if browser
+  storage denies access; the UI reports that condition and instructs site-data cleanup.
+- **Scope:** protected root/product documents and outcome figures remain unchanged.
+  No backend/authentication or production counsellor handoff added. GitHub integration
+  follows this entry; the requested main PR must remain unmerged.
+
+## AC-021 — 2026-10-19 — Counsellor Desk and Scheme Insights upgraded (UP-019)
 
 - **Changed:** `frontend/desk.html`, `frontend/desk.js`, `frontend/insights.html`,
   `frontend/insights.js`, `frontend/styles.css`, `frontend/README.md`.
@@ -303,7 +393,7 @@ Factual record of repository changes made by agents. Append only.
 - **Unverified:** clipboard write on browsers that block it without a user gesture
   (a focus fallback is in place but was not exercised); print output on a real printer.
 
-## AC-017 — 2026-10-19 — Launch video generated with /brag-slim (UP-016)
+## AC-022 — 2026-10-19 — Launch video generated with /brag-slim (UP-020)
 
 - **Changed:** added `brag-output/` (git-ignored) containing `brag.mp4` (21 s,
   1920×1080, 30 fps, H.264 + AAC, 4.3 MB), `brag.jpg` poster, `brag-plan.md` and
@@ -335,3 +425,29 @@ Factual record of repository changes made by agents. Append only.
   figures appear. No invented users, outcomes or testimonials.
 - **Unverified:** playback on a real player with sound (checked frame-by-frame and by
   measurement, not by watching); how the soundtrack reads on good speakers.
+
+## AC-023 — 2026-10-21 — Release PR fixes and branch reconciliation (UP-021)
+
+- **Changed:** `frontend/data.js`, `frontend/session.js`, `frontend/desk.js`,
+  `frontend/desk.html`, `frontend/index.html`, `frontend/insights.html`,
+  `frontend/try.html`, `frontend/sw.js`, `frontend/README.md`,
+  `frontend/tests/sw.test.cjs`, `frontend/tests/session.browser.test.cjs`; merged `dev`
+  into the user branch and renumbered that branch's ledger entries (UP-019/020,
+  AC-021/022) after the ones already on `dev`.
+- **Fixes:** storage notices no longer throw on the overview page, which has no
+  prototype note. With consent, asking for a counsellor puts a summary-only Desk ticket
+  in `kinvia.deskSummaries` (district, trade, schooling band, speaker-tagged concern
+  codes, record ids; no conversation text), validated on read, capped at 20, expiring
+  after seven days and removable from the Desk. Guest mode sends nothing and shows no
+  ticket id. Desk triage, in-progress status, search, brief and copy summary are kept;
+  notes move to `kinvia.demoNotes` and apply to demo tickets only. The legacy
+  `kinvia.desk`/`kinvia.deskNotes` cleanup stays. Asset versions and cache bumped;
+  service-worker tests read cache and asset names from `sw.js`.
+- **Verified:** `node --check` on all frontend JS and tests; `node --test
+  frontend/tests/sw.test.cjs` 4/4 pass. In the in-app browser: overview notice renders
+  in the page body; consented escalation stores only the categorical summary (marker
+  text absent); the Desk lists it, hides notes, starts calling, and removes it; demo
+  notes save; guest escalation (English and Hindi) stores nothing; Insights and Desk
+  load with no console errors.
+- **Unverified:** the Playwright browser suite was updated but not run (the Playwright
+  package is not installed here); real devices, microphone and WhatsApp delivery.

@@ -9,8 +9,8 @@ browser. No build step, no backend, no external API calls. All outcome figures a
 | Page | File | What works |
 |---|---|---|
 | Overview | `index.html` | Product site: hero with the family illustration, how it works, features, who it's for, privacy, call to action |
-| Family session | `try.html` + `session.js` | Read-aloud consent (or guest mode) · **resume an earlier session** · **in-chat trade picker** · **context strip** (district · trade · record status, taps through to the control) · **typing indicator** pacing multi-part replies · **context-aware follow-up suggestions** · **district comparison** card · **counsellor nudge** after two open concerns · **transcript download** · Hindi/English · learner/parent speaker roles · voice input (browser speech recognition) and read-aloud replies · bilingual concern tagging (income, status, safety, further study, cost, job security, distance) · Evidence Cards from records · **grounding guard** that blocks any ₹/% figure not in a record or scheme rule · honest "no verified data" path · pathway and five-year view · scheme hints · before/after confidence · counsellor escalation · Family Trust Card (WhatsApp share, image download, print) |
-| Counsellor Desk | `desk.html` + `desk.js` | Escalations plus marked demo tickets · **triage** ("Call first" with a named reason: unanswered safety concern, or days waiting) · **search and sort** · open / in progress / resolved · **“Before you call” brief** per unanswered concern · speaker-tagged concerns · evidence already shown · **counsellor notes** · **copy summary** for handover |
+| Family session | `try.html` + `session.js` | Read-aloud consent (or guest mode) · **in-chat trade picker** · **context strip** (district · trade · record status, taps through to the control) · **typing indicator** pacing multi-part replies · **context-aware follow-up suggestions** · **district comparison** card · **counsellor nudge** after two open concerns · **transcript download** · Hindi/English · learner/parent speaker roles · voice input (browser speech recognition) and read-aloud replies · bilingual concern tagging (income, status, safety, further study, cost, job security, distance) · Evidence Cards from records · **grounding guard** that blocks any ₹/% figure not in a record or scheme rule · honest "no verified data" path · pathway and five-year view · scheme hints · before/after confidence · consented **summary-only counsellor escalation** · Family Trust Card (WhatsApp share, image download, print) |
+| Counsellor Desk | `desk.html` + `desk.js` | Consented family summaries (district, trade, speaker-tagged concerns and record ids, never conversation text; removable, expire after seven days) plus marked demo tickets · **triage** ("Call first" with a named reason: unanswered safety concern, or days waiting) · **search and sort** · open / in progress / resolved · **“Before you call” brief** per unanswered concern · evidence already shown · **counsellor notes** (demo tickets only) · **copy summary** for handover |
 | Scheme Insights | `insights.html` + `insights.js` | **Priority districts** ranked by concern spread against confidence lift, with the reason shown · District × concern heatmap with a **scale legend** and **click-to-focus** a concern · top concerns · confidence shift · outreach that refocuses with the selected concern · **state or single-district scope** · **CSV export** and print · live sessions from this browser added to the aggregates |
 
 Shared: `data.js` (synthetic outcomes, trades, districts, schemes, objection taxonomy,
@@ -72,6 +72,25 @@ python -m http.server 5180 --directory frontend
 Then open http://localhost:5180. (Opening the HTML file directly also works, but the
 offline cache only registers over http.)
 
+## Regression checks
+
+Run the dependency-free service-worker checks with Node.js:
+
+```bash
+node --test frontend/tests/sw.test.cjs
+```
+
+The browser checks use an existing [Playwright](https://github.com/microsoft/playwright)
+installation (tested with 1.62.1, Apache-2.0) and a separate temporary browser profile.
+They serve only loopback files and block external requests; all fixtures are synthetic.
+No runtime dependency or build step is added to the app.
+
+```bash
+NODE_PATH=/path/to/existing/node_modules BROWSER_EXECUTABLE=/path/to/chromium node --test frontend/tests/*.test.cjs
+# Or use an installed Playwright WebKit browser:
+NODE_PATH=/path/to/existing/node_modules BROWSER_ENGINE=webkit node --test frontend/tests/*.test.cjs
+```
+
 ## Deploy (GitHub Pages)
 
 GitHub Pages serves a repository root or `/docs`, and needs a public repository on the
@@ -85,5 +104,12 @@ relative, so it works under `https://<user>.github.io/<repo>/`.
   orchestrator, an open-weight Indic LLM and Bhashini/Sarvam speech (see
   `docs/architecture.md` and the PPT pack).
 - Voice input depends on the browser's speech recognition (Chrome/Edge support it).
-- Data saved by the demo (escalations, sessions, language) lives only in the viewer's
-  browser `localStorage`.
+- Conversation text stays in memory and is cleared on navigation or restart. There is
+  no saved-session resume or live counsellor handoff; use a training centre for human
+  help. Explicit downloads and shares are controlled by the visitor.
+- With parental consent, categorical concern codes and confidence/context summaries
+  contribute to local Insights, and asking for a counsellor puts a summary (no
+  conversation text) on this browser's Desk. Desk notes are kept for demo tickets only.
+  Language and Desk status also use `localStorage`; failed writes are reported. Older
+  conversation, Desk and Desk-note storage is removed on page entry. Clear site data if
+  that cleanup reports failure.

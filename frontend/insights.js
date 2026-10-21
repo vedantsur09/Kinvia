@@ -6,7 +6,7 @@
 
   function data() {
     const agg = JSON.parse(JSON.stringify(D.INSIGHTS));
-    KV.get("kinvia.sessions", []).forEach(s => {
+    KV.sessions().forEach(s => {
       const a = agg[s.district]; if (!a) return;
       const n = a.sessions;
       a.before = (a.before * n + s.before) / (n + 1);
@@ -53,7 +53,7 @@
     const top = CODES.slice().sort((a, b) => sums[b] - sums[a]);
     const before = ds.reduce((s, d) => s + agg[d.id].before * agg[d.id].sessions, 0) / total;
     const after = ds.reduce((s, d) => s + agg[d.id].after * agg[d.id].sessions, 0) / total;
-    const live = KV.get("kinvia.sessions", []).length;
+    const live = KV.sessions().length;
 
     $("#kpis").innerHTML = `
       <div class="kpi"><b>${total.toLocaleString("en-IN")}</b><span>family sessions${live ? ` · ${live} from this browser` : ""}</span></div>

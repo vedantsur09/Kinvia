@@ -85,11 +85,44 @@ footer ("Built by" and the rest of the bottom of the page) looked poor.
 Asked to optimise the website chatbot further, make it more user friendly, and add
 more features where possible.
 
-## UP-015 — 2026-10-19
+## UP-015 — 2026-10-20
+
+User authorised targeted removal of competition-specific branding, identifiers,
+submission requirements and constraints so Kinvia stands as an independent product.
+Preserve the README structure, useful functionality, safeguards and existing URLs;
+no redesign, Git writes, history rewrite, visibility change, publication or deployment.
+
+## UP-016 — 2026-10-20
+
+User authorised committing and pushing the cleanup as the user on `aditya`, merging
+`aditya` into `dev`, then opening a `dev` to `main` pull request without merging it.
+Request review from the repository owner; add no agent watermark or attribution.
+
+## UP-017 — 2026-10-21
+
+User requested understanding and execution of the needs-fix feedback on PR #10.
+Correct the language requirement, visibility recommendation, dataset wording and
+references heading within the approved documentation cleanup. Keep the main PR
+unmerged and retain the established member-branch-to-dev workflow.
+
+## UP-018 — 2026-10-21
+
+User authorised fixing all findings from the independent code-quality/security
+review, running focused verification, and committing/pushing on the user branch.
+Merge the member PR into `dev`, then open a clearly described `dev` to `main` PR
+without merging it and request review from the repository owner. No agent watermark.
+
+## UP-019 — 2026-10-19
 
 Asked to improve the Counsellor Desk and Scheme Insights pages as well.
 
-## UP-016 — 2026-10-19
+## UP-020 — 2026-10-19
 
 Asked for a demo video of the website using the open-source `brag` repo
 (github.com/latent-spaces/brag), with any manual steps reported back.
+
+## UP-021 — 2026-10-21
+
+User asked for a review of the dev to main release PR, then authorised fixing the
+findings, merging the user branch through `dev`, and merging the release PR into
+`main` as the user. No agent watermark or attribution.
